@@ -97,7 +97,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             @Override
             public void onClick (View v){
                 //each time clicked on txtFooter we add a new element
-                add(-1, "New Item");
+                add(position, "New Item");
             }
         });
     }
