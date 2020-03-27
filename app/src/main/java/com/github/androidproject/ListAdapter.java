@@ -104,12 +104,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
 
 
-
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         System.out.println("number of item : "+ values.size()); //to Test LogCat display
         return values.size();
-    } //the adapter return the total number of items
+    } //the adapter return the total number of items list
 
 }
