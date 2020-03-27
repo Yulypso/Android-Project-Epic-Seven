@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity { //main activity
             input.add("Test" + i);
         }
 
-
+        //new comment
         // define an adapter and give input into ListAdapter
         mAdapter = new ListAdapter(input); //Manages the data model and adapts it to the individual entries in the widget
         recyclerView.setAdapter(mAdapter); //Assigning it to the recycler

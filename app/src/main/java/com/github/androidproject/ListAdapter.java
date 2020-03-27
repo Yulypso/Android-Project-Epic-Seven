@@ -110,5 +110,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         System.out.println("number of item : "+ values.size()); //to Test LogCat display
         return values.size();
     } //the adapter return the total number of items list.
+    //new comment
 
 }
