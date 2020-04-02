@@ -7,6 +7,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface EpicSevenApi {
-    @GET("/api/hero")
+    @GET("/hero")
     Call<RestEpicSevenResponse> getHeroResponse();
 }
