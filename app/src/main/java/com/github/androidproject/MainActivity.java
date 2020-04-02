@@ -34,11 +34,10 @@ public class MainActivity extends AppCompatActivity { //main activity
         setContentView(R.layout.activity_main);
         //Main view related to activity_main.xml
 
-        showList();
         makeApiCall();
     }
 
-    private void showList() {
+    private void showList(List<Hero> heroList) {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view); //search for recycler_view in activity main by id
         recyclerView.setHasFixedSize(true);
         // use a linear layout manager
@@ -46,15 +45,8 @@ public class MainActivity extends AppCompatActivity { //main activity
         recyclerView.setLayoutManager(layoutManager);
 
 
-        //creating the content of the list input
-        List<String> input = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            input.add("Test" + i);
-        }
-
-        //new comment
         // define an adapter and give input into ListAdapter
-        mAdapter = new ListAdapter(input); //Manages the data model and adapts it to the individual entries in the widget
+        mAdapter = new ListAdapter(heroList); //Manages the data model and adapts it to the individual entries in the widget
         recyclerView.setAdapter(mAdapter); //Assigning it to the recycler
     }
 
@@ -76,7 +68,8 @@ public class MainActivity extends AppCompatActivity { //main activity
             public void onResponse(Call<RestEpicSevenResponse> call, Response<RestEpicSevenResponse> response) {
                 if(response.isSuccessful() && response.body() != null){
                     List<Hero> heroList = response.body().getResults();
-                    Toast.makeText(getApplicationContext(),"API Success", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),"API Success", Toast.LENGTH_SHORT).show();
+                    showList(heroList);
                 }
             }
 
