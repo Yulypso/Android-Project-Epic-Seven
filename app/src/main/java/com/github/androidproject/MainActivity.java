@@ -4,12 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +31,8 @@ public class MainActivity extends AppCompatActivity { //main activity
     private RecyclerView recyclerView; //To display a collection of data
     private ListAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private SharedPreferences sharedPreferences; //to save data
+    private Gson gson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +40,35 @@ public class MainActivity extends AppCompatActivity { //main activity
         setContentView(R.layout.activity_main);
         //Main view related to activity_main.xml
 
-        makeApiCall();
+        sharedPreferences = getSharedPreferences(Constants.KEY_APPLICATION_NAME, Context.MODE_PRIVATE);
+        gson = new GsonBuilder() //create gson object to convert List into String (json type)
+                .setLenient()
+                .create();
+
+
+        List<Hero> HeroList = getDataInCache(); //get data from cache
+
+        if(HeroList != null){ //if data from cache is not null, we have data, we shows it
+            showList(HeroList);
+            Toast.makeText(getApplicationContext(),"Load from Cache", Toast.LENGTH_SHORT).show();
+        } else {
+            makeApiCall(); //if no data from cache, we make an ApiCall to get Data from API
+        }
+    }
+
+    private List<Hero> getDataInCache() {
+        String jsonHero = sharedPreferences.getString(Constants.KEY_HERO_LIST, null);
+
+        if(jsonHero == null){
+            return null;
+        } else {
+            Type listType = new TypeToken<List<Hero>>(){}.getType(); //deserialize list
+            return gson.fromJson(jsonHero, listType);
+        }
     }
 
     private void showList(List<Hero> heroList) {
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view); //search for recycler_view in activity main by id
+        recyclerView = findViewById(R.id.recycler_view); //search for recycler_view in activity main by id
         recyclerView.setHasFixedSize(true);
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(this); //horizontal / vertical
@@ -51,10 +81,6 @@ public class MainActivity extends AppCompatActivity { //main activity
     }
 
     private void makeApiCall(){
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
@@ -69,6 +95,7 @@ public class MainActivity extends AppCompatActivity { //main activity
                 if(response.isSuccessful() && response.body() != null){
                     List<Hero> heroList = response.body().getResults();
                     //Toast.makeText(getApplicationContext(),"API Success", Toast.LENGTH_SHORT).show();
+                    saveList(heroList);
                     showList(heroList);
                 }
             }
@@ -78,6 +105,17 @@ public class MainActivity extends AppCompatActivity { //main activity
                 showError();
             }
         });
+    }
+
+    private void saveList(List<Hero> heroList) {
+        String jsonString = gson.toJson(heroList); //convert hero list into json format which is a String type
+
+        sharedPreferences
+                .edit()
+                .putString(Constants.KEY_HERO_LIST, jsonString)  //clé, String
+                .apply();
+
+        Toast.makeText(getApplicationContext(),"List saved", Toast.LENGTH_SHORT).show();
     }
 
     private void showError(){
