@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,8 +21,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         values = myDataset;
     }
 
-
-
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
@@ -30,17 +29,17 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         TextView txtHeader;
         TextView txtFooter;
         View layout;
+        ImageView imageView;
 
         ViewHolder(View v) {
             //code can avoid the time-consuming findViewById() method to update the widgets with new data
             super(v);
             layout = v;
-            txtHeader = (TextView) v.findViewById(R.id.firstLine);
-            txtFooter = (TextView) v.findViewById(R.id.secondLine);
+            txtHeader = v.findViewById(R.id.firstLine);
+            txtFooter = v.findViewById(R.id.secondLine);
+            imageView = v.findViewById(R.id.icon);
         }
     }
-
-
 
     //method of ListAdapter
     public void add(int position, Hero item) {
@@ -55,9 +54,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         notifyItemRangeChanged(position, values.size());
     }
 
-
-
-
     // Create new views (invoked by the layout manager)
     @NonNull
     @Override
@@ -71,8 +67,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         View v = inflater.inflate(R.layout.row_layout, parent, false);
         // set the view's size, margins, paddings and layout parameters from XML row_layout
 
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        return new ViewHolder(v);
     }
 
 
@@ -85,9 +80,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         final Hero currentHero = values.get(position);
 
         holder.txtHeader.setText(currentHero.getName());
-        holder.txtFooter.setText(currentHero.getRarity().toString());
+        holder.txtFooter.setText(currentHero.getRarity().toString() + "★");
 
-
+    /*
         holder.txtHeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,6 +98,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                 add(position, currentHero);
             }
         });
+    */
     }
 
 
