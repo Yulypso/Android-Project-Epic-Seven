@@ -13,10 +13,10 @@ import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
-    private List<String> values; //load in this variable the list from the constructor
+    private List<Hero> values; //load in this variable the list from the constructor
 
     //Constructor
-    ListAdapter(List<String> myDataset) { //constructor
+    ListAdapter(List<Hero> myDataset) { //constructor
         values = myDataset;
     }
 
@@ -43,14 +43,16 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
 
     //method of ListAdapter
-    public void add(int position, String item) {
+    public void add(int position, Hero item) {
         values.add(position, item);
         notifyItemInserted(position);
+        notifyItemRangeChanged(position, values.size());
     }
 
     private void remove(int position) {
         values.remove(position);
         notifyItemRemoved(position);
+        notifyItemRangeChanged(position, values.size());
     }
 
 
@@ -74,16 +76,18 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     }
 
 
-
     // Replace the contents of a view (invoked by the layout manager)
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        final String name = values.get(position);
+        final Hero currentHero = values.get(position);
 
-        holder.txtHeader.setText(name);
+        holder.txtHeader.setText(currentHero.getName());
+        holder.txtFooter.setText(currentHero.getRarity().toString());
+
+
         holder.txtHeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,12 +96,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             }
         });
 
-        holder.txtFooter.setText("Footer: "+ name);
         holder.txtFooter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v){
                 //each time clicked on txtFooter we add a new element
-                add(position, "New Item");
+                add(position, currentHero);
             }
         });
     }
