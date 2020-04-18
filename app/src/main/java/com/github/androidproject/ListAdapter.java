@@ -10,11 +10,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
-    private List<Hero> values; //load in this variable the list from the constructor
+    private List<Hero> values; //liste des héros
+    //private List(HeroInfo) HIValues; //liste des infos sur les héros.
 
     //Constructor
     ListAdapter(List<Hero> myDataset) { //constructor
@@ -30,6 +33,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         TextView txtFooter;
         View layout;
         ImageView imageView;
+        String url = "https://assets.epicsevendb.com/_source/face/c1096_s.png";
 
         ViewHolder(View v) {
             //code can avoid the time-consuming findViewById() method to update the widgets with new data
@@ -79,9 +83,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         // - replace the contents of the view with that element
         final Hero currentHero = values.get(position);
 
+        //System.out.println(currentHero.getName());
         holder.txtHeader.setText(currentHero.getName());
         holder.txtFooter.setText(currentHero.getRarity().toString() + "★");
 
+        Picasso.get().load(holder.url).into(holder.imageView);
     /*
         holder.txtHeader.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +112,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        System.out.println("number of item : "+ values.size()); //to Test LogCat display
+       // System.out.println("number of item : "+ values.size()); //to Test LogCat display
         return values.size();
     } //the adapter return the total number of items list
 

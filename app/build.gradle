@@ -23,6 +23,10 @@ android {
 
 }
 
+repositories {
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -35,4 +39,6 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.1.0" //library recyclerview
     implementation 'com.squareup.retrofit2:retrofit:2.1.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

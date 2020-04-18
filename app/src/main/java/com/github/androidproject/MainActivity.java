@@ -15,6 +15,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity { //main activity
     private SharedPreferences sharedPreferences; //to save data
     private Gson gson;
 
+    final List<List<HeroInfo>> listHeroInfoList = new LinkedList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,12 +51,12 @@ public class MainActivity extends AppCompatActivity { //main activity
 
         List<Hero> HeroList = getDataInCache(); //get data from cache
 
-        if(HeroList != null){ //if data from cache is not null, we have data, we shows it
+       /* if(HeroList != null){ //if data from cache is not null, we have data, we shows it
             showList(HeroList);
             Toast.makeText(getApplicationContext(),"Load from Cache", Toast.LENGTH_SHORT).show();
-        } else {
+        } else {*/
             makeApiCall(); //if no data from cache, we make an ApiCall to get Data from API
-        }
+       // }
     }
 
     private List<Hero> getDataInCache() {
@@ -87,22 +90,62 @@ public class MainActivity extends AppCompatActivity { //main activity
                 .build();
 
         EpicSevenApi EpicSevenApi = retrofit.create(EpicSevenApi.class);
-
         Call<RestEpicSevenResponse> call = EpicSevenApi.getHeroResponse();
         call.enqueue(new Callback<RestEpicSevenResponse>() {
             @Override
             public void onResponse(Call<RestEpicSevenResponse> call, Response<RestEpicSevenResponse> response) {
                 if(response.isSuccessful() && response.body() != null){
                     List<Hero> heroList = response.body().getResults();
-                    //Toast.makeText(getApplicationContext(),"API Success", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"API Success", Toast.LENGTH_SHORT).show();
                     saveList(heroList);
+
+                    //System.out.println("taille de la liste initiale : " + listHeroInfoList.size());
+                    for(Hero hero : heroList) {
+                        makeApiCall2(hero.get_id(), listHeroInfoList);
+
+                    }
+                    saveHeroInfoList(listHeroInfoList);
+                    Toast.makeText(getApplicationContext(),"API Success 2", Toast.LENGTH_SHORT).show();
+
                     showList(heroList);
+
                 }
             }
 
             @Override
             public void onFailure(Call<RestEpicSevenResponse> call, Throwable t) {
                 showError();
+            }
+        });
+    }
+
+    private void makeApiCall2(String id, final List<List<HeroInfo>> listHeroInfoList){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        EpicSevenApi EpicSevenApi = retrofit.create(EpicSevenApi.class);
+
+        Call<RestHeroInfoResponse> call = EpicSevenApi.getHeroInfoResponse(id);
+        call.enqueue(new Callback<RestHeroInfoResponse>() {
+            @Override
+            public void onResponse(Call<RestHeroInfoResponse> call, Response<RestHeroInfoResponse> response) {
+                if(response.isSuccessful() && response.body() != null){
+                    List<HeroInfo> heroInfoList = response.body().getResults();
+                    //Toast.makeText(getApplicationContext(),"API Success 2", Toast.LENGTH_SHORT).show();
+
+                    //System.out.println(heroInfoList.get(0).get_id());
+                    listHeroInfoList.add(heroInfoList);
+
+                    //System.out.println("taille de la liste finale : " + listHeroInfoList.size());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RestHeroInfoResponse> call, Throwable t) {
+                Toast.makeText(getApplicationContext(),"API Error 2", Toast.LENGTH_SHORT).show();
+                //showError();
             }
         });
     }
@@ -116,6 +159,17 @@ public class MainActivity extends AppCompatActivity { //main activity
                 .apply();
 
         Toast.makeText(getApplicationContext(),"List saved", Toast.LENGTH_SHORT).show();
+    }
+
+    private void saveHeroInfoList(List<List<HeroInfo>> listHeroInfoList) {
+        String jsonString = gson.toJson(listHeroInfoList); //convert hero list into json format which is a String type
+
+        sharedPreferences
+                .edit()
+                .putString(Constants.KEY_HERO_INFO_LIST, jsonString)  //clé, String
+                .apply();
+
+        Toast.makeText(getApplicationContext(),"List saved 2", Toast.LENGTH_SHORT).show();
     }
 
     private void showError(){
