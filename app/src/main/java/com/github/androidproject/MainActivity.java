@@ -49,17 +49,18 @@ public class MainActivity extends AppCompatActivity { //main activity
                 .create();
 
 
-        List<Hero> HeroList = getDataInCache(); //get data from cache
+        List<Hero> HeroList = getHeroDataInCache(); //get data from cache
+        List<List<HeroInfo>> listHeroInfoList = getHeroInfoDataInCache();
 
-       /* if(HeroList != null){ //if data from cache is not null, we have data, we shows it
+        /*if(HeroList != null && listHeroInfoList != null){ //if data from cache is not null, we have data, we shows it
             showList(HeroList);
             Toast.makeText(getApplicationContext(),"Load from Cache", Toast.LENGTH_SHORT).show();
         } else {*/
             makeApiCall(); //if no data from cache, we make an ApiCall to get Data from API
-       // }
+        //}
     }
 
-    private List<Hero> getDataInCache() {
+    private List<Hero> getHeroDataInCache() {
         String jsonHero = sharedPreferences.getString(Constants.KEY_HERO_LIST, null);
 
         if(jsonHero == null){
@@ -67,6 +68,16 @@ public class MainActivity extends AppCompatActivity { //main activity
         } else {
             Type listType = new TypeToken<List<Hero>>(){}.getType(); //deserialize list
             return gson.fromJson(jsonHero, listType);
+        }
+    }
+    private List<List<HeroInfo>> getHeroInfoDataInCache() {
+        String jsonHeroInfo = sharedPreferences.getString(Constants.KEY_HERO_INFO_LIST, null);
+
+        if(jsonHeroInfo == null){
+            return null;
+        } else {
+            Type listType = new TypeToken<List<List<HeroInfo>>>(){}.getType(); //deserialize list
+            return gson.fromJson(jsonHeroInfo, listType);
         }
     }
 
@@ -79,7 +90,7 @@ public class MainActivity extends AppCompatActivity { //main activity
 
 
         // define an adapter and give input into ListAdapter
-        mAdapter = new ListAdapter(heroList); //Manages the data model and adapts it to the individual entries in the widget
+        mAdapter = new ListAdapter(heroList, listHeroInfoList); //Manages the data model and adapts it to the individual entries in the widget
         recyclerView.setAdapter(mAdapter); //Assigning it to the recycler
     }
 

@@ -17,11 +17,12 @@ import java.util.List;
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     private List<Hero> values; //liste des héros
-    //private List(HeroInfo) HIValues; //liste des infos sur les héros.
+    private List<List<HeroInfo>> HIValues; //liste des infos sur les héros.
 
     //Constructor
-    ListAdapter(List<Hero> myDataset) { //constructor
+    ListAdapter(List<Hero> myDataset, List<List<HeroInfo>> listHeroInfoList) { //constructor
         values = myDataset;
+        HIValues = listHeroInfoList;
     }
 
     // Provide a reference to the views for each data item
@@ -82,12 +83,22 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         final Hero currentHero = values.get(position);
+        //final List<HeroInfo> currentHeroInfo = HIValues.get(position);
 
         //System.out.println(currentHero.getName());
         holder.txtHeader.setText(currentHero.getName());
         holder.txtFooter.setText(currentHero.getRarity().toString() + "★");
 
-        Picasso.get().load(holder.url).into(holder.imageView);
+       // for(int i=0; i<HIValues.size(); i++) {
+       //         System.out.println(HIValues.get(i).get(0).getName());
+       // }
+
+       for(int i=0; i<HIValues.size(); i++){
+           System.out.println(currentHero.get_id().toString() + "    " + HIValues.get(i).get(0).get_id().toString());
+            if(currentHero.get_id().toString().equals(HIValues.get(i).get(0).get_id().toString())){
+                Picasso.get().load(HIValues.get(i).get(0).getAssets().getIcon().toString()).into(holder.imageView);
+            }
+        }
     /*
         holder.txtHeader.setOnClickListener(new View.OnClickListener() {
             @Override

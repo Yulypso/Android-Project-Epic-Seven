@@ -5,13 +5,18 @@ import java.util.List;
 public class HeroInfo {
 
     private String _id;
-    private List<assets> url;
+    private Assets assets;
+    private String name;
 
-    public String get_id() {
+    String get_id() {
         return _id;
     }
 
-    public List<assets> getUrl() {
-        return url;
+    public String getName() {
+        return name;
+    }
+
+    Assets getAssets() {
+        return assets;
     }
 }

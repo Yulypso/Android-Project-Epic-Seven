@@ -1,11 +1,11 @@
 package com.github.androidproject;
 
-public class assets {
+public class Assets {
     private String icon;
     private String image;
     private String thumbnail;
 
-    public String getIcon() {
+    String getIcon() {
         return icon;
     }
 
