@@ -87,7 +87,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
         //System.out.println(currentHero.getName());
         holder.txtHeader.setText(currentHero.getName());
-        holder.txtFooter.setText(currentHero.getRarity().toString() + "★");
+        holder.txtFooter.setText(currentHero.getRarity().toString() + "★    " + currentHero.getAttribute() + "     " + currentHero.getClassRole());
 
        // for(int i=0; i<HIValues.size(); i++) {
        //         System.out.println(HIValues.get(i).get(0).getName());

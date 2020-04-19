@@ -6,13 +6,9 @@ public class Hero {
     private String _id;
     private String name;
     private Integer rarity;
-    private String classType;
-    private String element;
+    private String role;
+    private String attribute;
     private String zodiac;
-    private String memoryImprintAttribute;
-    private String filedId;
-    private List<String> buffs;
-    private List<String> debuffs;
 
     public String get_id() {
         return _id;
@@ -26,31 +22,15 @@ public class Hero {
         return rarity;
     }
 
-    public String getClassType() {
-        return classType;
+    public String getClassRole() {
+        return role;
     }
 
-    public String getElement() {
-        return element;
+    public String getAttribute() {
+        return attribute;
     }
 
     public String getZodiac() {
         return zodiac;
-    }
-
-    public String getMemoryImprintAttribute() {
-        return memoryImprintAttribute;
-    }
-
-    public String getFiledId() {
-        return filedId;
-    }
-
-    public List<String> getBuffs() {
-        return buffs;
-    }
-
-    public List<String> getDebuffs() {
-        return debuffs;
     }
 }
