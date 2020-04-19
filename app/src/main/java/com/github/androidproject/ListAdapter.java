@@ -17,12 +17,12 @@ import java.util.List;
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     private List<Hero> values; //liste des héros
-    private List<List<HeroInfo>> HIValues; //liste des infos sur les héros.
+    private List<HeroInfo> HIValues; //liste des infos sur les héros.
 
     //Constructor
-    ListAdapter(List<Hero> myDataset, List<List<HeroInfo>> listHeroInfoList) { //constructor
+    ListAdapter(List<Hero> myDataset, List<HeroInfo> heroInfoList) { //constructor
         values = myDataset;
-        HIValues = listHeroInfoList;
+        HIValues = heroInfoList;
     }
 
     // Provide a reference to the views for each data item
@@ -96,10 +96,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
         //System.out.println("COUCOU" + HIValues.size());
 
-       for(int i=0; i<HIValues.size(); i++){
-           //System.out.println(currentHero.get_id() + "    " + HIValues.get(i).get(0).get_id());
-            if(currentHero.get_id().equals(HIValues.get(i).get(0).get_id())){
-                Picasso.get().load(HIValues.get(i).get(0).getAssets().getIcon()).into(holder.imageView);
+        if(HIValues != null){
+           for(int i=0; i<HIValues.size(); i++){
+                if(currentHero.get_id().equals(HIValues.get(i).get_id())){
+                    Picasso.get().load(HIValues.get(i).getAssets().getIcon()).into(holder.imageView);
+                }
             }
         }
     /*
