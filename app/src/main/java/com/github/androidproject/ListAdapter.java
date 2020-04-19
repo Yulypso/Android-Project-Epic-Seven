@@ -93,10 +93,13 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
        //         System.out.println(HIValues.get(i).get(0).getName());
        // }
 
+
+        //System.out.println("COUCOU" + HIValues.size());
+
        for(int i=0; i<HIValues.size(); i++){
-           System.out.println(currentHero.get_id().toString() + "    " + HIValues.get(i).get(0).get_id().toString());
-            if(currentHero.get_id().toString().equals(HIValues.get(i).get(0).get_id().toString())){
-                Picasso.get().load(HIValues.get(i).get(0).getAssets().getIcon().toString()).into(holder.imageView);
+           //System.out.println(currentHero.get_id() + "    " + HIValues.get(i).get(0).get_id());
+            if(currentHero.get_id().equals(HIValues.get(i).get(0).get_id())){
+                Picasso.get().load(HIValues.get(i).get(0).getAssets().getIcon()).into(holder.imageView);
             }
         }
     /*

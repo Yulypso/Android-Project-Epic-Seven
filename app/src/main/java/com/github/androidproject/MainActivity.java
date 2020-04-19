@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -34,8 +35,7 @@ public class MainActivity extends AppCompatActivity { //main activity
     private RecyclerView.LayoutManager layoutManager;
     private SharedPreferences sharedPreferences; //to save data
     private Gson gson;
-
-    final List<List<HeroInfo>> listHeroInfoList = new LinkedList<>();
+    private List<List<HeroInfo>> listHeroInfoList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +52,12 @@ public class MainActivity extends AppCompatActivity { //main activity
         List<Hero> HeroList = getHeroDataInCache(); //get data from cache
         List<List<HeroInfo>> listHeroInfoList = getHeroInfoDataInCache();
 
-        /*if(HeroList != null && listHeroInfoList != null){ //if data from cache is not null, we have data, we shows it
-            showList(HeroList);
+        if(HeroList != null && listHeroInfoList != null){ //if data from cache is not null, we have data, we shows it
+            showList(HeroList, listHeroInfoList);
             Toast.makeText(getApplicationContext(),"Load from Cache", Toast.LENGTH_SHORT).show();
-        } else {*/
+        } else {
             makeApiCall(); //if no data from cache, we make an ApiCall to get Data from API
-        //}
+        }
     }
 
     private List<Hero> getHeroDataInCache() {
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity { //main activity
         }
     }
 
-    private void showList(List<Hero> heroList) {
+    private void showList(List<Hero> heroList, List<List<HeroInfo>> listHeroInfoList) {
         recyclerView = findViewById(R.id.recycler_view); //search for recycler_view in activity main by id
         recyclerView.setHasFixedSize(true);
         // use a linear layout manager
@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity { //main activity
 
         // define an adapter and give input into ListAdapter
         mAdapter = new ListAdapter(heroList, listHeroInfoList); //Manages the data model and adapts it to the individual entries in the widget
+        Log.d("listHeroInfoList", "taille : " + heroList.size());
         recyclerView.setAdapter(mAdapter); //Assigning it to the recycler
     }
 
@@ -112,13 +113,13 @@ public class MainActivity extends AppCompatActivity { //main activity
 
                     //System.out.println("taille de la liste initiale : " + listHeroInfoList.size());
                     for(Hero hero : heroList) {
-                        makeApiCall2(hero.get_id(), listHeroInfoList);
+                        makeApiCall2(hero.get_id());
 
                     }
                     saveHeroInfoList(listHeroInfoList);
                     Toast.makeText(getApplicationContext(),"API Success 2", Toast.LENGTH_SHORT).show();
 
-                    showList(heroList);
+                    showList(heroList, listHeroInfoList);
 
                 }
             }
@@ -130,7 +131,7 @@ public class MainActivity extends AppCompatActivity { //main activity
         });
     }
 
-    private void makeApiCall2(String id, final List<List<HeroInfo>> listHeroInfoList){
+    private void makeApiCall2(String id/*, final List<List<HeroInfo>> listHeroInfoList*/){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
@@ -147,6 +148,7 @@ public class MainActivity extends AppCompatActivity { //main activity
                     //Toast.makeText(getApplicationContext(),"API Success 2", Toast.LENGTH_SHORT).show();
 
                     //System.out.println(heroInfoList.get(0).get_id());
+
                     listHeroInfoList.add(heroInfoList);
 
                     //System.out.println("taille de la liste finale : " + listHeroInfoList.size());
@@ -187,4 +189,3 @@ public class MainActivity extends AppCompatActivity { //main activity
         Toast.makeText(getApplicationContext(),"API Error", Toast.LENGTH_SHORT).show();
     }
 }
-
