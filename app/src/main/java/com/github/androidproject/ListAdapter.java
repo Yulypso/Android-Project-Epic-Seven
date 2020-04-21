@@ -18,6 +18,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     private List<Hero> values; //liste des héros
     private List<HeroInfo> HIValues; //liste des infos sur les héros.
+    private Hero currentHero;
 
     //Constructor
     ListAdapter(List<Hero> myDataset, List<HeroInfo> heroInfoList) { //constructor
@@ -82,7 +83,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        final Hero currentHero = values.get(position);
+        currentHero = values.get(position);
         //final List<HeroInfo> currentHeroInfo = HIValues.get(position);
 
         //System.out.println(currentHero.getName());

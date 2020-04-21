@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity { //main activity
     private RecyclerView.LayoutManager layoutManager;
     private SharedPreferences sharedPreferences; //to save data
     private Gson gson;
-    boolean isLastHero = false;
+    List<Hero> heroList;
+    List<Hero> notRetrievedHeroList = new ArrayList<>();
     List<HeroInfo> heroInfoList = null;
 
 
@@ -44,25 +45,28 @@ public class MainActivity extends AppCompatActivity { //main activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //Main view related to activity_main.xml
-
         sharedPreferences = getSharedPreferences(Constants.KEY_APPLICATION_NAME, Context.MODE_PRIVATE);
+
+        //deleteDataInCache(); //remove current saved list from cache => test api calls
+
         gson = new GsonBuilder() //create gson object to convert List into String (json type)
                 .setLenient()
                 .create();
 
-
         List<Hero> heroList = null; //get data from cache
-       //heroInfoList = null;
+        //heroInfoList = null;
 
         try{
-            heroList = getHeroDataInCache();
-            heroInfoList = getHeroInfoDataInCache();
+            heroList = getDataFromCache(Constants.KEY_HERO_LIST, heroList);
+            heroInfoList = getDataFromCache(Constants.KEY_HERO_INFO_LIST, heroInfoList);
+
+            Log.d("Test", "Taille liste" + heroList.size());
+            Log.d("Test", "Taille liste" + heroInfoList.size());
         } catch (Exception e) {
             Log.d("Exception", "Impossible de récuperer les données depuis le cache");
         }
 
         if(heroList != null && heroInfoList != null){ //if data from cache is not null, we have data, we shows it
-
             showList(heroList, heroInfoList);
             Toast.makeText(getApplicationContext(),"Load from Cache", Toast.LENGTH_SHORT).show();
         } else {
@@ -70,26 +74,30 @@ public class MainActivity extends AppCompatActivity { //main activity
         }
     }
 
-    private List<Hero> getHeroDataInCache() {
-        String jsonHero = sharedPreferences.getString(Constants.KEY_HERO_LIST, null);
-
-        if(jsonHero == null){
-            return null;
-        } else {
-            Type listType = new TypeToken<List<Hero>>(){}.getType(); //deserialize list
-            return gson.fromJson(jsonHero, listType);
+    private void deleteDataInCache(){
+        try{
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.remove(Constants.KEY_HERO_LIST);
+            editor.remove(Constants.KEY_HERO_INFO_LIST);
+            editor.commit();
+        }catch (Exception e) {
+            Log.d("Exception", "Failed to remove data in cache");
         }
     }
 
+    private List getDataFromCache(String storageKey, List list) {
+        String data = sharedPreferences.getString(storageKey, null);
 
-    private List<HeroInfo> getHeroInfoDataInCache() {
-        String jsonHeroInfo = sharedPreferences.getString(Constants.KEY_HERO_INFO_LIST, null);
-
-        if(jsonHeroInfo == null){
+        if(data == null){
             return null;
         } else {
-            Type listType = new TypeToken<List<HeroInfo>>(){}.getType(); //deserialize list
-            return gson.fromJson(jsonHeroInfo, listType);
+            Type listType;
+            if(storageKey == Constants.KEY_HERO_LIST){
+                listType = new TypeToken<List<Hero>>(){}.getType();//deserialize list
+            }else{
+                listType = new TypeToken<List<HeroInfo>>(){}.getType();
+            }
+            return gson.fromJson(data, listType);
         }
     }
 
@@ -99,7 +107,6 @@ public class MainActivity extends AppCompatActivity { //main activity
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(this); //horizontal / vertical
         recyclerView.setLayoutManager(layoutManager);
-
 
         // define an adapter and give input into ListAdapter
         mAdapter = new ListAdapter(heroList, heroInfoList); //Manages the data model and adapts it to the individual entries in the widget
@@ -118,19 +125,12 @@ public class MainActivity extends AppCompatActivity { //main activity
             @Override
             public void onResponse(Call<RestEpicSevenResponse> call, Response<RestEpicSevenResponse> response) {
                 if(response.isSuccessful() && response.body() != null){
-                    List<Hero> heroList = response.body().getResults();
-
+                    heroList = response.body().getResults();
                     heroInfoList = new ArrayList<>();
-                    saveList(heroList);
+                    saveList(Constants.KEY_HERO_LIST, heroList);
 
-                    int cpt = 0;
                     for(Hero hero : heroList) {
-                        if(cpt == heroList.size()-1){
-                            Log.d("COMPTEUR", "COMPTEUR");
-                            isLastHero = true;
-                        }
-                        makeApiCall2(hero.get_id());
-                        cpt++;
+                        makeApiCall2(hero);
                     }
                     showList(heroList, heroInfoList);
                 }
@@ -143,8 +143,7 @@ public class MainActivity extends AppCompatActivity { //main activity
         });
     }
 
-    private void makeApiCall2(String id){
-
+    private void makeApiCall2(final Hero hero){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
@@ -152,53 +151,44 @@ public class MainActivity extends AppCompatActivity { //main activity
 
         EpicSevenApi EpicSevenApi = retrofit.create(EpicSevenApi.class);
 
-        Call<RestHeroInfoResponse> call = EpicSevenApi.getHeroInfoResponse(id); //on récupere les infos du héro id
+        Call<RestHeroInfoResponse> call = EpicSevenApi.getHeroInfoResponse(hero.get_id()); //on récupere les infos du héro id
         call.enqueue(new Callback<RestHeroInfoResponse>() {
-
             @Override
             public void onResponse(Call<RestHeroInfoResponse> call, Response<RestHeroInfoResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     List<HeroInfo> heroInfoListTemp = response.body().getResults();
-
                     HeroInfo heroInfo = heroInfoListTemp.get(0); //convertir liste en objet heroInfo
 
                     heroInfoList.add(heroInfo);
+                }else{
+                    notRetrievedHeroList.add(hero); //heroes api couldn't fetch
+                }
 
-                    if (isLastHero) {
-                        saveHeroInfoList(heroInfoList);
-                        Toast.makeText(getApplicationContext(),"API Success 2", Toast.LENGTH_SHORT).show();
-                    }
+                if (heroInfoList.size() + notRetrievedHeroList.size() == heroList.size()) {
+                    Toast.makeText(getApplicationContext(),"API Success 2", Toast.LENGTH_SHORT).show();
+                    saveList(Constants.KEY_HERO_INFO_LIST, heroInfoList);
                 }
             }
 
             @Override
             public void onFailure(Call<RestHeroInfoResponse> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "API Error 2", Toast.LENGTH_SHORT).show();
-                    //showError();
-                }
+                Toast.makeText(getApplicationContext(), "API Error 2", Toast.LENGTH_SHORT).show();
+                //showError();
+            }
         });
     }
 
-    private void saveList(List<Hero> heroList) {
-        String jsonString = gson.toJson(heroList); //convert hero list into json format which is a String type
+    private void saveList(String storageKey, List list) {
+        String jsonString = gson.toJson(list); //convert hero list into json format which is a String type
 
         sharedPreferences
                 .edit()
-                .putString(Constants.KEY_HERO_LIST, jsonString)  //clé, String
+                .putString(storageKey, jsonString)  //clé, String
                 .apply();
 
-        //Toast.makeText(getApplicationContext(),"List saved", Toast.LENGTH_SHORT).show();
-    }
-
-    private void saveHeroInfoList(List<HeroInfo> heroInfoList) {
-        String jsonString = gson.toJson(heroInfoList); //convert hero list into json format which is a String type
-
-        sharedPreferences
-                .edit()
-                .putString(Constants.KEY_HERO_INFO_LIST, jsonString)  //clé, String
-                .apply();
-
-        Toast.makeText(getApplicationContext(),"List saved", Toast.LENGTH_SHORT).show();
+        if(storageKey == Constants.KEY_HERO_INFO_LIST){
+            Toast.makeText(getApplicationContext(),"List saved", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void showError(){
