@@ -57,8 +57,8 @@ public class MainActivity extends AppCompatActivity { //main activity
         //heroInfoList = null;
 
         try{
-            heroList = getDataFromCache(Constants.KEY_HERO_LIST, heroList);
-            heroInfoList = getDataFromCache(Constants.KEY_HERO_INFO_LIST, heroInfoList);
+            heroList = getDataFromCache(Constants.KEY_HERO_LIST);
+            heroInfoList = getDataFromCache(Constants.KEY_HERO_INFO_LIST);
 
             Log.d("Test", "Taille liste" + heroList.size());
             Log.d("Test", "Taille liste" + heroInfoList.size());
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity { //main activity
         }
     }
 
-    private List getDataFromCache(String storageKey, List list) {
+    private List getDataFromCache(String storageKey) {
         String data = sharedPreferences.getString(storageKey, null);
 
         if(data == null){
