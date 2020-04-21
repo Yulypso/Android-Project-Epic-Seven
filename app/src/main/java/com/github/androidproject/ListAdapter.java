@@ -3,6 +3,7 @@ package com.github.androidproject;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,28 +23,26 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     private List<Hero> values; //liste des héros
     private List<HeroInfo> HIValues; //liste des infos sur les héros.
     private Hero currentHero;
+    private HeroInfo currentHeroInfo;
 
 
-    //Constructor
+    public static final String EXTRA_TEXT_NAME = "com.github.androidproject.EXTRA_TEXT_NAME";
+    public static final String EXTRA_TEXT_IMAGE = "com.github.androidproject.EXTRA_TEXT_IMAGE";
+
+
     ListAdapter(List<Hero> myDataset, List<HeroInfo> heroInfoList) { //constructor
         values = myDataset;
         HIValues = heroInfoList;
     }
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
     static class ViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
         TextView txtHeader;
         TextView txtFooter;
         View layout;
         ImageView imageView;
-        String url = "https://assets.epicsevendb.com/_source/face/c1096_s.png";
         LinearLayout linearLayout;
 
         ViewHolder(View v) {
-            //code can avoid the time-consuming findViewById() method to update the widgets with new data
             super(v);
             layout = v;
             txtHeader = v.findViewById(R.id.firstLine);
@@ -53,57 +52,50 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         }
     }
 
-    //method of ListAdapter
-    public void add(int position, Hero item) {
-        values.add(position, item);
-        notifyItemInserted(position);
-        notifyItemRangeChanged(position, values.size());
-    }
-
-    private void remove(int position) {
-        values.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, values.size());
-    }
-
-    // Create new views (invoked by the layout manager)
     @NonNull
     @Override
     public ListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        //It is called whenever we need to show a new view.
-        //1 call per List Elements/entry
 
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        //view which has been hidden and needed to be animated on their way out
-
         View v = inflater.inflate(R.layout.row_layout, parent, false);
-        // set the view's size, margins, paddings and layout parameters from XML row_layout
-
         return new ViewHolder(v);
     }
 
-
-    // Replace the contents of a view (invoked by the layout manager)
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-        currentHero = values.get(position);
-        boolean imageFound = false;
-        //final List<HeroInfo> currentHeroInfo = HIValues.get(position);
 
-        //System.out.println(currentHero.getName());
+        currentHero = values.get(position);
         holder.txtHeader.setText(currentHero.getName());
         holder.txtFooter.setText(currentHero.getRarity().toString() + "★    " + currentHero.getAttribute() + "     " + currentHero.getClassRole());
 
-        // for(int i=0; i<HIValues.size(); i++) {
-        //         System.out.println(HIValues.get(i).get(0).getName());
-        // }
+        addIcon(currentHero, holder);
 
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("position", ""+ position);
+                currentHero = values.get(position);
+                currentHeroInfo = searchHeroInfoById(currentHero);
+                Log.d("HeroInfo", ""+ currentHeroInfo.get_id());
 
-        //System.out.println("COUCOU" + HIValues.size());
+                openActivityInformation(v, currentHero, currentHeroInfo);
+            }
+        });
+    }
 
+    public HeroInfo searchHeroInfoById(Hero hero){
+        for(HeroInfo hi : HIValues) {
+            if(hi.get_id().equals(hero.get_id())){
+                return hi;
+            }
+        }
+        return null;
+    }
+
+    public void addIcon(Hero currentHero, ViewHolder holder){
+
+        boolean imageFound = false;
         if(HIValues != null){
             for(int i=0; i<HIValues.size(); i++){
                 if(currentHero.get_id().equals(HIValues.get(i).get_id())){
@@ -117,56 +109,33 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                 }
             }
         }
-
-
-      /*  recycler_view = findViewById(R.id.recycler_view);
-        recycler_view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openActivityInformation();
-            }
-        });
-*/
-
-        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //each time clicked on txtHeader (not footer) we remove an element
-                openActivityInformation(v);
-            }
-        });
-
-    /*
-        holder.txtHeader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //each time clicked on txtHeader (not footer) we remove an element
-                remove(position);
-            }
-        });
-    */
-
-
-        /*
-        holder.txtFooter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick (View v){
-                //each time clicked on txtFooter we add a new element
-                add(position, currentHero);
-            }
-        });
-    */
     }
 
-    public static final String EXTRA_TEXT = "com.github.androidproject.EXTRA_TEXT";
-
-    public void openActivityInformation(View view){
+    public void openActivityInformation(View view, Hero hero, HeroInfo heroInfo){
         Intent intent = new Intent(view.getContext(), ActivityInformation.class);
 
-        String text = values.get(0).get_id();
-        intent.putExtra(EXTRA_TEXT, text);
+        /**HeroInfo to add on the second Activity**/
+        String name = hero.getName();
+        intent.putExtra(EXTRA_TEXT_NAME, name);
 
+        String imageUrl = heroInfo.getAssets().getImage();
+        intent.putExtra(EXTRA_TEXT_IMAGE, imageUrl);
+
+
+        /******************************************/
         view.getContext().startActivity(intent);
+    }
+
+    public void add(int position, Hero item) {
+        values.add(position, item);
+        notifyItemInserted(position);
+        notifyItemRangeChanged(position, values.size());
+    }
+
+    private void remove(int position) {
+        values.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, values.size());
     }
 
     // Return the size of your dataset (invoked by the layout manager)
