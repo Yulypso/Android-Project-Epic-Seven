@@ -5,9 +5,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -37,14 +42,14 @@ public class MainActivity extends AppCompatActivity { //main activity
     private Gson gson;
     List<Hero> heroList;
     List<Hero> notRetrievedHeroList = new ArrayList<>();
-    List<HeroInfo> heroInfoList = null;
-
+    List heroInfoList = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //Main view related to activity_main.xml
+
         sharedPreferences = getSharedPreferences(Constants.KEY_APPLICATION_NAME, Context.MODE_PRIVATE);
 
         //deleteDataInCache(); //remove current saved list from cache => test api calls
@@ -53,13 +58,14 @@ public class MainActivity extends AppCompatActivity { //main activity
                 .setLenient()
                 .create();
 
-        List<Hero> heroList = null; //get data from cache
+        List heroList = null; //get data from cache
         //heroInfoList = null;
 
         try{
             heroList = getDataFromCache(Constants.KEY_HERO_LIST);
             heroInfoList = getDataFromCache(Constants.KEY_HERO_INFO_LIST);
 
+            assert heroList != null;
             Log.d("Test", "Taille liste" + heroList.size());
             Log.d("Test", "Taille liste" + heroInfoList.size());
         } catch (Exception e) {
@@ -79,7 +85,7 @@ public class MainActivity extends AppCompatActivity { //main activity
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.remove(Constants.KEY_HERO_LIST);
             editor.remove(Constants.KEY_HERO_INFO_LIST);
-            editor.commit();
+            editor.apply();
         }catch (Exception e) {
             Log.d("Exception", "Failed to remove data in cache");
         }
@@ -91,8 +97,9 @@ public class MainActivity extends AppCompatActivity { //main activity
         if(data == null){
             return null;
         } else {
+
             Type listType;
-            if(storageKey == Constants.KEY_HERO_LIST){
+            if(storageKey.equals(Constants.KEY_HERO_LIST)){
                 listType = new TypeToken<List<Hero>>(){}.getType();//deserialize list
             }else{
                 listType = new TypeToken<List<HeroInfo>>(){}.getType();
@@ -186,7 +193,7 @@ public class MainActivity extends AppCompatActivity { //main activity
                 .putString(storageKey, jsonString)  //clé, String
                 .apply();
 
-        if(storageKey == Constants.KEY_HERO_INFO_LIST){
+        if(storageKey.equals(Constants.KEY_HERO_INFO_LIST)){
             Toast.makeText(getApplicationContext(),"List saved", Toast.LENGTH_SHORT).show();
         }
     }

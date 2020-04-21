@@ -1,10 +1,13 @@
 package com.github.androidproject;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,6 +22,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     private List<Hero> values; //liste des héros
     private List<HeroInfo> HIValues; //liste des infos sur les héros.
     private Hero currentHero;
+
 
     //Constructor
     ListAdapter(List<Hero> myDataset, List<HeroInfo> heroInfoList) { //constructor
@@ -36,6 +40,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         View layout;
         ImageView imageView;
         String url = "https://assets.epicsevendb.com/_source/face/c1096_s.png";
+        LinearLayout linearLayout;
 
         ViewHolder(View v) {
             //code can avoid the time-consuming findViewById() method to update the widgets with new data
@@ -44,6 +49,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             txtHeader = v.findViewById(R.id.firstLine);
             txtFooter = v.findViewById(R.id.secondLine);
             imageView = v.findViewById(R.id.icon);
+            linearLayout = v.findViewById(R.id.linearLayout);
         }
     }
 
@@ -111,6 +117,25 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                 }
             }
         }
+
+
+      /*  recycler_view = findViewById(R.id.recycler_view);
+        recycler_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActivityInformation();
+            }
+        });
+*/
+
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //each time clicked on txtHeader (not footer) we remove an element
+                openActivityInformation(v);
+            }
+        });
+
     /*
         holder.txtHeader.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,7 +144,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                 remove(position);
             }
         });
+    */
 
+
+        /*
         holder.txtFooter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v){
@@ -130,7 +158,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     */
     }
 
-
+    public void openActivityInformation(View view){
+        Intent intent = new Intent(view.getContext(), ActivityInformation.class);
+        view.getContext().startActivity(intent);
+    }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
