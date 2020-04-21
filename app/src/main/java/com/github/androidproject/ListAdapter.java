@@ -84,23 +84,30 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         currentHero = values.get(position);
+        boolean imageFound = false;
         //final List<HeroInfo> currentHeroInfo = HIValues.get(position);
 
         //System.out.println(currentHero.getName());
         holder.txtHeader.setText(currentHero.getName());
         holder.txtFooter.setText(currentHero.getRarity().toString() + "★    " + currentHero.getAttribute() + "     " + currentHero.getClassRole());
 
-       // for(int i=0; i<HIValues.size(); i++) {
-       //         System.out.println(HIValues.get(i).get(0).getName());
-       // }
+        // for(int i=0; i<HIValues.size(); i++) {
+        //         System.out.println(HIValues.get(i).get(0).getName());
+        // }
 
 
         //System.out.println("COUCOU" + HIValues.size());
 
         if(HIValues != null){
-           for(int i=0; i<HIValues.size(); i++){
+            for(int i=0; i<HIValues.size(); i++){
                 if(currentHero.get_id().equals(HIValues.get(i).get_id())){
                     Picasso.get().load(HIValues.get(i).getAssets().getIcon()).into(holder.imageView);
+                    imageFound = true;
+                }
+
+                if(!currentHero.get_id().equals(HIValues.get(i).get_id()) && i == HIValues.size()-1 && !imageFound){
+                    Picasso.get().load("https://www.app.asso.fr/wp-content/uploads/2018/04/informer-140x140.png").into(holder.imageView);
+                    imageFound = false;
                 }
             }
         }
@@ -128,7 +135,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-       // System.out.println("number of item : "+ values.size()); //to Test LogCat display
+        // System.out.println("number of item : "+ values.size()); //to Test LogCat display
         return values.size();
     } //the adapter return the total number of items list
 
