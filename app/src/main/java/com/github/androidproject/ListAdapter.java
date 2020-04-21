@@ -158,8 +158,14 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     */
     }
 
+    public static final String EXTRA_TEXT = "com.github.androidproject.EXTRA_TEXT";
+
     public void openActivityInformation(View view){
         Intent intent = new Intent(view.getContext(), ActivityInformation.class);
+
+        String text = values.get(0).get_id();
+        intent.putExtra(EXTRA_TEXT, text);
+
         view.getContext().startActivity(intent);
     }
 
