@@ -9,11 +9,20 @@ public class Hero {
     private String role;
     private String attribute;
     private String zodiac;
+    private String modelURL;
+
+
+    public void setModelURL(String modelURL) {
+        this.modelURL = modelURL;
+    }
+
+    public String getModelURL() {
+        return modelURL;
+    }
 
     public String get_id() {
         return _id;
     }
-
     public String getName() {
         return name;
     }

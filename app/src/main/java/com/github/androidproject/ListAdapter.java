@@ -16,6 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
@@ -28,6 +31,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     public static final String EXTRA_TEXT_NAME = "com.github.androidproject.EXTRA_TEXT_NAME";
     public static final String EXTRA_TEXT_IMAGE = "com.github.androidproject.EXTRA_TEXT_IMAGE";
+    public static final String EXTRA_TEXT_FULL_IMAGE = "com.github.androidproject.EXTRA_TEXT_FULL_IMAGE";
 
 
     ListAdapter(List<Hero> myDataset, List<HeroInfo> heroInfoList) { //constructor
@@ -120,6 +124,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
         String imageUrl = heroInfo.getAssets().getImage();
         intent.putExtra(EXTRA_TEXT_IMAGE, imageUrl);
+
+        String imageFullUrl = (hero.getModelURL());
+        intent.putExtra(EXTRA_TEXT_FULL_IMAGE, imageFullUrl);
 
 
         /******************************************/

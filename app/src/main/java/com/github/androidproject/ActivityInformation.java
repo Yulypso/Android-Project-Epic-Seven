@@ -42,6 +42,10 @@ public class ActivityInformation extends AppCompatActivity {
         String imageUrl = intent.getStringExtra(ListAdapter.EXTRA_TEXT_IMAGE);
         ImageView imageViewImage = (ImageView) findViewById(R.id.imageViewImage);
         Picasso.get().load(imageUrl).into(imageViewImage);
+
+        String imageFullUrl = intent.getStringExtra(ListAdapter.EXTRA_TEXT_FULL_IMAGE);
+        ImageView imageFullUrlView = (ImageView) findViewById(R.id.imageFullUrlView);
+        Picasso.get().load(imageFullUrl).into(imageFullUrlView);
     }
 
     @Override

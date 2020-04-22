@@ -19,7 +19,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.InputStream;
 import java.lang.reflect.Type;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -40,7 +43,7 @@ public class MainActivity extends AppCompatActivity { //main activity
     private RecyclerView.LayoutManager layoutManager;
     private SharedPreferences sharedPreferences; //to save data
     private Gson gson;
-    List<Hero> heroList;
+    static List<Hero> heroList;
     List<Hero> notRetrievedHeroList = new ArrayList<>();
     List heroInfoList = null;
 
@@ -52,7 +55,7 @@ public class MainActivity extends AppCompatActivity { //main activity
 
         sharedPreferences = getSharedPreferences(Constants.KEY_APPLICATION_NAME, Context.MODE_PRIVATE);
 
-        //deleteDataInCache(); //remove current saved list from cache => test api calls
+        deleteDataInCache(); //remove current saved list from cache => test api calls
 
         gson = new GsonBuilder() //create gson object to convert List into String (json type)
                 .setLenient()
@@ -77,6 +80,7 @@ public class MainActivity extends AppCompatActivity { //main activity
             Toast.makeText(getApplicationContext(),"Load from Cache", Toast.LENGTH_SHORT).show();
         } else {
             makeApiCall(); //if no data from cache, we make an ApiCall to get Data from API
+
         }
     }
 
@@ -173,6 +177,7 @@ public class MainActivity extends AppCompatActivity { //main activity
 
                 if (heroInfoList.size() + notRetrievedHeroList.size() == heroList.size()) {
                     Toast.makeText(getApplicationContext(),"API Success 2", Toast.LENGTH_SHORT).show();
+                    new RetrieveHeroModel(heroList).execute();
                     saveList(Constants.KEY_HERO_INFO_LIST, heroInfoList);
                 }
             }
