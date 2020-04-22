@@ -1,43 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/skybackgroundimage4"
     tools:context=".ActivityInformation">
 
 
     <TextView
         android:id="@+id/textViewInf"
-        android:layout_width="162dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="104dp"
+        android:layout_width="314dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/open_sans"
         android:gravity="center_vertical"
         android:text="Example application"
-        android:textSize="16sp"
+        android:textAlignment="center"
+        android:textColor="#F3EFEB"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wallpaperView"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/wallpaperView"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <ImageView
+        android:id="@+id/layoutViewImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <ImageView
         android:id="@+id/imageViewImage"
-        android:layout_width="417dp"
-        android:layout_height="159dp"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_marginTop="59dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/wallpaperView"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_launcher_background" />
 
 

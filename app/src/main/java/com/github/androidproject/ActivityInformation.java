@@ -15,6 +15,7 @@ import org.w3c.dom.Text;
 public class ActivityInformation extends AppCompatActivity {
 
     public static String wallpaper = "https://assets.epicsevendb.com/website/summon/gacha_get_bg0_e7db.jpg";
+    public static String layout = "https://assets.epicsevendb.com/website/summon/gacha_get_bg1.png";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,9 @@ public class ActivityInformation extends AppCompatActivity {
 
         ImageView wallpaperView = (ImageView) findViewById(R.id.wallpaperView);
         Picasso.get().load(wallpaper).into(wallpaperView);
+
+        ImageView layoutView = (ImageView) findViewById(R.id.layoutViewImage);
+        Picasso.get().load(layout).into(layoutView);
 
         String name = intent.getStringExtra(ListAdapter.EXTRA_TEXT_NAME);
         TextView textViewInf = (TextView) findViewById(R.id.textViewInf);

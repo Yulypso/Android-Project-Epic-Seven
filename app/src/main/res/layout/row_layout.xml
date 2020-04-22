@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="8dp"
+    android:background="@color/colorRowLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -15,7 +16,8 @@
         android:padding="6dip"
         tools:ignore="MissingConstraints,UseCompoundDrawables"
         tools:layout_editor_absoluteX="10dp"
-        tools:layout_editor_absoluteY="10dp">
+        tools:layout_editor_absoluteY="10dp"
+        android:background="@drawable/border">
 
         <ImageView
             android:id="@+id/icon"
