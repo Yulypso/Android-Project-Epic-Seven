@@ -1,10 +1,12 @@
 package com.github.androidproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +23,9 @@ public class ActivityInformation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
 
         Intent intent = getIntent();
 
@@ -37,7 +42,16 @@ public class ActivityInformation extends AppCompatActivity {
         String imageUrl = intent.getStringExtra(ListAdapter.EXTRA_TEXT_IMAGE);
         ImageView imageViewImage = (ImageView) findViewById(R.id.imageViewImage);
         Picasso.get().load(imageUrl).into(imageViewImage);
+    }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
