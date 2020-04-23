@@ -1,8 +1,9 @@
 package com.github.androidproject.models;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Hero {
+public class Hero implements Serializable {
     private String _id;
     private String name;
     private Integer rarity;

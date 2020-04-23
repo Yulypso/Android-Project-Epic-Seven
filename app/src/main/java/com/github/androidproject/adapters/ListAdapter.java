@@ -2,7 +2,9 @@ package com.github.androidproject.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +19,13 @@ import com.github.androidproject.models.Hero;
 import com.github.androidproject.models.HeroInfo;
 import com.github.androidproject.R;
 import com.github.androidproject.activites.ActivityInformation;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
+public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> implements Serializable{
 
     private List<Hero> values; //liste des héros
     private List<HeroInfo> HIValues; //liste des infos sur les héros.
@@ -39,7 +43,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         HIValues = heroInfoList;
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder implements Serializable{
         TextView txtHeader;
         TextView txtFooter;
         TextView descriptionView;
@@ -83,13 +87,31 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-
         currentHero = values.get(position);
+        DisplayName(holder, currentHero);
+        DisplayRarity(holder, currentHero);
+        DisplayElement(holder, currentHero);
+        DisplayRole(holder, currentHero);
+        DisplayDescription(holder, currentHero);
+        addIcon(currentHero, holder);
 
-        /** Name **/
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("position", ""+ position);
+                currentHero = values.get(position);
+                currentHeroInfo = searchHeroInfoById(currentHero);
+                Log.d("HeroInfo", ""+ currentHeroInfo.get_id());
+
+                openActivityInformation(v, currentHero, currentHeroInfo);
+            }
+        });
+    }
+    public void DisplayName(ViewHolder holder, Hero currentHero){
         holder.txtHeader.setText(currentHero.getName());
+    }
 
-        /** Rarity **/
+    public void DisplayRarity(ViewHolder holder, Hero currentHero){
         if(currentHero.getRarity() == 1) {
             holder.starViewImage5.setImageResource(R.drawable.cm_icon_star);
             holder.starViewImage4.setImageResource(0);
@@ -121,8 +143,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             holder.starViewImage2.setImageResource(R.drawable.cm_icon_star);
             holder.starViewImage1.setImageResource(R.drawable.cm_icon_star);
         }
+    }
 
-        /** Element **/
+    public void DisplayElement(ViewHolder holder, Hero currentHero){
         if(currentHero.getAttribute().equals("fire")) {
             holder.elementViewImage.setImageResource(R.drawable.cm_icon_profire);
         }else if (currentHero.getAttribute().equals("wind")){
@@ -134,8 +157,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         }else if (currentHero.getAttribute().equals("dark")){
             holder.elementViewImage.setImageResource(R.drawable.cm_icon_promdark);
         }
+    }
 
-        /** Role **/
+    public void DisplayRole(ViewHolder holder, Hero currentHero){
         if(currentHero.getRole().equals("knight")) {
             holder.roleViewImage.setImageResource(R.drawable.cm_icon_role_knight);
         }else if (currentHero.getRole().equals("warrior")){
@@ -151,29 +175,14 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         }else if (currentHero.getRole().equals("material")){
             holder.roleViewImage.setImageResource(R.drawable.cm_icon_role_material);
         }
+    }
 
-        /** Description **/
+    public void DisplayDescription(ViewHolder holder, Hero currentHero){
         for(HeroInfo heroInfo : HIValues) {
             if(heroInfo.get_id().equals(currentHero.get_id())){
                 holder.descriptionView.setText(heroInfo.getDescription());
             }
         }
-
-        /** Icon **/
-        addIcon(currentHero, holder);
-
-        /** OnClickListener **/
-        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("position", ""+ position);
-                currentHero = values.get(position);
-                currentHeroInfo = searchHeroInfoById(currentHero);
-                Log.d("HeroInfo", ""+ currentHeroInfo.get_id());
-
-                openActivityInformation(v, currentHero, currentHeroInfo);
-            }
-        });
     }
 
     public HeroInfo searchHeroInfoById(Hero hero){
@@ -186,7 +195,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     }
 
     public void addIcon(Hero currentHero, ViewHolder holder){
-
         boolean imageFound = false;
         if(HIValues != null){
             for(int i=0; i<HIValues.size(); i++){
@@ -205,7 +213,12 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     public void openActivityInformation(View view, Hero hero, HeroInfo heroInfo){
         Intent intent = new Intent(view.getContext(), ActivityInformation.class);
+        Bundle b = new Bundle();
+        b.putSerializable("Key", (Serializable) hero);
+        intent.putExtras(b);
 
+
+        view.getContext().startActivity(intent);
         System.out.println(hero.getModelURL());
 
         /**HeroInfo to add on the second Activity**/
