@@ -3,6 +3,7 @@ package com.github.androidproject;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -42,17 +45,32 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtHeader;
         TextView txtFooter;
+        TextView descriptionView;
         View layout;
         ImageView imageView;
+        ImageView starViewImage1;
+        ImageView starViewImage2;
+        ImageView starViewImage3;
+        ImageView starViewImage4;
+        ImageView starViewImage5;
+        ImageView elementViewImage;
+        ImageView roleViewImage;
         LinearLayout linearLayout;
 
         ViewHolder(View v) {
             super(v);
             layout = v;
             txtHeader = v.findViewById(R.id.firstLine);
-            txtFooter = v.findViewById(R.id.secondLine);
             imageView = v.findViewById(R.id.icon);
             linearLayout = v.findViewById(R.id.linearLayout);
+            descriptionView = v.findViewById(R.id.descriptionView);
+            starViewImage1 = v.findViewById(R.id.starViewImage1);
+            starViewImage2 = v.findViewById(R.id.starViewImage2);
+            starViewImage3 = v.findViewById(R.id.starViewImage3);
+            starViewImage4 = v.findViewById(R.id.starViewImage4);
+            starViewImage5 = v.findViewById(R.id.starViewImage5);
+            elementViewImage = v.findViewById(R.id.elementViewImage);
+            roleViewImage = v.findViewById(R.id.roleViewImage);
         }
     }
 
@@ -70,11 +88,84 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, final int position) {
 
         currentHero = values.get(position);
-        holder.txtHeader.setText(currentHero.getName());
-        holder.txtFooter.setText(currentHero.getRarity().toString() + "★    " + currentHero.getAttribute() + "     " + currentHero.getClassRole());
 
+        /** Name **/
+        holder.txtHeader.setText(currentHero.getName());
+
+        /** Rarity **/
+        if(currentHero.getRarity() == 1) {
+            holder.starViewImage5.setImageResource(R.drawable.cm_icon_star);
+            holder.starViewImage4.setImageResource(0);
+            holder.starViewImage3.setImageResource(0);
+            holder.starViewImage2.setImageResource(0);
+            holder.starViewImage1.setImageResource(0);
+        } else if (currentHero.getRarity() == 2){
+            holder.starViewImage5.setImageResource(R.drawable.cm_icon_star);
+            holder.starViewImage4.setImageResource(R.drawable.cm_icon_star);
+            holder.starViewImage3.setImageResource(0);
+            holder.starViewImage2.setImageResource(0);
+            holder.starViewImage1.setImageResource(0);
+        }else if (currentHero.getRarity() == 3){
+            holder.starViewImage5.setImageResource(R.drawable.cm_icon_star);
+            holder.starViewImage4.setImageResource(R.drawable.cm_icon_star);
+            holder.starViewImage3.setImageResource(R.drawable.cm_icon_star);
+            holder.starViewImage2.setImageResource(0);
+            holder.starViewImage1.setImageResource(0);
+        }else if (currentHero.getRarity() == 4){
+            holder.starViewImage5.setImageResource(R.drawable.cm_icon_star);
+            holder.starViewImage4.setImageResource(R.drawable.cm_icon_star);
+            holder.starViewImage3.setImageResource(R.drawable.cm_icon_star);
+            holder.starViewImage2.setImageResource(R.drawable.cm_icon_star);
+            holder.starViewImage1.setImageResource(0);
+        }else if (currentHero.getRarity() == 5){
+            holder.starViewImage5.setImageResource(R.drawable.cm_icon_star);
+            holder.starViewImage4.setImageResource(R.drawable.cm_icon_star);
+            holder.starViewImage3.setImageResource(R.drawable.cm_icon_star);
+            holder.starViewImage2.setImageResource(R.drawable.cm_icon_star);
+            holder.starViewImage1.setImageResource(R.drawable.cm_icon_star);
+        }
+
+        /** Element **/
+        if(currentHero.getAttribute().equals("fire")) {
+            holder.elementViewImage.setImageResource(R.drawable.cm_icon_profire);
+        }else if (currentHero.getAttribute().equals("wind")){
+            holder.elementViewImage.setImageResource(R.drawable.cm_icon_proearth);
+        }else if (currentHero.getAttribute().equals("ice")){
+            holder.elementViewImage.setImageResource(R.drawable.cm_icon_proice);
+        }else if (currentHero.getAttribute().equals("light")){
+            holder.elementViewImage.setImageResource(R.drawable.cm_icon_promlight);
+        }else if (currentHero.getAttribute().equals("dark")){
+            holder.elementViewImage.setImageResource(R.drawable.cm_icon_promdark);
+        }
+
+        /** Role **/
+        if(currentHero.getRole().equals("knight")) {
+            holder.roleViewImage.setImageResource(R.drawable.cm_icon_role_knight);
+        }else if (currentHero.getRole().equals("warrior")){
+            holder.roleViewImage.setImageResource(R.drawable.cm_icon_role_warrior);
+        }else if (currentHero.getRole().equals("assassin")){
+            holder.roleViewImage.setImageResource(R.drawable.cm_icon_role_thief);
+        }else if (currentHero.getRole().equals("mage")){
+            holder.roleViewImage.setImageResource(R.drawable.cm_icon_role_mage);
+        }else if (currentHero.getRole().equals("soul-weaver")){
+            holder.roleViewImage.setImageResource(R.drawable.cm_icon_role_soulweaver);
+        }else if (currentHero.getRole().equals("ranger")){
+            holder.roleViewImage.setImageResource(R.drawable.cm_icon_role_ranger);
+        }else if (currentHero.getRole().equals("material")){
+            holder.roleViewImage.setImageResource(R.drawable.cm_icon_role_material);
+        }
+
+        /** Description **/
+        for(HeroInfo heroInfo : HIValues) {
+            if(heroInfo.get_id().equals(currentHero.get_id())){
+                holder.descriptionView.setText(heroInfo.getDescription());
+            }
+        }
+
+        /** Icon **/
         addIcon(currentHero, holder);
 
+        /** OnClickListener **/
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,6 +208,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     public void openActivityInformation(View view, Hero hero, HeroInfo heroInfo){
         Intent intent = new Intent(view.getContext(), ActivityInformation.class);
+
+        System.out.println(hero.getModelURL());
 
         /**HeroInfo to add on the second Activity**/
         String name = hero.getName();

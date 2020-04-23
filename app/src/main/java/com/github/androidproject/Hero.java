@@ -31,7 +31,7 @@ public class Hero {
         return rarity;
     }
 
-    public String getClassRole() {
+    public String getRole() {
         return role;
     }
 

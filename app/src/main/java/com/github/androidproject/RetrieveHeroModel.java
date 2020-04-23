@@ -33,12 +33,13 @@ public class RetrieveHeroModel extends AsyncTask<String, Void, String> {
                 httpConnexion.setRequestMethod ("HEAD");
                 httpConnexion.connect();
 
-                System.out.println(modelURL);
+                System.out.println("Search: "+modelURL);
 
                 int code = httpConnexion.getResponseCode();
                 if(code == 200) {
                     System.out.println("Page Found");
                     hero.setModelURL(modelURL);
+                    System.out.print("retrieved: "+hero.getModelURL());
                     httpConnexion.disconnect();
                 }
             }

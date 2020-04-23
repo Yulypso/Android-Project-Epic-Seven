@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity { //main activity
         }
 
         if(heroList != null && heroInfoList != null){ //if data from cache is not null, we have data, we shows it
+            new RetrieveHeroModel(heroList).execute();
             showList(heroList, heroInfoList);
             Toast.makeText(getApplicationContext(),"Load from Cache", Toast.LENGTH_SHORT).show();
         } else {
@@ -138,7 +139,7 @@ public class MainActivity extends AppCompatActivity { //main activity
                 if(response.isSuccessful() && response.body() != null){
                     heroList = response.body().getResults();
                     heroInfoList = new ArrayList<>();
-                    saveList(Constants.KEY_HERO_LIST, heroList);
+                    //saveList(Constants.KEY_HERO_LIST, heroList);
 
                     for(Hero hero : heroList) {
                         makeApiCall2(hero);
@@ -178,6 +179,7 @@ public class MainActivity extends AppCompatActivity { //main activity
                 if (heroInfoList.size() + notRetrievedHeroList.size() == heroList.size()) {
                     Toast.makeText(getApplicationContext(),"API Success 2", Toast.LENGTH_SHORT).show();
                     new RetrieveHeroModel(heroList).execute();
+                    saveList(Constants.KEY_HERO_LIST, heroList);
                     saveList(Constants.KEY_HERO_INFO_LIST, heroInfoList);
                 }
             }
