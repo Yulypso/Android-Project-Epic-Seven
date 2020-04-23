@@ -18,7 +18,7 @@ import com.squareup.picasso.Picasso;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class ActivityInformation extends AppCompatActivity implements Serializable {
+public class ActivityInformation extends AppCompatActivity {
 
     public static String wallpaper = "https://assets.epicsevendb.com/website/summon/gacha_get_bg0_e7db.jpg";
     public static String layout = "https://assets.epicsevendb.com/website/summon/gacha_get_bg1.png";
@@ -40,6 +40,7 @@ public class ActivityInformation extends AppCompatActivity implements Serializab
     ImageView starViewImage3;
     ImageView starViewImage4;
     ImageView starViewImage5;
+    ImageView roleViewImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +49,8 @@ public class ActivityInformation extends AppCompatActivity implements Serializab
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         intent = getIntent();
+        currentHero = intent.getParcelableExtra("Hero");
 
-        b = intent.getExtras();
-        assert b != null;
-        currentHero = (Hero) b.getSerializable("KEY");
 
 
         imageUrl = intent.getStringExtra(ListAdapter.EXTRA_TEXT_IMAGE);
@@ -69,16 +68,18 @@ public class ActivityInformation extends AppCompatActivity implements Serializab
         starViewImage3 = (ImageView) findViewById(R.id.starViewImage3);
         starViewImage4 = (ImageView) findViewById(R.id.starViewImage4);
         starViewImage5 = (ImageView) findViewById(R.id.starViewImage5);
+        roleViewImage = (ImageView) findViewById(R.id.roleViewImage);
 
         Picasso.get().load(wallpaper).into(wallpaperView);
         Picasso.get().load(layout).into(layoutView);
         Picasso.get().load(imageUrl).into(imageViewImage);
         Picasso.get().load(imageFullUrl).into(imageFullUrlView);
 
+
         textViewInf.setText(name);
 
-        System.out.println("AAAAAAAAAAAAAA" + currentHero.getName());
-        //DisplayRarity(currentHero);
+        DisplayRarity(currentHero);
+        DisplayRole(currentHero);
     }
 
 
@@ -113,6 +114,32 @@ public class ActivityInformation extends AppCompatActivity implements Serializab
             starViewImage3.setImageResource(R.drawable.cm_icon_star);
             starViewImage2.setImageResource(R.drawable.cm_icon_star);
             starViewImage1.setImageResource(R.drawable.cm_icon_star);
+        }
+    }
+
+    private void DisplayRole(Hero currentHero){
+        switch (currentHero.getRole()) {
+            case "knight":
+                roleViewImage.setImageResource(R.drawable.cm_icon_role_knight);
+                break;
+            case "warrior":
+                roleViewImage.setImageResource(R.drawable.cm_icon_role_warrior);
+                break;
+            case "assassin":
+                roleViewImage.setImageResource(R.drawable.cm_icon_role_thief);
+                break;
+            case "mage":
+                roleViewImage.setImageResource(R.drawable.cm_icon_role_mage);
+                break;
+            case "soul-weaver":
+                roleViewImage.setImageResource(R.drawable.cm_icon_role_soulweaver);
+                break;
+            case "ranger":
+                roleViewImage.setImageResource(R.drawable.cm_icon_role_ranger);
+                break;
+            case "material":
+                roleViewImage.setImageResource(R.drawable.cm_icon_role_material);
+                break;
         }
     }
 

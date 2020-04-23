@@ -25,7 +25,7 @@ import com.squareup.picasso.Picasso;
 import java.io.Serializable;
 import java.util.List;
 
-public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> implements Serializable{
+public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
 
     private List<Hero> values; //liste des héros
     private List<HeroInfo> HIValues; //liste des infos sur les héros.
@@ -43,7 +43,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
         HIValues = heroInfoList;
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder implements Serializable{
+    static class ViewHolder extends RecyclerView.ViewHolder{
         TextView txtHeader;
         TextView txtFooter;
         TextView descriptionView;
@@ -107,11 +107,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
             }
         });
     }
-    public void DisplayName(ViewHolder holder, Hero currentHero){
+    private void DisplayName(ViewHolder holder, Hero currentHero){
         holder.txtHeader.setText(currentHero.getName());
     }
 
-    public void DisplayRarity(ViewHolder holder, Hero currentHero){
+    private void DisplayRarity(ViewHolder holder, Hero currentHero){
         if(currentHero.getRarity() == 1) {
             holder.starViewImage5.setImageResource(R.drawable.cm_icon_star);
             holder.starViewImage4.setImageResource(0);
@@ -145,39 +145,53 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
         }
     }
 
-    public void DisplayElement(ViewHolder holder, Hero currentHero){
-        if(currentHero.getAttribute().equals("fire")) {
-            holder.elementViewImage.setImageResource(R.drawable.cm_icon_profire);
-        }else if (currentHero.getAttribute().equals("wind")){
-            holder.elementViewImage.setImageResource(R.drawable.cm_icon_proearth);
-        }else if (currentHero.getAttribute().equals("ice")){
-            holder.elementViewImage.setImageResource(R.drawable.cm_icon_proice);
-        }else if (currentHero.getAttribute().equals("light")){
-            holder.elementViewImage.setImageResource(R.drawable.cm_icon_promlight);
-        }else if (currentHero.getAttribute().equals("dark")){
-            holder.elementViewImage.setImageResource(R.drawable.cm_icon_promdark);
+    private void DisplayElement(ViewHolder holder, Hero currentHero){
+        switch (currentHero.getAttribute()) {
+            case "fire":
+                holder.elementViewImage.setImageResource(R.drawable.cm_icon_profire);
+                break;
+            case "wind":
+                holder.elementViewImage.setImageResource(R.drawable.cm_icon_proearth);
+                break;
+            case "ice":
+                holder.elementViewImage.setImageResource(R.drawable.cm_icon_proice);
+                break;
+            case "light":
+                holder.elementViewImage.setImageResource(R.drawable.cm_icon_promlight);
+                break;
+            case "dark":
+                holder.elementViewImage.setImageResource(R.drawable.cm_icon_promdark);
+                break;
         }
     }
 
-    public void DisplayRole(ViewHolder holder, Hero currentHero){
-        if(currentHero.getRole().equals("knight")) {
-            holder.roleViewImage.setImageResource(R.drawable.cm_icon_role_knight);
-        }else if (currentHero.getRole().equals("warrior")){
-            holder.roleViewImage.setImageResource(R.drawable.cm_icon_role_warrior);
-        }else if (currentHero.getRole().equals("assassin")){
-            holder.roleViewImage.setImageResource(R.drawable.cm_icon_role_thief);
-        }else if (currentHero.getRole().equals("mage")){
-            holder.roleViewImage.setImageResource(R.drawable.cm_icon_role_mage);
-        }else if (currentHero.getRole().equals("soul-weaver")){
-            holder.roleViewImage.setImageResource(R.drawable.cm_icon_role_soulweaver);
-        }else if (currentHero.getRole().equals("ranger")){
-            holder.roleViewImage.setImageResource(R.drawable.cm_icon_role_ranger);
-        }else if (currentHero.getRole().equals("material")){
-            holder.roleViewImage.setImageResource(R.drawable.cm_icon_role_material);
+    private void DisplayRole(ViewHolder holder, Hero currentHero){
+        switch (currentHero.getRole()) {
+            case "knight":
+                holder.roleViewImage.setImageResource(R.drawable.cm_icon_role_knight);
+                break;
+            case "warrior":
+                holder.roleViewImage.setImageResource(R.drawable.cm_icon_role_warrior);
+                break;
+            case "assassin":
+                holder.roleViewImage.setImageResource(R.drawable.cm_icon_role_thief);
+                break;
+            case "mage":
+                holder.roleViewImage.setImageResource(R.drawable.cm_icon_role_mage);
+                break;
+            case "soul-weaver":
+                holder.roleViewImage.setImageResource(R.drawable.cm_icon_role_soulweaver);
+                break;
+            case "ranger":
+                holder.roleViewImage.setImageResource(R.drawable.cm_icon_role_ranger);
+                break;
+            case "material":
+                holder.roleViewImage.setImageResource(R.drawable.cm_icon_role_material);
+                break;
         }
     }
 
-    public void DisplayDescription(ViewHolder holder, Hero currentHero){
+    private void DisplayDescription(ViewHolder holder, Hero currentHero){
         for(HeroInfo heroInfo : HIValues) {
             if(heroInfo.get_id().equals(currentHero.get_id())){
                 holder.descriptionView.setText(heroInfo.getDescription());
@@ -185,7 +199,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
         }
     }
 
-    public HeroInfo searchHeroInfoById(Hero hero){
+    private HeroInfo searchHeroInfoById(Hero hero){
         for(HeroInfo hi : HIValues) {
             if(hi.get_id().equals(hero.get_id())){
                 return hi;
@@ -194,7 +208,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
         return null;
     }
 
-    public void addIcon(Hero currentHero, ViewHolder holder){
+    private void addIcon(Hero currentHero, ViewHolder holder){
         boolean imageFound = false;
         if(HIValues != null){
             for(int i=0; i<HIValues.size(); i++){
@@ -211,12 +225,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
         }
     }
 
-    public void openActivityInformation(View view, Hero hero, HeroInfo heroInfo){
+    private void openActivityInformation(View view, Hero hero, HeroInfo heroInfo){
         Intent intent = new Intent(view.getContext(), ActivityInformation.class);
-        Bundle b = new Bundle();
-        b.putSerializable("Key", (Serializable) hero);
-        intent.putExtras(b);
-
+        intent.putExtra("Hero", hero);
 
         view.getContext().startActivity(intent);
         System.out.println(hero.getModelURL());
