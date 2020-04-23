@@ -1,6 +1,6 @@
-package com.github.androidproject;
+package com.github.androidproject.models;
 
-import java.util.List;
+import com.github.androidproject.models.Assets;
 
 public class HeroInfo {
 
@@ -24,7 +24,7 @@ public class HeroInfo {
         return get_line;
     }
 
-    String get_id() {
+    public String get_id() {
         return _id;
     }
 
@@ -32,7 +32,7 @@ public class HeroInfo {
         return name;
     }
 
-    Assets getAssets() {
+    public Assets getAssets() {
         return assets;
     }
 }

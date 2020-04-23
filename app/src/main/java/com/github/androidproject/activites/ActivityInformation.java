@@ -1,18 +1,17 @@
-package com.github.androidproject;
+package com.github.androidproject.activites;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.androidproject.adapters.ListAdapter;
+import com.github.androidproject.R;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 public class ActivityInformation extends AppCompatActivity {
 

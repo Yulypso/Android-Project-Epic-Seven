@@ -1,30 +1,30 @@
-package com.github.androidproject;
+package com.github.androidproject.activites;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.androidproject.Constants;
+import com.github.androidproject.interfaces.EpicSevenApi;
+import com.github.androidproject.models.Hero;
+import com.github.androidproject.models.HeroInfo;
+import com.github.androidproject.adapters.ListAdapter;
+import com.github.androidproject.R;
+import com.github.androidproject.controller.RestEpicSevenResponse;
+import com.github.androidproject.controller.RestHeroInfoResponse;
+import com.github.androidproject.controller.RetrieveHeroModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.InputStream;
 import java.lang.reflect.Type;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity { //main activity
 
         sharedPreferences = getSharedPreferences(Constants.KEY_APPLICATION_NAME, Context.MODE_PRIVATE);
 
-        deleteDataInCache(); //remove current saved list from cache => test api calls
+        //deleteDataInCache(); //remove current saved list from cache => test api calls
 
         gson = new GsonBuilder() //create gson object to convert List into String (json type)
                 .setLenient()

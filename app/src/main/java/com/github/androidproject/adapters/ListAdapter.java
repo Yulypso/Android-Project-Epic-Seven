@@ -1,9 +1,7 @@
-package com.github.androidproject;
+package com.github.androidproject.adapters;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,13 +13,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.github.androidproject.models.Hero;
+import com.github.androidproject.models.HeroInfo;
+import com.github.androidproject.R;
+import com.github.androidproject.activites.ActivityInformation;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
@@ -37,7 +34,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     public static final String EXTRA_TEXT_FULL_IMAGE = "com.github.androidproject.EXTRA_TEXT_FULL_IMAGE";
 
 
-    ListAdapter(List<Hero> myDataset, List<HeroInfo> heroInfoList) { //constructor
+    public ListAdapter(List<Hero> myDataset, List<HeroInfo> heroInfoList) { //constructor
         values = myDataset;
         HIValues = heroInfoList;
     }

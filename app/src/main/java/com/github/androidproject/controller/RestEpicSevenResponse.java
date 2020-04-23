@@ -1,4 +1,6 @@
-package com.github.androidproject;
+package com.github.androidproject.controller;
+
+import com.github.androidproject.models.Hero;
 
 import java.util.List;
 

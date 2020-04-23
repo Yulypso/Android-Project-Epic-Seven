@@ -1,22 +1,22 @@
-package com.github.androidproject;
+package com.github.androidproject.controller;
 
 import android.os.AsyncTask;
 
+import com.github.androidproject.models.Hero;
+
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.List;
 
 public class RetrieveHeroModel extends AsyncTask<String, Void, String> {
 
-    static List<Hero> heroList;
+    private static List<Hero> heroList;
 
-    RetrieveHeroModel(List<Hero> heroList){
-        this.heroList = heroList;
+    public RetrieveHeroModel(List<Hero> heroList){
+        RetrieveHeroModel.heroList = heroList;
     }
 
     private Exception exception;

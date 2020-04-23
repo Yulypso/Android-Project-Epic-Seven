@@ -1,4 +1,4 @@
-package com.github.androidproject;
+package com.github.androidproject.models;
 
 import java.util.List;
 
