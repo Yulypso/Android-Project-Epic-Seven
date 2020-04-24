@@ -22,24 +22,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/textViewInf"
-                    android:layout_width="match_parent"
-                    android:layout_height="36dp"
-                    android:background="@color/colorDarkBlue"
-                    android:fontFamily="@font/open_sans"
-                    android:gravity="center_vertical"
-                    android:text="Example application"
-                    android:textAlignment="center"
-                    android:textColor="#F3EFEB"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/wallpaperView"
-                    tools:ignore="RtlCompat" />
-
-
                 <ImageView
                     android:id="@+id/wallpaperView"
                     android:layout_width="match_parent"
@@ -58,9 +40,52 @@
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
                     android:scaleX="-1"
-                    app:layout_constraintBottom_toTopOf="@+id/textViewInf"
+                    app:layout_constraintBottom_toBottomOf="@+id/wallpaperView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:srcCompat="@drawable/ic_launcher_background" />
+
+                <TextView
+                    android:id="@+id/textViewInf"
+                    android:layout_width="250dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center_vertical"
+                    android:text="Example application"
+                    android:textAlignment="textStart"
+                    android:textColor="#F3EFEB"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="5dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:id="@+id/get_lineView"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@drawable/arrondis"
+                    android:fontFamily="@font/play"
+                    android:gravity="center_vertical"
+                    android:text="Example application"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="11sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/wallpaperView"
+                    tools:ignore="RtlCompat" />
+
+                <ImageView
+                    android:id="@+id/elementViewImage"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginEnd="7dp"
+                    android:layout_marginTop="23dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
                 <ImageView
                     android:id="@+id/imageViewImage"
@@ -74,14 +99,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_launcher_background" />
 
-                <ImageView
-                    android:id="@+id/elementViewImage"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_marginEnd="7dp"
-                    android:layout_marginTop="23dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+
 
                 <TextView
                     android:id="@+id/textElementView"
@@ -205,7 +223,7 @@
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
                     app:layout_constraintVertical_bias="0.0"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewInf"
+                    app:layout_constraintTop_toBottomOf="@+id/get_lineView"
                     app:srcCompat="@drawable/ic_launcher_background" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

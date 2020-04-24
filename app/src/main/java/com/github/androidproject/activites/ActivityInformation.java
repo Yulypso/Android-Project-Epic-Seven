@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.github.androidproject.adapters.ListAdapter;
 import com.github.androidproject.R;
 import com.github.androidproject.models.Hero;
+import com.github.androidproject.models.HeroInfo;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
@@ -26,6 +27,7 @@ public class ActivityInformation extends AppCompatActivity {
     Intent intent;
 
     Hero currentHero;
+    HeroInfo currentHeroInfo;
 
     String name;
     String imageUrl;
@@ -37,6 +39,7 @@ public class ActivityInformation extends AppCompatActivity {
     TextView textRoleView;
     TextView textElementView;
     TextView textZodiacView;
+    TextView get_lineView;
 
     ImageView imageViewImage;
     ImageView imageFullUrlView;
@@ -58,7 +61,7 @@ public class ActivityInformation extends AppCompatActivity {
 
         intent = getIntent();
         currentHero = intent.getParcelableExtra("Hero");
-
+        currentHeroInfo = intent.getParcelableExtra("HeroInfo");
 
 
         imageUrl = intent.getStringExtra(ListAdapter.EXTRA_TEXT_IMAGE);
@@ -73,6 +76,7 @@ public class ActivityInformation extends AppCompatActivity {
         textRoleView = (TextView) findViewById(R.id.textRoleView);
         textElementView = (TextView) findViewById(R.id.textElementView);
         textZodiacView = (TextView) findViewById(R.id.textZodiacView);
+        get_lineView = (TextView) findViewById(R.id.get_lineView);
 
         starViewImage1 = (ImageView) findViewById(R.id.starViewImage1);
         starViewImage2 = (ImageView) findViewById(R.id.starViewImage2);
@@ -89,12 +93,21 @@ public class ActivityInformation extends AppCompatActivity {
         Picasso.get().load(imageFullUrl).into(imageFullUrlView);
 
 
-        textViewInf.setText(name);
-
+        DisplayHeroName(currentHero);
         DisplayRarity(currentHero);
         DisplayRole(currentHero);
         DisplayElement(currentHero);
         DisplayZodiac(currentHero);
+
+
+        DisplayGetLineView(currentHeroInfo);
+    }
+    private void DisplayGetLineView(HeroInfo currentHeroInfo){
+        get_lineView.setText(currentHeroInfo.getGet_line());
+    }
+
+    private void DisplayHeroName(Hero currentHero){
+        textViewInf.setText(currentHero.getName());
     }
 
     private void DisplayZodiac(Hero currentHero){

@@ -86,7 +86,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         currentHero = values.get(position);
         DisplayName(holder, currentHero);
         DisplayRarity(holder, currentHero);
@@ -101,9 +101,13 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
                 Log.d("position", ""+ position);
                 currentHero = values.get(position);
                 currentHeroInfo = searchHeroInfoById(currentHero);
-                Log.d("HeroInfo", ""+ currentHeroInfo.get_id());
+                if (currentHeroInfo != null) {
+                    Log.d("HeroInfo", ""+ currentHeroInfo.get_id());
+                }
 
-                openActivityInformation(v, currentHero, currentHeroInfo);
+                if (currentHeroInfo != null) {
+                    openActivityInformation(v, currentHero, currentHeroInfo);
+                }
             }
         });
     }
@@ -228,6 +232,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
     private void openActivityInformation(View view, Hero hero, HeroInfo heroInfo){
         Intent intent = new Intent(view.getContext(), ActivityInformation.class);
         intent.putExtra("Hero", hero);
+        intent.putExtra("HeroInfo", heroInfo);
 
         /**HeroInfo to add on the second Activity**/
         String name = hero.getName();
