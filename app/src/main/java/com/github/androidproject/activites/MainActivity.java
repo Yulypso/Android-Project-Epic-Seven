@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity { //main activity
                 .create();
 
         List heroList = null; //get data from cache
-        //heroInfoList = null;
 
         try{
             heroList = getDataFromCache(Constants.KEY_HERO_LIST);

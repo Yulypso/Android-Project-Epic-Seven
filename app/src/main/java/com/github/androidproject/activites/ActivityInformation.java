@@ -29,7 +29,7 @@ public class ActivityInformation extends AppCompatActivity {
     Hero currentHero;
     HeroInfo currentHeroInfo;
 
-    String name;
+
     String imageUrl;
     String imageFullUrl;
 
@@ -40,6 +40,7 @@ public class ActivityInformation extends AppCompatActivity {
     TextView textElementView;
     TextView textZodiacView;
     TextView get_lineView;
+    TextView storyView;
 
     ImageView imageViewImage;
     ImageView imageFullUrlView;
@@ -51,6 +52,7 @@ public class ActivityInformation extends AppCompatActivity {
     ImageView roleViewImage;
     ImageView elementViewImage;
     ImageView zodiacViewImage;
+    ImageView relation1View;
 
 
     @Override
@@ -63,20 +65,19 @@ public class ActivityInformation extends AppCompatActivity {
         currentHero = intent.getParcelableExtra("Hero");
         currentHeroInfo = intent.getParcelableExtra("HeroInfo");
 
-
         imageUrl = intent.getStringExtra(ListAdapter.EXTRA_TEXT_IMAGE);
         imageFullUrl = intent.getStringExtra(ListAdapter.EXTRA_TEXT_FULL_IMAGE);
-        name = intent.getStringExtra(ListAdapter.EXTRA_TEXT_NAME);
 
+        imageViewImage = (ImageView) findViewById(R.id.imageViewImage);
+        imageFullUrlView = (ImageView) findViewById(R.id.imageFullUrlView);
         wallpaperView = (ImageView) findViewById(R.id.wallpaperView);
         layoutView = (ImageView) findViewById(R.id.layoutViewImage);
         textViewInf = (TextView) findViewById(R.id.textViewInf);
-        imageViewImage = (ImageView) findViewById(R.id.imageViewImage);
-        imageFullUrlView = (ImageView) findViewById(R.id.imageFullUrlView);
         textRoleView = (TextView) findViewById(R.id.textRoleView);
         textElementView = (TextView) findViewById(R.id.textElementView);
         textZodiacView = (TextView) findViewById(R.id.textZodiacView);
         get_lineView = (TextView) findViewById(R.id.get_lineView);
+        storyView = (TextView) findViewById(R.id.storyView);
 
         starViewImage1 = (ImageView) findViewById(R.id.starViewImage1);
         starViewImage2 = (ImageView) findViewById(R.id.starViewImage2);
@@ -86,22 +87,46 @@ public class ActivityInformation extends AppCompatActivity {
         roleViewImage = (ImageView) findViewById(R.id.roleViewImage);
         elementViewImage = (ImageView) findViewById(R.id.elementViewImage);
         zodiacViewImage = (ImageView) findViewById(R.id.zodiacViewImage);
+        relation1View = (ImageView) findViewById(R.id.relation1View);
 
-        Picasso.get().load(wallpaper).into(wallpaperView);
-        Picasso.get().load(layout).into(layoutView);
-        Picasso.get().load(imageUrl).into(imageViewImage);
-        Picasso.get().load(imageFullUrl).into(imageFullUrlView);
-
-
+        DisplayWallpaper();
+        DisplayLayoutView();
         DisplayHeroName(currentHero);
         DisplayRarity(currentHero);
         DisplayRole(currentHero);
         DisplayElement(currentHero);
         DisplayZodiac(currentHero);
-
-
+        DisplayImageUrl();
+        DisplayImageFullUrl();
+        DisplayStory(currentHeroInfo);
         DisplayGetLineView(currentHeroInfo);
+        DisplayRelationship(currentHeroInfo);
     }
+
+    private void DisplayRelationship(HeroInfo currentHeroInfo){
+        Picasso.get().load(imageUrl).into(imageViewImage);
+    }
+
+    private void DisplayImageUrl(){
+        Picasso.get().load(imageUrl).into(imageViewImage);
+    }
+
+    private void DisplayImageFullUrl(){
+        Picasso.get().load(imageFullUrl).into(imageFullUrlView);
+    }
+
+    private void DisplayWallpaper(){
+        Picasso.get().load(wallpaper).into(wallpaperView);
+    }
+
+    private void DisplayLayoutView(){
+        Picasso.get().load(layout).into(layoutView);
+    }
+
+    private void DisplayStory(HeroInfo currentHeroInfo){
+        storyView.setText(currentHeroInfo.getStory());
+    }
+
     private void DisplayGetLineView(HeroInfo currentHeroInfo){
         get_lineView.setText(currentHeroInfo.getGet_line());
     }

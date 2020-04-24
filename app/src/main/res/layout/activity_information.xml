@@ -48,15 +48,15 @@
                     android:id="@+id/textViewInf"
                     android:layout_width="250dp"
                     android:layout_height="36dp"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/open_sans"
+                    android:fontFamily="@font/roboto_slab"
                     android:gravity="center_vertical"
                     android:text="Example application"
                     android:textAlignment="textStart"
                     android:textColor="#F3EFEB"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:layout_marginStart="5dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="RtlCompat" />
@@ -105,7 +105,7 @@
                     android:id="@+id/textElementView"
                     android:layout_width="58dp"
                     android:layout_height="18dp"
-                    android:fontFamily="@font/open_sans"
+                    android:fontFamily="@font/roboto_slab"
                     android:gravity="center_vertical"
                     android:text="Example application"
                     android:textAlignment="center"
@@ -130,7 +130,7 @@
                     android:id="@+id/textRoleView"
                     android:layout_width="58dp"
                     android:layout_height="18dp"
-                    android:fontFamily="@font/open_sans"
+                    android:fontFamily="@font/roboto_slab"
                     android:gravity="center_vertical"
                     android:text="Example application"
                     android:textAlignment="center"
@@ -155,7 +155,7 @@
                     android:id="@+id/textZodiacView"
                     android:layout_width="58dp"
                     android:layout_height="18dp"
-                    android:fontFamily="@font/open_sans"
+                    android:fontFamily="@font/roboto_slab"
                     android:gravity="center_vertical"
                     android:text="Example application"
                     android:textAlignment="center"
@@ -214,17 +214,47 @@
                     app:layout_constraintEnd_toEndOf="parent" />
 
 
+                <TextView
+                    android:id="@+id/storyView"
+                    android:layout_width="184dp"
+                    android:layout_height="290dp"
+                    android:layout_marginStart="15dp"
+                    android:fontFamily="@font/play"
+                    android:gravity="center_vertical"
+                    android:text="Example application"
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/get_lineView"
+                    tools:ignore="RtlCompat" />
 
                 <ImageView
                     android:id="@+id/imageFullUrlView"
-                    android:layout_width="match_parent"
-                    android:layout_height="130dp"
-                    android:layout_marginTop="59dp"
+                    android:layout_width="210dp"
+                    android:layout_height="260dp"
+                    android:layout_marginTop="60dp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    app:layout_constraintVertical_bias="0.0"
+                    android:layout_marginEnd="5dp"
+                    app:layout_constraintStart_toEndOf="@id/storyView"
                     app:layout_constraintTop_toBottomOf="@+id/get_lineView"
-                    app:srcCompat="@drawable/ic_launcher_background" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:srcCompat="@drawable/ic_launcher_background"
+                    tools:layout_editor_absoluteX="201dp" />
+
+
+                <ImageView
+                    android:id="@+id/relation1View"
+                    android:layout_width="51dp"
+                    android:layout_height="51dp"
+                    android:layout_marginStart="2dp"
+                    android:background="@drawable/circle"
+                    android:src="@mipmap/ic_launcher"
+                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>

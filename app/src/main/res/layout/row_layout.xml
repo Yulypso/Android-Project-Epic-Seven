@@ -68,50 +68,54 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <ImageView
-                android:id="@+id/starViewImage1"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_marginStart="242dp"
-                android:layout_marginBottom="30dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+
 
             <ImageView
-                android:id="@+id/starViewImage2"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_marginStart="262dp"
-                android:layout_marginBottom="30dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <ImageView
-                android:id="@+id/starViewImage3"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_marginStart="282dp"
+                android:id="@+id/starViewImage5"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="325dp"
                 android:layout_marginBottom="30dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <ImageView
                 android:id="@+id/starViewImage4"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_marginStart="302dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="315dp"
                 android:layout_marginBottom="30dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <ImageView
-                android:id="@+id/starViewImage5"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_marginStart="322dp"
+                android:id="@+id/starViewImage3"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="305dp"
                 android:layout_marginBottom="30dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/starViewImage2"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="295dp"
+                android:layout_marginBottom="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/starViewImage1"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="285dp"
+                android:layout_marginBottom="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
 
             <TextView
                 android:id="@+id/descriptionView"
