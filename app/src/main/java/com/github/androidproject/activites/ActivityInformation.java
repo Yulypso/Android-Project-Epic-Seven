@@ -24,15 +24,20 @@ public class ActivityInformation extends AppCompatActivity {
     public static String layout = "https://assets.epicsevendb.com/website/summon/gacha_get_bg1.png";
 
     Intent intent;
+
     Hero currentHero;
-    String jsonMyObject;
-    Bundle b;
+
     String name;
     String imageUrl;
     String imageFullUrl;
+
     ImageView wallpaperView;
     ImageView layoutView;
     TextView textViewInf;
+    TextView textRoleView;
+    TextView textElementView;
+    TextView textZodiacView;
+
     ImageView imageViewImage;
     ImageView imageFullUrlView;
     ImageView starViewImage1;
@@ -41,6 +46,9 @@ public class ActivityInformation extends AppCompatActivity {
     ImageView starViewImage4;
     ImageView starViewImage5;
     ImageView roleViewImage;
+    ImageView elementViewImage;
+    ImageView zodiacViewImage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +70,9 @@ public class ActivityInformation extends AppCompatActivity {
         textViewInf = (TextView) findViewById(R.id.textViewInf);
         imageViewImage = (ImageView) findViewById(R.id.imageViewImage);
         imageFullUrlView = (ImageView) findViewById(R.id.imageFullUrlView);
+        textRoleView = (TextView) findViewById(R.id.textRoleView);
+        textElementView = (TextView) findViewById(R.id.textElementView);
+        textZodiacView = (TextView) findViewById(R.id.textZodiacView);
 
         starViewImage1 = (ImageView) findViewById(R.id.starViewImage1);
         starViewImage2 = (ImageView) findViewById(R.id.starViewImage2);
@@ -69,6 +80,8 @@ public class ActivityInformation extends AppCompatActivity {
         starViewImage4 = (ImageView) findViewById(R.id.starViewImage4);
         starViewImage5 = (ImageView) findViewById(R.id.starViewImage5);
         roleViewImage = (ImageView) findViewById(R.id.roleViewImage);
+        elementViewImage = (ImageView) findViewById(R.id.elementViewImage);
+        zodiacViewImage = (ImageView) findViewById(R.id.zodiacViewImage);
 
         Picasso.get().load(wallpaper).into(wallpaperView);
         Picasso.get().load(layout).into(layoutView);
@@ -80,8 +93,72 @@ public class ActivityInformation extends AppCompatActivity {
 
         DisplayRarity(currentHero);
         DisplayRole(currentHero);
+        DisplayElement(currentHero);
+        DisplayZodiac(currentHero);
     }
 
+    private void DisplayZodiac(Hero currentHero){
+        switch (currentHero.getZodiac()) {
+            case "ram":
+                zodiacViewImage.setImageResource(R.drawable.aries);
+                break;
+            case "bull":
+                zodiacViewImage.setImageResource(R.drawable.taurus);
+                break;
+            case "twins":
+                zodiacViewImage.setImageResource(R.drawable.gemini);
+                break;
+            case "crab":
+                zodiacViewImage.setImageResource(R.drawable.cancer);
+                break;
+            case "lion":
+                zodiacViewImage.setImageResource(R.drawable.leo);
+                break;
+            case "maiden":
+                zodiacViewImage.setImageResource(R.drawable.virgo);
+                break;
+            case "scales":
+                zodiacViewImage.setImageResource(R.drawable.libra);
+                break;
+            case "scorpion":
+                zodiacViewImage.setImageResource(R.drawable.scorpio);
+                break;
+            case "archer":
+                zodiacViewImage.setImageResource(R.drawable.sagittarius);
+                break;
+            case "goat":
+                zodiacViewImage.setImageResource(R.drawable.capricorn);
+                break;
+            case "waterbearer":
+                zodiacViewImage.setImageResource(R.drawable.aquarius);
+                break;
+            case "fish":
+                zodiacViewImage.setImageResource(R.drawable.pisces);
+                break;
+        }
+        textZodiacView.setText(currentHero.getZodiac());
+    }
+
+    private void DisplayElement(Hero currentHero){
+        switch (currentHero.getAttribute()) {
+            case "fire":
+                elementViewImage.setImageResource(R.drawable.cm_icon_profire);
+                break;
+            case "wind":
+                elementViewImage.setImageResource(R.drawable.cm_icon_proearth);
+                break;
+            case "ice":
+                elementViewImage.setImageResource(R.drawable.cm_icon_proice);
+                break;
+            case "light":
+                elementViewImage.setImageResource(R.drawable.cm_icon_promlight);
+                break;
+            case "dark":
+                elementViewImage.setImageResource(R.drawable.cm_icon_promdark);
+                break;
+        }
+        textElementView.setText(currentHero.getAttribute());
+    }
 
     public void DisplayRarity(Hero currentHero){
         if(currentHero.getRarity() == 1) {
@@ -131,7 +208,7 @@ public class ActivityInformation extends AppCompatActivity {
             case "mage":
                 roleViewImage.setImageResource(R.drawable.cm_icon_role_mage);
                 break;
-            case "soul-weaver":
+            case "manauser":
                 roleViewImage.setImageResource(R.drawable.cm_icon_role_soulweaver);
                 break;
             case "ranger":
@@ -141,6 +218,7 @@ public class ActivityInformation extends AppCompatActivity {
                 roleViewImage.setImageResource(R.drawable.cm_icon_role_material);
                 break;
         }
+        textRoleView.setText(currentHero.getRole());
     }
 
     @Override

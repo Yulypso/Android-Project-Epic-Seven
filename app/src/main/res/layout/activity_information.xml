@@ -24,8 +24,9 @@
 
                 <TextView
                     android:id="@+id/textViewInf"
-                    android:layout_width="314dp"
-                    android:layout_height="43dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:background="@color/colorDarkBlue"
                     android:fontFamily="@font/open_sans"
                     android:gravity="center_vertical"
                     android:text="Example application"
@@ -34,10 +35,10 @@
                     android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.494"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/wallpaperView"
                     tools:ignore="RtlCompat" />
+
 
                 <ImageView
                     android:id="@+id/wallpaperView"
@@ -52,164 +53,149 @@
 
                 <ImageView
                     android:id="@+id/layoutViewImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="650dp"
+                    android:layout_height="301dp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:scaleX="-1"
+                    app:layout_constraintBottom_toTopOf="@+id/textViewInf"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:srcCompat="@drawable/ic_launcher_background" />
 
                 <ImageView
                     android:id="@+id/imageViewImage"
                     android:layout_width="match_parent"
                     android:layout_height="130dp"
-                    android:layout_marginTop="59dp"
+                    android:layout_marginTop="59.3dp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginEnd="83dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
                     app:srcCompat="@drawable/ic_launcher_background" />
 
                 <ImageView
-                    android:id="@+id/roleViewImage"
+                    android:id="@+id/elementViewImage"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
-                    android:layout_marginStart="302dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="7dp"
+                    android:layout_marginTop="23dp"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <ImageView
-                    android:id="@+id/starViewImage1"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_marginStart="242dp"
-                    android:layout_marginBottom="30dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <ImageView
-                    android:id="@+id/starViewImage2"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_marginStart="262dp"
-                    android:layout_marginBottom="30dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <ImageView
-                    android:id="@+id/starViewImage3"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_marginStart="282dp"
-                    android:layout_marginBottom="30dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <ImageView
-                    android:id="@+id/starViewImage4"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_marginStart="302dp"
-                    android:layout_marginBottom="30dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <ImageView
-                    android:id="@+id/starViewImage5"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_marginStart="322dp"
-                    android:layout_marginBottom="30dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-
-
-
-
-
-
-
-
-
-
-
-                <Button
-                    android:id="@+id/coucou"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_constraintTop_toBottomOf="@id/textViewInf"
-                    tools:layout_editor_absoluteX="-16dp" />
-                <Button
-                    android:id="@+id/caca"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_constraintTop_toBottomOf="@id/coucou"
-                    tools:layout_editor_absoluteX="-16dp" />
-                <Button
-                    android:id="@+id/ceca"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_constraintTop_toBottomOf="@id/caca"
-                    tools:layout_editor_absoluteX="-16dp" />
-                <Button
-                    android:id="@+id/cecsa"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_constraintTop_toBottomOf="@id/ceca"
-                    tools:layout_editor_absoluteX="-16dp" />
-                <Button
-                    android:id="@+id/a"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_constraintTop_toBottomOf="@id/cecsa"
-                    tools:layout_editor_absoluteX="-16dp" />
-                <Button
-                    android:id="@+id/b"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_constraintTop_toBottomOf="@id/a"
-                    tools:layout_editor_absoluteX="-16dp" />
-                <Button
-                    android:id="@+id/c"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_constraintTop_toBottomOf="@id/b"
-                    tools:layout_editor_absoluteX="-16dp" />
-                <Button
-                    android:id="@+id/d"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_constraintTop_toBottomOf="@id/c"
-                    tools:layout_editor_absoluteX="-16dp" />
-                <Button
-                    android:id="@+id/e"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_constraintTop_toBottomOf="@id/d"
-                    tools:layout_editor_absoluteX="-16dp" />
+                    app:layout_constraintEnd_toEndOf="parent" />
 
                 <TextView
-                    android:id="@+id/f"
-                    android:layout_width="match_parent"
-                    android:layout_height="43dp"
+                    android:id="@+id/textElementView"
+                    android:layout_width="58dp"
+                    android:layout_height="18dp"
                     android:fontFamily="@font/open_sans"
                     android:gravity="center_vertical"
                     android:text="Example application"
                     android:textAlignment="center"
                     android:textColor="#F3EFEB"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.494"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/e"
-                    tools:ignore="RtlCompat"
-                    android:background="@drawable/border"/>
+                    android:textSize="12sp"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginTop="23dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/elementViewImage"
+                    tools:ignore="RtlCompat" />
+
+                <ImageView
+                    android:id="@+id/roleViewImage"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginEnd="7dp"
+                    android:layout_marginTop="43dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/textRoleView"
+                    android:layout_width="58dp"
+                    android:layout_height="18dp"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center_vertical"
+                    android:text="Example application"
+                    android:textAlignment="center"
+                    android:textColor="#F3EFEB"
+                    android:textSize="12sp"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginTop="43dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/roleViewImage"
+                    tools:ignore="RtlCompat" />
+
+                <ImageView
+                    android:id="@+id/zodiacViewImage"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginEnd="7dp"
+                    android:layout_marginTop="63dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/textZodiacView"
+                    android:layout_width="58dp"
+                    android:layout_height="18dp"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center_vertical"
+                    android:text="Example application"
+                    android:textAlignment="center"
+                    android:textColor="#F3EFEB"
+                    android:textSize="12sp"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginTop="63dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/zodiacViewImage"
+                    tools:ignore="RtlCompat" />
+
+
+                <ImageView
+                    android:id="@+id/starViewImage5"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginEnd="7dp"
+                    android:layout_marginBottom="30dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <ImageView
+                    android:id="@+id/starViewImage4"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginEnd="27dp"
+                    android:layout_marginBottom="30dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <ImageView
+                    android:id="@+id/starViewImage3"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginEnd="47dp"
+                    android:layout_marginBottom="30dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <ImageView
+                    android:id="@+id/starViewImage2"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginEnd="67dp"
+                    android:layout_marginBottom="30dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <ImageView
+                    android:id="@+id/starViewImage1"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginEnd="87dp"
+                    android:layout_marginBottom="30dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+
 
                 <ImageView
                     android:id="@+id/imageFullUrlView"
@@ -219,7 +205,7 @@
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
                     app:layout_constraintVertical_bias="0.0"
-                    app:layout_constraintTop_toBottomOf="@+id/f"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewInf"
                     app:srcCompat="@drawable/ic_launcher_background" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

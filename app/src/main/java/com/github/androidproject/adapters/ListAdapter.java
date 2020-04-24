@@ -179,7 +179,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
             case "mage":
                 holder.roleViewImage.setImageResource(R.drawable.cm_icon_role_mage);
                 break;
-            case "soul-weaver":
+            case "manauser":
                 holder.roleViewImage.setImageResource(R.drawable.cm_icon_role_soulweaver);
                 break;
             case "ranger":
@@ -229,9 +229,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
         Intent intent = new Intent(view.getContext(), ActivityInformation.class);
         intent.putExtra("Hero", hero);
 
-        view.getContext().startActivity(intent);
-        System.out.println(hero.getModelURL());
-
         /**HeroInfo to add on the second Activity**/
         String name = hero.getName();
         intent.putExtra(EXTRA_TEXT_NAME, name);
@@ -241,8 +238,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
 
         String imageFullUrl = (hero.getModelURL());
         intent.putExtra(EXTRA_TEXT_FULL_IMAGE, imageFullUrl);
-
-
         /******************************************/
         view.getContext().startActivity(intent);
     }
