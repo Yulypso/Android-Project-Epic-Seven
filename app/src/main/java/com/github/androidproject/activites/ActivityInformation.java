@@ -3,6 +3,7 @@ package com.github.androidproject.activites;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -26,8 +27,21 @@ public class ActivityInformation extends AppCompatActivity {
 
     Intent intent;
 
+    private static int totalRelations;
+
     Hero currentHero;
     HeroInfo currentHeroInfo;
+
+    HeroInfo HeroInfoRelation1;
+    HeroInfo HeroInfoRelation2;
+    HeroInfo HeroInfoRelation3;
+    HeroInfo HeroInfoRelation4;
+    HeroInfo HeroInfoRelation5;
+    HeroInfo HeroInfoRelation6;
+    HeroInfo HeroInfoRelation7;
+    HeroInfo HeroInfoRelation8;
+    HeroInfo HeroInfoRelation9;
+    HeroInfo HeroInfoRelation10;
 
 
     String imageUrl;
@@ -52,7 +66,17 @@ public class ActivityInformation extends AppCompatActivity {
     ImageView roleViewImage;
     ImageView elementViewImage;
     ImageView zodiacViewImage;
+
     ImageView relation1View;
+    ImageView relation2View;
+    ImageView relation3View;
+    ImageView relation4View;
+    ImageView relation5View;
+    ImageView relation6View;
+    ImageView relation7View;
+    ImageView relation8View;
+    ImageView relation9View;
+    ImageView relation10View;
 
 
     @Override
@@ -64,6 +88,9 @@ public class ActivityInformation extends AppCompatActivity {
         intent = getIntent();
         currentHero = intent.getParcelableExtra("Hero");
         currentHeroInfo = intent.getParcelableExtra("HeroInfo");
+        totalRelations = Objects.requireNonNull(intent.getExtras()).getInt("totalRelations");
+
+        getHeroInfoRelations(intent);
 
         imageUrl = intent.getStringExtra(ListAdapter.EXTRA_TEXT_IMAGE);
         imageFullUrl = intent.getStringExtra(ListAdapter.EXTRA_TEXT_FULL_IMAGE);
@@ -87,7 +114,18 @@ public class ActivityInformation extends AppCompatActivity {
         roleViewImage = (ImageView) findViewById(R.id.roleViewImage);
         elementViewImage = (ImageView) findViewById(R.id.elementViewImage);
         zodiacViewImage = (ImageView) findViewById(R.id.zodiacViewImage);
+
         relation1View = (ImageView) findViewById(R.id.relation1View);
+        relation2View = (ImageView) findViewById(R.id.relation2View);
+        relation3View = (ImageView) findViewById(R.id.relation3View);
+        relation4View = (ImageView) findViewById(R.id.relation4View);
+        relation5View = (ImageView) findViewById(R.id.relation5View);
+        relation6View = (ImageView) findViewById(R.id.relation6View);
+        relation7View = (ImageView) findViewById(R.id.relation7View);
+        relation8View = (ImageView) findViewById(R.id.relation8View);
+        relation9View = (ImageView) findViewById(R.id.relation9View);
+        relation10View = (ImageView) findViewById(R.id.relation10View);
+
 
         DisplayWallpaper();
         DisplayLayoutView();
@@ -100,11 +138,93 @@ public class ActivityInformation extends AppCompatActivity {
         DisplayImageFullUrl();
         DisplayStory(currentHeroInfo);
         DisplayGetLineView(currentHeroInfo);
-        DisplayRelationship(currentHeroInfo);
+        DisplayRelationship();
     }
 
-    private void DisplayRelationship(HeroInfo currentHeroInfo){
-        Picasso.get().load(imageUrl).into(imageViewImage);
+
+
+    private void DisplayRelationship(){
+        if(totalRelations>0) {
+            switch (totalRelations) {
+                default:
+                    break;
+                case 1:
+                    Picasso.get().load(HeroInfoRelation1.getAssets().getThumbnail()).into(relation1View);
+                    break;
+                case 2:
+                    Picasso.get().load(HeroInfoRelation1.getAssets().getThumbnail()).into(relation1View);
+                    Picasso.get().load(HeroInfoRelation2.getAssets().getThumbnail()).into(relation2View);
+                    break;
+                case 3:
+                    Picasso.get().load(HeroInfoRelation1.getAssets().getThumbnail()).into(relation1View);
+                    Picasso.get().load(HeroInfoRelation2.getAssets().getThumbnail()).into(relation2View);
+                    Picasso.get().load(HeroInfoRelation3.getAssets().getThumbnail()).into(relation3View);
+                    break;
+                case 4:
+                    Picasso.get().load(HeroInfoRelation1.getAssets().getThumbnail()).into(relation1View);
+                    Picasso.get().load(HeroInfoRelation2.getAssets().getThumbnail()).into(relation2View);
+                    Picasso.get().load(HeroInfoRelation3.getAssets().getThumbnail()).into(relation3View);
+                    Picasso.get().load(HeroInfoRelation4.getAssets().getThumbnail()).into(relation4View);
+                    break;
+                case 5:
+                    Picasso.get().load(HeroInfoRelation1.getAssets().getThumbnail()).into(relation1View);
+                    Picasso.get().load(HeroInfoRelation2.getAssets().getThumbnail()).into(relation2View);
+                    Picasso.get().load(HeroInfoRelation3.getAssets().getThumbnail()).into(relation3View);
+                    Picasso.get().load(HeroInfoRelation4.getAssets().getThumbnail()).into(relation4View);
+                    Picasso.get().load(HeroInfoRelation5.getAssets().getThumbnail()).into(relation5View);
+                    break;
+                case 6:
+                    Picasso.get().load(HeroInfoRelation1.getAssets().getThumbnail()).into(relation1View);
+                    Picasso.get().load(HeroInfoRelation2.getAssets().getThumbnail()).into(relation2View);
+                    Picasso.get().load(HeroInfoRelation3.getAssets().getThumbnail()).into(relation3View);
+                    Picasso.get().load(HeroInfoRelation4.getAssets().getThumbnail()).into(relation4View);
+                    Picasso.get().load(HeroInfoRelation5.getAssets().getThumbnail()).into(relation5View);
+                    Picasso.get().load(HeroInfoRelation6.getAssets().getThumbnail()).into(relation6View);
+                    break;
+                case 7:
+                    Picasso.get().load(HeroInfoRelation1.getAssets().getThumbnail()).into(relation1View);
+                    Picasso.get().load(HeroInfoRelation2.getAssets().getThumbnail()).into(relation2View);
+                    Picasso.get().load(HeroInfoRelation3.getAssets().getThumbnail()).into(relation3View);
+                    Picasso.get().load(HeroInfoRelation4.getAssets().getThumbnail()).into(relation4View);
+                    Picasso.get().load(HeroInfoRelation5.getAssets().getThumbnail()).into(relation5View);
+                    Picasso.get().load(HeroInfoRelation6.getAssets().getThumbnail()).into(relation6View);
+                    Picasso.get().load(HeroInfoRelation7.getAssets().getThumbnail()).into(relation7View);
+                    break;
+                case 8:
+                    Picasso.get().load(HeroInfoRelation1.getAssets().getThumbnail()).into(relation1View);
+                    Picasso.get().load(HeroInfoRelation2.getAssets().getThumbnail()).into(relation2View);
+                    Picasso.get().load(HeroInfoRelation3.getAssets().getThumbnail()).into(relation3View);
+                    Picasso.get().load(HeroInfoRelation4.getAssets().getThumbnail()).into(relation4View);
+                    Picasso.get().load(HeroInfoRelation5.getAssets().getThumbnail()).into(relation5View);
+                    Picasso.get().load(HeroInfoRelation6.getAssets().getThumbnail()).into(relation6View);
+                    Picasso.get().load(HeroInfoRelation7.getAssets().getThumbnail()).into(relation7View);
+                    Picasso.get().load(HeroInfoRelation8.getAssets().getThumbnail()).into(relation8View);
+                    break;
+                case 9:
+                    Picasso.get().load(HeroInfoRelation1.getAssets().getThumbnail()).into(relation1View);
+                    Picasso.get().load(HeroInfoRelation2.getAssets().getThumbnail()).into(relation2View);
+                    Picasso.get().load(HeroInfoRelation3.getAssets().getThumbnail()).into(relation3View);
+                    Picasso.get().load(HeroInfoRelation4.getAssets().getThumbnail()).into(relation4View);
+                    Picasso.get().load(HeroInfoRelation5.getAssets().getThumbnail()).into(relation5View);
+                    Picasso.get().load(HeroInfoRelation6.getAssets().getThumbnail()).into(relation6View);
+                    Picasso.get().load(HeroInfoRelation7.getAssets().getThumbnail()).into(relation7View);
+                    Picasso.get().load(HeroInfoRelation8.getAssets().getThumbnail()).into(relation8View);
+                    Picasso.get().load(HeroInfoRelation9.getAssets().getThumbnail()).into(relation9View);
+                    break;
+                case 10:
+                    Picasso.get().load(HeroInfoRelation1.getAssets().getThumbnail()).into(relation1View);
+                    Picasso.get().load(HeroInfoRelation2.getAssets().getThumbnail()).into(relation2View);
+                    Picasso.get().load(HeroInfoRelation3.getAssets().getThumbnail()).into(relation3View);
+                    Picasso.get().load(HeroInfoRelation4.getAssets().getThumbnail()).into(relation4View);
+                    Picasso.get().load(HeroInfoRelation5.getAssets().getThumbnail()).into(relation5View);
+                    Picasso.get().load(HeroInfoRelation6.getAssets().getThumbnail()).into(relation6View);
+                    Picasso.get().load(HeroInfoRelation7.getAssets().getThumbnail()).into(relation7View);
+                    Picasso.get().load(HeroInfoRelation8.getAssets().getThumbnail()).into(relation8View);
+                    Picasso.get().load(HeroInfoRelation9.getAssets().getThumbnail()).into(relation9View);
+                    Picasso.get().load(HeroInfoRelation10.getAssets().getThumbnail()).into(relation10View);
+                    break;
+            }
+        }
     }
 
     private void DisplayImageUrl(){
@@ -123,8 +243,9 @@ public class ActivityInformation extends AppCompatActivity {
         Picasso.get().load(layout).into(layoutView);
     }
 
+    @SuppressLint("SetTextI18n")
     private void DisplayStory(HeroInfo currentHeroInfo){
-        storyView.setText(currentHeroInfo.getStory());
+        storyView.setText("\""+currentHeroInfo.getStory()+"\"");
     }
 
     private void DisplayGetLineView(HeroInfo currentHeroInfo){
@@ -257,6 +378,100 @@ public class ActivityInformation extends AppCompatActivity {
                 break;
         }
         textRoleView.setText(currentHero.getRole());
+    }
+
+   /* private void countRelations(HeroInfo currentHeroInfo) {
+        //totalRelations = currentHeroInfo.getRelationships().get(0).getRelations().size();
+
+        for(int i =0; i<currentHeroInfo.getRelationships().get(0).getRelations().size(); i++){
+            if(currentHeroInfo.getRelationships().get(0).getRelations().get(i).getId().contains("npc") || currentHeroInfo.getRelationships().get(0).getRelations().get(i).getId().contains("m")){
+                totalRelations = totalRelations -1;
+            }
+        }
+    }*/
+
+    private void getHeroInfoRelations(Intent intent){
+        if(totalRelations>0) {
+            switch (totalRelations) {
+                default:
+                    break;
+                case 1:
+                    this.HeroInfoRelation1 = intent.getParcelableExtra("HeroInfo1");
+                    break;
+                case 2:
+                    this.HeroInfoRelation1 = intent.getParcelableExtra("HeroInfo1");
+                    this.HeroInfoRelation2 = intent.getParcelableExtra("HeroInfo2");
+                    break;
+                case 3:
+                    this.HeroInfoRelation1 = intent.getParcelableExtra("HeroInfo1");
+                    this.HeroInfoRelation2 = intent.getParcelableExtra("HeroInfo2");
+                    this.HeroInfoRelation3 = intent.getParcelableExtra("HeroInfo3");
+                    break;
+                case 4:
+                    this.HeroInfoRelation1 = intent.getParcelableExtra("HeroInfo1");
+                    this.HeroInfoRelation2 = intent.getParcelableExtra("HeroInfo2");
+                    this.HeroInfoRelation3 = intent.getParcelableExtra("HeroInfo3");
+                    this.HeroInfoRelation4 = intent.getParcelableExtra("HeroInfo4");
+                    break;
+                case 5:
+                    this.HeroInfoRelation1 = intent.getParcelableExtra("HeroInfo1");
+                    this.HeroInfoRelation2 = intent.getParcelableExtra("HeroInfo2");
+                    this.HeroInfoRelation3 = intent.getParcelableExtra("HeroInfo3");
+                    this.HeroInfoRelation4 = intent.getParcelableExtra("HeroInfo4");
+                    this.HeroInfoRelation5 = intent.getParcelableExtra("HeroInfo5");
+                    break;
+                case 6:
+                    this.HeroInfoRelation1 = intent.getParcelableExtra("HeroInfo1");
+                    this.HeroInfoRelation2 = intent.getParcelableExtra("HeroInfo2");
+                    this.HeroInfoRelation3 = intent.getParcelableExtra("HeroInfo3");
+                    this.HeroInfoRelation4 = intent.getParcelableExtra("HeroInfo4");
+                    this.HeroInfoRelation5 = intent.getParcelableExtra("HeroInfo5");
+                    this.HeroInfoRelation6 = intent.getParcelableExtra("HeroInfo6");
+                    break;
+                case 7:
+                    this.HeroInfoRelation1 = intent.getParcelableExtra("HeroInfo1");
+                    this.HeroInfoRelation2 = intent.getParcelableExtra("HeroInfo2");
+                    this.HeroInfoRelation3 = intent.getParcelableExtra("HeroInfo3");
+                    this.HeroInfoRelation4 = intent.getParcelableExtra("HeroInfo4");
+                    this.HeroInfoRelation5 = intent.getParcelableExtra("HeroInfo5");
+                    this.HeroInfoRelation6 = intent.getParcelableExtra("HeroInfo6");
+                    this.HeroInfoRelation7 = intent.getParcelableExtra("HeroInfo7");
+                    break;
+                case 8:
+                    this.HeroInfoRelation1 = intent.getParcelableExtra("HeroInfo1");
+                    this.HeroInfoRelation2 = intent.getParcelableExtra("HeroInfo2");
+                    this.HeroInfoRelation3 = intent.getParcelableExtra("HeroInfo3");
+                    this.HeroInfoRelation4 = intent.getParcelableExtra("HeroInfo4");
+                    this.HeroInfoRelation5 = intent.getParcelableExtra("HeroInfo5");
+                    this.HeroInfoRelation6 = intent.getParcelableExtra("HeroInfo6");
+                    this.HeroInfoRelation7 = intent.getParcelableExtra("HeroInfo7");
+                    this.HeroInfoRelation8 = intent.getParcelableExtra("HeroInfo8");
+                    break;
+                case 9:
+                    this.HeroInfoRelation1 = intent.getParcelableExtra("HeroInfo1");
+                    this.HeroInfoRelation2 = intent.getParcelableExtra("HeroInfo2");
+                    this.HeroInfoRelation3 = intent.getParcelableExtra("HeroInfo3");
+                    this.HeroInfoRelation4 = intent.getParcelableExtra("HeroInfo4");
+                    this.HeroInfoRelation5 = intent.getParcelableExtra("HeroInfo5");
+                    this.HeroInfoRelation6 = intent.getParcelableExtra("HeroInfo6");
+                    this.HeroInfoRelation7 = intent.getParcelableExtra("HeroInfo7");
+                    this.HeroInfoRelation8 = intent.getParcelableExtra("HeroInfo8");
+                    this.HeroInfoRelation9 = intent.getParcelableExtra("HeroInfo9");
+                    break;
+                case 10:
+                    this.HeroInfoRelation1 = intent.getParcelableExtra("HeroInfo1");
+                    this.HeroInfoRelation2 = intent.getParcelableExtra("HeroInfo2");
+                    this.HeroInfoRelation3 = intent.getParcelableExtra("HeroInfo3");
+                    this.HeroInfoRelation4 = intent.getParcelableExtra("HeroInfo4");
+                    this.HeroInfoRelation5 = intent.getParcelableExtra("HeroInfo5");
+                    this.HeroInfoRelation6 = intent.getParcelableExtra("HeroInfo6");
+                    this.HeroInfoRelation7 = intent.getParcelableExtra("HeroInfo7");
+                    this.HeroInfoRelation8 = intent.getParcelableExtra("HeroInfo8");
+                    this.HeroInfoRelation9 = intent.getParcelableExtra("HeroInfo9");
+                    this.HeroInfoRelation10 = intent.getParcelableExtra("HeroInfo10");
+                    break;
+            }
+        }
     }
 
     @Override

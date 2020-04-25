@@ -99,8 +99,6 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_launcher_background" />
 
-
-
                 <TextView
                     android:id="@+id/textElementView"
                     android:layout_width="58dp"
@@ -167,7 +165,6 @@
                     app:layout_constraintEnd_toStartOf="@+id/zodiacViewImage"
                     tools:ignore="RtlCompat" />
 
-
                 <ImageView
                     android:id="@+id/starViewImage5"
                     android:layout_width="18dp"
@@ -213,7 +210,6 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
 
-
                 <TextView
                     android:id="@+id/storyView"
                     android:layout_width="184dp"
@@ -244,17 +240,107 @@
                     app:srcCompat="@drawable/ic_launcher_background"
                     tools:layout_editor_absoluteX="201dp" />
 
-
                 <ImageView
                     android:id="@+id/relation1View"
+                    android:layout_width="61dp"
+                    android:layout_height="61dp"
+                    android:layout_marginStart="2dp"
+                    android:background="@drawable/circle"
+                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/relation2View"
                     android:layout_width="51dp"
                     android:layout_height="51dp"
                     android:layout_marginStart="2dp"
                     android:background="@drawable/circle"
-                    android:src="@mipmap/ic_launcher"
                     app:layout_constraintTop_toBottomOf="@id/imageFullUrlView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/relation3View"
+                    android:layout_width="51dp"
+                    android:layout_height="51dp"
+                    android:layout_marginStart="2dp"
+                    android:background="@drawable/circle"
+                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/relation4View"
+                    android:layout_width="51dp"
+                    android:layout_height="51dp"
+                    android:layout_marginStart="2dp"
+                    android:background="@drawable/circle"
+                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/relation5View"
+                    android:layout_width="51dp"
+                    android:layout_height="51dp"
+                    android:layout_marginStart="2dp"
+                    android:background="@drawable/circle"
+                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/relation6View"
+                    android:layout_width="51dp"
+                    android:layout_height="51dp"
+                    android:layout_marginStart="2dp"
+                    android:background="@drawable/circle"
+                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/relation7View"
+                    android:layout_width="51dp"
+                    android:layout_height="51dp"
+                    android:layout_marginStart="2dp"
+                    android:background="@drawable/circle"
+                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/relation8View"
+                    android:layout_width="51dp"
+                    android:layout_height="51dp"
+                    android:layout_marginStart="2dp"
+                    android:background="@drawable/circle"
+                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/relation9View"
+                    android:layout_width="51dp"
+                    android:layout_height="51dp"
+                    android:layout_marginStart="2dp"
+                    android:background="@drawable/circle"
+                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/relation10View"
+                    android:layout_width="51dp"
+                    android:layout_height="51dp"
+                    android:layout_marginStart="2dp"
+                    android:background="@drawable/circle"
+                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
