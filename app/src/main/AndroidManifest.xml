@@ -12,15 +12,22 @@
         android:theme="@style/AppTheme"
         tools:ignore="LockedOrientationActivity"
         android:fullBackupContent="@xml/backup_descriptor">
+
         <activity android:name=".activites.ActivityInformation"
             android:screenOrientation="portrait"
-            android:parentActivityName=".activites.MainActivity" />
+            android:parentActivityName=".activites.MainActivity">
+        </activity>
+
         <activity android:name=".activites.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".activites.PopUp"
+            android:theme="@style/AppTheme.CustomTheme">
         </activity>
 
         <meta-data

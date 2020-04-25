@@ -147,7 +147,6 @@ public class ActivityInformation extends AppCompatActivity {
         relation9View = (ImageView) findViewById(R.id.relation9View);
         relation10View = (ImageView) findViewById(R.id.relation10View);
 
-
         DisplayWallpaper();
         DisplayLayoutView();
         DisplayHeroName(currentHero);

@@ -14,6 +14,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.github.androidproject.activites.MainActivity;
+import com.github.androidproject.activites.PopUp;
 import com.github.androidproject.models.Hero;
 import com.github.androidproject.models.HeroInfo;
 import com.github.androidproject.R;
@@ -92,7 +94,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         currentHero = heroList.get(position);
         DisplayName(holder, currentHero);
         DisplayRarity(holder, currentHero);
@@ -112,7 +114,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
                     Log.d("HeroInfo", ""+ currentHeroInfo.get_id());
                     openActivityInformation(v, currentHero, currentHeroInfo, heroList, heroInfoList);
                 }else{
-                    // TODO POP UP HERO INFORMATION NOT FOUND
+                    Intent intent2 = new Intent(v.getContext(), PopUp.class);
+                    intent2.putExtra("currentHeroMissing", currentHero);
+                    v.getContext().startActivity(intent2);
                 }
             }
         });
