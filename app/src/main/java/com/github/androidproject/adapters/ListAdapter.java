@@ -107,12 +107,12 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
                 Log.d("position", ""+ position);
                 currentHero = heroList.get(position);
                 currentHeroInfo = searchHeroInfoById(currentHero);
-                if (currentHeroInfo != null) {
-                    Log.d("HeroInfo", ""+ currentHeroInfo.get_id());
-                }
 
                 if (currentHeroInfo != null) {
+                    Log.d("HeroInfo", ""+ currentHeroInfo.get_id());
                     openActivityInformation(v, currentHero, currentHeroInfo, heroList, heroInfoList);
+                }else{
+                    // TODO POP UP HERO INFORMATION NOT FOUND
                 }
             }
         });
@@ -229,7 +229,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
                 }
 
                 if(!currentHero.get_id().equals(heroInfoList.get(i).get_id()) && i == heroInfoList.size()-1 && !imageFound){
-                    Picasso.get().load("https://www.app.asso.fr/wp-content/uploads/2018/04/informer-140x140.png").into(holder.imageView);
+                    holder.imageView.setImageResource(R.drawable.iconmissing);
                     imageFound = false;
                 }
             }

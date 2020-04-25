@@ -160,88 +160,89 @@ public class ActivityInformation extends AppCompatActivity {
         DisplayStory(currentHeroInfo);
         DisplayGetLineView(currentHeroInfo);
         DisplayRelationship();
-        DisplayRelationshipName();
+        DisplayRelationshipInformation(currentHeroInfo);
     }
 
-    private void DisplayRelationshipName(){
+    @SuppressLint("SetTextI18n")
+    private void DisplayRelationshipInformation(HeroInfo currentHeroInfo){
         if(totalRelations>0) {
             switch (totalRelations) {
                 default:
                     break;
                 case 1:
-                    relation1TextView.setText(HeroInfoRelation1.getName());
+                    relation1TextView.setText("["+HeroInfoRelation1.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
                     break;
                 case 2:
-                    relation1TextView.setText(HeroInfoRelation1.getName());
-                    relation2TextView.setText(HeroInfoRelation2.getName());
+                    relation1TextView.setText("["+HeroInfoRelation1.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
+                    relation2TextView.setText("["+HeroInfoRelation2.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
                     break;
                 case 3:
-                    relation1TextView.setText(HeroInfoRelation1.getName());
-                    relation2TextView.setText(HeroInfoRelation2.getName());
-                    relation3TextView.setText(HeroInfoRelation3.getName());
+                    relation1TextView.setText("["+HeroInfoRelation1.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
+                    relation2TextView.setText("["+HeroInfoRelation2.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
+                    relation3TextView.setText("["+HeroInfoRelation3.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(2).getDescription());
                     break;
                 case 4:
-                    relation1TextView.setText(HeroInfoRelation1.getName());
-                    relation2TextView.setText(HeroInfoRelation2.getName());
-                    relation3TextView.setText(HeroInfoRelation3.getName());
-                    relation4TextView.setText(HeroInfoRelation4.getName());
+                    relation1TextView.setText("["+HeroInfoRelation1.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
+                    relation2TextView.setText("["+HeroInfoRelation2.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
+                    relation3TextView.setText("["+HeroInfoRelation3.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(2).getDescription());
+                    relation4TextView.setText("["+HeroInfoRelation4.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(3).getDescription());
                     break;
                 case 5:
-                    relation1TextView.setText(HeroInfoRelation1.getName());
-                    relation2TextView.setText(HeroInfoRelation2.getName());
-                    relation3TextView.setText(HeroInfoRelation3.getName());
-                    relation4TextView.setText(HeroInfoRelation4.getName());
-                    relation5TextView.setText(HeroInfoRelation5.getName());
+                    relation1TextView.setText("["+HeroInfoRelation1.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
+                    relation2TextView.setText("["+HeroInfoRelation2.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
+                    relation3TextView.setText("["+HeroInfoRelation3.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(2).getDescription());
+                    relation4TextView.setText("["+HeroInfoRelation4.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(3).getDescription());
+                    relation5TextView.setText("["+HeroInfoRelation5.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(4).getDescription());
                     break;
                 case 6:
-                    relation1TextView.setText(HeroInfoRelation1.getName());
-                    relation2TextView.setText(HeroInfoRelation2.getName());
-                    relation3TextView.setText(HeroInfoRelation3.getName());
-                    relation4TextView.setText(HeroInfoRelation4.getName());
-                    relation5TextView.setText(HeroInfoRelation5.getName());
-                    relation6TextView.setText(HeroInfoRelation6.getName());
+                    relation1TextView.setText("["+HeroInfoRelation1.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
+                    relation2TextView.setText("["+HeroInfoRelation2.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
+                    relation3TextView.setText("["+HeroInfoRelation3.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(2).getDescription());
+                    relation4TextView.setText("["+HeroInfoRelation4.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(3).getDescription());
+                    relation5TextView.setText("["+HeroInfoRelation5.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(4).getDescription());
+                    relation6TextView.setText("["+HeroInfoRelation6.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(5).getDescription());
                     break;
                 case 7:
-                    relation1TextView.setText(HeroInfoRelation1.getName());
-                    relation2TextView.setText(HeroInfoRelation2.getName());
-                    relation3TextView.setText(HeroInfoRelation3.getName());
-                    relation4TextView.setText(HeroInfoRelation4.getName());
-                    relation5TextView.setText(HeroInfoRelation5.getName());
-                    relation6TextView.setText(HeroInfoRelation6.getName());
-                    relation7TextView.setText(HeroInfoRelation7.getName());
+                    relation1TextView.setText("["+HeroInfoRelation1.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
+                    relation2TextView.setText("["+HeroInfoRelation2.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
+                    relation3TextView.setText("["+HeroInfoRelation3.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(2).getDescription());
+                    relation4TextView.setText("["+HeroInfoRelation4.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(3).getDescription());
+                    relation5TextView.setText("["+HeroInfoRelation5.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(4).getDescription());
+                    relation6TextView.setText("["+HeroInfoRelation6.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(5).getDescription());
+                    relation7TextView.setText("["+HeroInfoRelation7.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(6).getDescription());
                     break;
                 case 8:
-                    relation1TextView.setText(HeroInfoRelation1.getName());
-                    relation2TextView.setText(HeroInfoRelation2.getName());
-                    relation3TextView.setText(HeroInfoRelation3.getName());
-                    relation4TextView.setText(HeroInfoRelation4.getName());
-                    relation5TextView.setText(HeroInfoRelation5.getName());
-                    relation6TextView.setText(HeroInfoRelation6.getName());
-                    relation7TextView.setText(HeroInfoRelation7.getName());
-                    relation8TextView.setText(HeroInfoRelation8.getName());
+                    relation1TextView.setText("["+HeroInfoRelation1.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
+                    relation2TextView.setText("["+HeroInfoRelation2.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
+                    relation3TextView.setText("["+HeroInfoRelation3.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(2).getDescription());
+                    relation4TextView.setText("["+HeroInfoRelation4.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(3).getDescription());
+                    relation5TextView.setText("["+HeroInfoRelation5.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(4).getDescription());
+                    relation6TextView.setText("["+HeroInfoRelation6.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(5).getDescription());
+                    relation7TextView.setText("["+HeroInfoRelation7.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(6).getDescription());
+                    relation8TextView.setText("["+HeroInfoRelation8.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(7).getDescription());
                     break;
                 case 9:
-                    relation1TextView.setText(HeroInfoRelation1.getName());
-                    relation2TextView.setText(HeroInfoRelation2.getName());
-                    relation3TextView.setText(HeroInfoRelation3.getName());
-                    relation4TextView.setText(HeroInfoRelation4.getName());
-                    relation5TextView.setText(HeroInfoRelation5.getName());
-                    relation6TextView.setText(HeroInfoRelation6.getName());
-                    relation7TextView.setText(HeroInfoRelation7.getName());
-                    relation8TextView.setText(HeroInfoRelation8.getName());
-                    relation9TextView.setText(HeroInfoRelation9.getName());
+                    relation1TextView.setText("["+HeroInfoRelation1.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
+                    relation2TextView.setText("["+HeroInfoRelation2.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
+                    relation3TextView.setText("["+HeroInfoRelation3.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(2).getDescription());
+                    relation4TextView.setText("["+HeroInfoRelation4.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(3).getDescription());
+                    relation5TextView.setText("["+HeroInfoRelation5.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(4).getDescription());
+                    relation6TextView.setText("["+HeroInfoRelation6.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(5).getDescription());
+                    relation7TextView.setText("["+HeroInfoRelation7.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(6).getDescription());
+                    relation8TextView.setText("["+HeroInfoRelation8.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(7).getDescription());
+                    relation9TextView.setText("["+HeroInfoRelation9.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(8).getDescription());
                     break;
                 case 10:
-                    relation1TextView.setText(HeroInfoRelation1.getName());
-                    relation2TextView.setText(HeroInfoRelation2.getName());
-                    relation3TextView.setText(HeroInfoRelation3.getName());
-                    relation4TextView.setText(HeroInfoRelation4.getName());
-                    relation5TextView.setText(HeroInfoRelation5.getName());
-                    relation6TextView.setText(HeroInfoRelation6.getName());
-                    relation7TextView.setText(HeroInfoRelation7.getName());
-                    relation8TextView.setText(HeroInfoRelation8.getName());
-                    relation9TextView.setText(HeroInfoRelation9.getName());
-                    relation10TextView.setText(HeroInfoRelation10.getName());
+                    relation1TextView.setText("["+HeroInfoRelation1.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
+                    relation2TextView.setText("["+HeroInfoRelation2.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
+                    relation3TextView.setText("["+HeroInfoRelation3.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(2).getDescription());
+                    relation4TextView.setText("["+HeroInfoRelation4.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(3).getDescription());
+                    relation5TextView.setText("["+HeroInfoRelation5.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(4).getDescription());
+                    relation6TextView.setText("["+HeroInfoRelation6.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(5).getDescription());
+                    relation7TextView.setText("["+HeroInfoRelation7.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(6).getDescription());
+                    relation8TextView.setText("["+HeroInfoRelation8.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(7).getDescription());
+                    relation9TextView.setText("["+HeroInfoRelation9.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(8).getDescription());
+                    relation10TextView.setText("["+HeroInfoRelation10.getName()+"]"+"\n"+currentHeroInfo.getRelationships().get(0).getRelations().get(9).getDescription());
                     break;
             }
         }
