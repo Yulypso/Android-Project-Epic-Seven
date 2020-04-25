@@ -78,6 +78,16 @@ public class ActivityInformation extends AppCompatActivity {
     ImageView relation9View;
     ImageView relation10View;
 
+    TextView relation1TextView;
+    TextView relation2TextView;
+    TextView relation3TextView;
+    TextView relation4TextView;
+    TextView relation5TextView;
+    TextView relation6TextView;
+    TextView relation7TextView;
+    TextView relation8TextView;
+    TextView relation9TextView;
+    TextView relation10TextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +115,17 @@ public class ActivityInformation extends AppCompatActivity {
         textZodiacView = (TextView) findViewById(R.id.textZodiacView);
         get_lineView = (TextView) findViewById(R.id.get_lineView);
         storyView = (TextView) findViewById(R.id.storyView);
+
+        relation1TextView = (TextView) findViewById(R.id.relation1TextView);
+        relation2TextView = (TextView) findViewById(R.id.relation2TextView);
+        relation3TextView = (TextView) findViewById(R.id.relation3TextView);
+        relation4TextView = (TextView) findViewById(R.id.relation4TextView);
+        relation5TextView = (TextView) findViewById(R.id.relation5TextView);
+        relation6TextView = (TextView) findViewById(R.id.relation6TextView);
+        relation7TextView = (TextView) findViewById(R.id.relation7TextView);
+        relation8TextView = (TextView) findViewById(R.id.relation8TextView);
+        relation9TextView = (TextView) findViewById(R.id.relation9TextView);
+        relation10TextView = (TextView) findViewById(R.id.relation10TextView);
 
         starViewImage1 = (ImageView) findViewById(R.id.starViewImage1);
         starViewImage2 = (ImageView) findViewById(R.id.starViewImage2);
@@ -139,9 +160,92 @@ public class ActivityInformation extends AppCompatActivity {
         DisplayStory(currentHeroInfo);
         DisplayGetLineView(currentHeroInfo);
         DisplayRelationship();
+        DisplayRelationshipName();
     }
 
-
+    private void DisplayRelationshipName(){
+        if(totalRelations>0) {
+            switch (totalRelations) {
+                default:
+                    break;
+                case 1:
+                    relation1TextView.setText(HeroInfoRelation1.getName());
+                    break;
+                case 2:
+                    relation1TextView.setText(HeroInfoRelation1.getName());
+                    relation2TextView.setText(HeroInfoRelation2.getName());
+                    break;
+                case 3:
+                    relation1TextView.setText(HeroInfoRelation1.getName());
+                    relation2TextView.setText(HeroInfoRelation2.getName());
+                    relation3TextView.setText(HeroInfoRelation3.getName());
+                    break;
+                case 4:
+                    relation1TextView.setText(HeroInfoRelation1.getName());
+                    relation2TextView.setText(HeroInfoRelation2.getName());
+                    relation3TextView.setText(HeroInfoRelation3.getName());
+                    relation4TextView.setText(HeroInfoRelation4.getName());
+                    break;
+                case 5:
+                    relation1TextView.setText(HeroInfoRelation1.getName());
+                    relation2TextView.setText(HeroInfoRelation2.getName());
+                    relation3TextView.setText(HeroInfoRelation3.getName());
+                    relation4TextView.setText(HeroInfoRelation4.getName());
+                    relation5TextView.setText(HeroInfoRelation5.getName());
+                    break;
+                case 6:
+                    relation1TextView.setText(HeroInfoRelation1.getName());
+                    relation2TextView.setText(HeroInfoRelation2.getName());
+                    relation3TextView.setText(HeroInfoRelation3.getName());
+                    relation4TextView.setText(HeroInfoRelation4.getName());
+                    relation5TextView.setText(HeroInfoRelation5.getName());
+                    relation6TextView.setText(HeroInfoRelation6.getName());
+                    break;
+                case 7:
+                    relation1TextView.setText(HeroInfoRelation1.getName());
+                    relation2TextView.setText(HeroInfoRelation2.getName());
+                    relation3TextView.setText(HeroInfoRelation3.getName());
+                    relation4TextView.setText(HeroInfoRelation4.getName());
+                    relation5TextView.setText(HeroInfoRelation5.getName());
+                    relation6TextView.setText(HeroInfoRelation6.getName());
+                    relation7TextView.setText(HeroInfoRelation7.getName());
+                    break;
+                case 8:
+                    relation1TextView.setText(HeroInfoRelation1.getName());
+                    relation2TextView.setText(HeroInfoRelation2.getName());
+                    relation3TextView.setText(HeroInfoRelation3.getName());
+                    relation4TextView.setText(HeroInfoRelation4.getName());
+                    relation5TextView.setText(HeroInfoRelation5.getName());
+                    relation6TextView.setText(HeroInfoRelation6.getName());
+                    relation7TextView.setText(HeroInfoRelation7.getName());
+                    relation8TextView.setText(HeroInfoRelation8.getName());
+                    break;
+                case 9:
+                    relation1TextView.setText(HeroInfoRelation1.getName());
+                    relation2TextView.setText(HeroInfoRelation2.getName());
+                    relation3TextView.setText(HeroInfoRelation3.getName());
+                    relation4TextView.setText(HeroInfoRelation4.getName());
+                    relation5TextView.setText(HeroInfoRelation5.getName());
+                    relation6TextView.setText(HeroInfoRelation6.getName());
+                    relation7TextView.setText(HeroInfoRelation7.getName());
+                    relation8TextView.setText(HeroInfoRelation8.getName());
+                    relation9TextView.setText(HeroInfoRelation9.getName());
+                    break;
+                case 10:
+                    relation1TextView.setText(HeroInfoRelation1.getName());
+                    relation2TextView.setText(HeroInfoRelation2.getName());
+                    relation3TextView.setText(HeroInfoRelation3.getName());
+                    relation4TextView.setText(HeroInfoRelation4.getName());
+                    relation5TextView.setText(HeroInfoRelation5.getName());
+                    relation6TextView.setText(HeroInfoRelation6.getName());
+                    relation7TextView.setText(HeroInfoRelation7.getName());
+                    relation8TextView.setText(HeroInfoRelation8.getName());
+                    relation9TextView.setText(HeroInfoRelation9.getName());
+                    relation10TextView.setText(HeroInfoRelation10.getName());
+                    break;
+            }
+        }
+    }
 
     private void DisplayRelationship(){
         if(totalRelations>0) {

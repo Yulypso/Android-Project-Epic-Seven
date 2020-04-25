@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/skybackgroundimage4"
+    android:orientation="vertical"
     tools:context=".activites.ActivityInformation">
 
     <ScrollView
@@ -16,7 +16,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -82,19 +82,20 @@
                     android:id="@+id/elementViewImage"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
-                    android:layout_marginEnd="7dp"
                     android:layout_marginTop="23dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    android:layout_marginEnd="7dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
 
                 <ImageView
                     android:id="@+id/imageViewImage"
                     android:layout_width="match_parent"
                     android:layout_height="130dp"
                     android:layout_marginTop="59.3dp"
+                    android:layout_marginEnd="83dp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    android:layout_marginEnd="83dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_launcher_background" />
@@ -103,66 +104,66 @@
                     android:id="@+id/textElementView"
                     android:layout_width="58dp"
                     android:layout_height="18dp"
+                    android:layout_marginTop="23dp"
+                    android:layout_marginEnd="1dp"
                     android:fontFamily="@font/roboto_slab"
                     android:gravity="center_vertical"
                     android:text="Example application"
                     android:textAlignment="center"
                     android:textColor="#F3EFEB"
                     android:textSize="12sp"
-                    android:layout_marginEnd="1dp"
-                    android:layout_marginTop="23dp"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/elementViewImage"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="RtlCompat" />
 
                 <ImageView
                     android:id="@+id/roleViewImage"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
-                    android:layout_marginEnd="7dp"
                     android:layout_marginTop="43dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    android:layout_marginEnd="7dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textRoleView"
                     android:layout_width="58dp"
                     android:layout_height="18dp"
+                    android:layout_marginTop="43dp"
+                    android:layout_marginEnd="1dp"
                     android:fontFamily="@font/roboto_slab"
                     android:gravity="center_vertical"
                     android:text="Example application"
                     android:textAlignment="center"
                     android:textColor="#F3EFEB"
                     android:textSize="12sp"
-                    android:layout_marginEnd="1dp"
-                    android:layout_marginTop="43dp"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/roleViewImage"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="RtlCompat" />
 
                 <ImageView
                     android:id="@+id/zodiacViewImage"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
-                    android:layout_marginEnd="7dp"
                     android:layout_marginTop="63dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    android:layout_marginEnd="7dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textZodiacView"
                     android:layout_width="58dp"
                     android:layout_height="18dp"
+                    android:layout_marginTop="63dp"
+                    android:layout_marginEnd="1dp"
                     android:fontFamily="@font/roboto_slab"
                     android:gravity="center_vertical"
                     android:text="Example application"
                     android:textAlignment="center"
                     android:textColor="#F3EFEB"
                     android:textSize="12sp"
-                    android:layout_marginEnd="1dp"
-                    android:layout_marginTop="63dp"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/zodiacViewImage"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="RtlCompat" />
 
                 <ImageView
@@ -171,8 +172,9 @@
                     android:layout_height="18dp"
                     android:layout_marginEnd="7dp"
                     android:layout_marginBottom="30dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
 
                 <ImageView
                     android:id="@+id/starViewImage4"
@@ -180,8 +182,8 @@
                     android:layout_height="18dp"
                     android:layout_marginEnd="27dp"
                     android:layout_marginBottom="30dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/starViewImage3"
@@ -189,8 +191,8 @@
                     android:layout_height="18dp"
                     android:layout_marginEnd="47dp"
                     android:layout_marginBottom="30dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/starViewImage2"
@@ -198,8 +200,8 @@
                     android:layout_height="18dp"
                     android:layout_marginEnd="67dp"
                     android:layout_marginBottom="30dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/starViewImage1"
@@ -207,8 +209,8 @@
                     android:layout_height="18dp"
                     android:layout_marginEnd="87dp"
                     android:layout_marginBottom="30dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/storyView"
@@ -231,125 +233,320 @@
                     android:layout_width="210dp"
                     android:layout_height="260dp"
                     android:layout_marginTop="60dp"
+                    android:layout_marginEnd="5dp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    android:layout_marginEnd="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/storyView"
                     app:layout_constraintTop_toBottomOf="@+id/get_lineView"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:srcCompat="@drawable/ic_launcher_background"
                     tools:layout_editor_absoluteX="201dp" />
+
+
+                <TextView
+                    android:id="@+id/relationText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/play"
+                    android:gravity="center_vertical"
+                    android:textAlignment="viewStart"
+                    android:text="@string/relationship"
+                    android:textColor="#FFFFFF"
+                    android:textSize="19sp"
+                    android:textStyle="normal"
+                    android:layout_marginEnd="220dp"
+                    android:layout_marginBottom="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/relation1View"
+                    tools:ignore="RtlCompat" />
+
 
                 <ImageView
                     android:id="@+id/relation1View"
                     android:layout_width="51dp"
                     android:layout_height="51dp"
-                    android:layout_marginStart="2dp"
                     android:layout_marginTop="32dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.1"
+                    app:layout_constraintEnd_toStartOf="@id/relation1TextView"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/imageFullUrlView" />
+
+                <TextView
+                    android:id="@+id/relation1TextView"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="1dp"
+                    android:fontFamily="@font/play"
+                    android:gravity="center_vertical"
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/relation1View"
+                    app:layout_constraintTop_toBottomOf="@+id/imageFullUrlView"
+                    tools:ignore="RtlCompat" />
+
 
                 <ImageView
                     android:id="@+id/relation2View"
                     android:layout_width="51dp"
                     android:layout_height="51dp"
-                    android:layout_marginStart="2dp"
+                    android:layout_marginStart="48dp"
                     android:layout_marginTop="64dp"
+                    android:layout_marginEnd="1dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.9"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView" />
+                    app:layout_constraintTop_toBottomOf="@id/relation1TextView" />
+
+                <TextView
+                    android:id="@+id/relation2TextView"
+                    android:layout_width="280dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="45dp"
+                    android:layout_marginTop="64dp"
+                    android:fontFamily="@font/play"
+                    android:gravity="center_vertical"
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toStartOf="@id/relation2View"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/relation1View"
+                    tools:ignore="RtlCompat" />
+
 
                 <ImageView
                     android:id="@+id/relation3View"
                     android:layout_width="51dp"
                     android:layout_height="51dp"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginTop="96dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.1"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginTop="179dp"
+                    app:layout_constraintEnd_toStartOf="@id/relation3TextView"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView" />
+                    app:layout_constraintTop_toBottomOf="@id/relation1View" />
+
+                <TextView
+                    android:id="@+id/relation3TextView"
+                    android:layout_width="280dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="64dp"
+                    android:layout_marginEnd="1dp"
+                    android:fontFamily="@font/play"
+                    android:gravity="center_vertical"
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/relation3View"
+                    app:layout_constraintTop_toBottomOf="@id/relation2View"
+                    tools:ignore="RtlCompat" />
 
                 <ImageView
                     android:id="@+id/relation4View"
                     android:layout_width="51dp"
                     android:layout_height="51dp"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginTop="128dp"
+                    android:layout_marginTop="179dp"
+                    android:layout_marginEnd="55dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.9"
+                    app:layout_constraintStart_toEndOf="@id/relation4TextView"
+                    app:layout_constraintTop_toBottomOf="@id/relation2View" />
+
+                <TextView
+                    android:id="@+id/relation4TextView"
+                    android:layout_width="280dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="64dp"
+                    android:layout_marginEnd="1dp"
+                    android:fontFamily="@font/play"
+                    android:gravity="center_vertical"
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toStartOf="@id/relation4View"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView" />
+                    app:layout_constraintTop_toBottomOf="@id/relation3View"
+                    tools:ignore="RtlCompat" />
 
                 <ImageView
                     android:id="@+id/relation5View"
                     android:layout_width="51dp"
                     android:layout_height="51dp"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginTop="160dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.1"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginTop="179dp"
+                    app:layout_constraintEnd_toStartOf="@id/relation5TextView"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView" />
+                    app:layout_constraintTop_toBottomOf="@id/relation3View" />
+
+                <TextView
+                    android:id="@+id/relation5TextView"
+                    android:layout_width="280dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="64dp"
+                    android:layout_marginEnd="1dp"
+                    android:fontFamily="@font/play"
+                    android:gravity="center_vertical"
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/relation5View"
+                    app:layout_constraintTop_toBottomOf="@id/relation4View"
+                    tools:ignore="RtlCompat" />
 
                 <ImageView
                     android:id="@+id/relation6View"
                     android:layout_width="51dp"
                     android:layout_height="51dp"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginTop="192dp"
+                    android:layout_marginTop="179dp"
+                    android:layout_marginEnd="55dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.9"
+                    app:layout_constraintStart_toEndOf="@id/relation6TextView"
+                    app:layout_constraintTop_toBottomOf="@id/relation4View" />
+
+                <TextView
+                    android:id="@+id/relation6TextView"
+                    android:layout_width="280dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="64dp"
+                    android:layout_marginEnd="1dp"
+                    android:fontFamily="@font/play"
+                    android:gravity="center_vertical"
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toStartOf="@id/relation6View"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView" />
+                    app:layout_constraintTop_toBottomOf="@id/relation5View"
+                    tools:ignore="RtlCompat" />
 
                 <ImageView
                     android:id="@+id/relation7View"
                     android:layout_width="51dp"
                     android:layout_height="51dp"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginTop="224dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.1"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginTop="179dp"
+                    app:layout_constraintEnd_toStartOf="@id/relation7TextView"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView" />
+                    app:layout_constraintTop_toBottomOf="@id/relation5View" />
+
+                <TextView
+                    android:id="@+id/relation7TextView"
+                    android:layout_width="280dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="64dp"
+                    android:layout_marginEnd="1dp"
+                    android:fontFamily="@font/play"
+                    android:gravity="center_vertical"
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/relation7View"
+                    app:layout_constraintTop_toBottomOf="@id/relation6View"
+                    tools:ignore="RtlCompat" />
 
                 <ImageView
                     android:id="@+id/relation8View"
                     android:layout_width="51dp"
                     android:layout_height="51dp"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginTop="256dp"
+                    android:layout_marginTop="179dp"
+                    android:layout_marginEnd="55dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.9"
+                    app:layout_constraintStart_toEndOf="@id/relation8TextView"
+                    app:layout_constraintTop_toBottomOf="@id/relation6View" />
+
+                <TextView
+                    android:id="@+id/relation8TextView"
+                    android:layout_width="280dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="64dp"
+                    android:layout_marginEnd="1dp"
+                    android:fontFamily="@font/play"
+                    android:gravity="center_vertical"
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toStartOf="@id/relation8View"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView" />
+                    app:layout_constraintTop_toBottomOf="@id/relation7View"
+                    tools:ignore="RtlCompat" />
 
                 <ImageView
                     android:id="@+id/relation9View"
                     android:layout_width="51dp"
                     android:layout_height="51dp"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginTop="288dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.1"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginTop="179dp"
+                    app:layout_constraintEnd_toStartOf="@id/relation9TextView"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView" />
+                    app:layout_constraintTop_toBottomOf="@id/relation7View" />
+
+                <TextView
+                    android:id="@+id/relation9TextView"
+                    android:layout_width="280dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="64dp"
+                    android:layout_marginEnd="1dp"
+                    android:fontFamily="@font/play"
+                    android:gravity="center_vertical"
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/relation9View"
+                    app:layout_constraintTop_toBottomOf="@id/relation8View"
+                    tools:ignore="RtlCompat" />
 
                 <ImageView
                     android:id="@+id/relation10View"
                     android:layout_width="51dp"
                     android:layout_height="51dp"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginTop="320dp"
+                    android:layout_marginTop="179dp"
+                    android:layout_marginEnd="55dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.9"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView" />
+                    app:layout_constraintStart_toEndOf="@id/relation10TextView"
+                    app:layout_constraintTop_toBottomOf="@id/relation8View" />
 
+                <TextView
+                    android:id="@+id/relation10TextView"
+                    android:layout_width="280dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="64dp"
+                    android:layout_marginEnd="1dp"
+                    android:fontFamily="@font/play"
+                    android:gravity="center_vertical"
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toStartOf="@id/relation10View"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/relation9View"
+                    tools:ignore="RtlCompat" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
