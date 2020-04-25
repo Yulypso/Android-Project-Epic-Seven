@@ -26,7 +26,7 @@ public class RetrieveHeroModel extends AsyncTask<String, Void, String> {
         int ch;
 
         try {
-            for(Hero hero : heroList) {
+            for(Hero hero : RetrieveHeroModel.heroList) {
                 String modelURL = "https://assets.epicsevendb.com/herofull/" + hero.get_id() + ".png";
                 uneURL = new URL(modelURL);
                 HttpURLConnection httpConnexion = (HttpURLConnection) uneURL.openConnection();

@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity { //main activity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Main view related to activity_main.xml
 
         sharedPreferences = getSharedPreferences(Constants.KEY_APPLICATION_NAME, Context.MODE_PRIVATE);
 
@@ -138,12 +137,14 @@ public class MainActivity extends AppCompatActivity { //main activity
                 if(response.isSuccessful() && response.body() != null){
                     heroList = response.body().getResults();
                     heroInfoList = new ArrayList<>();
-                    //saveList(Constants.KEY_HERO_LIST, heroList);
 
                     for(Hero hero : heroList) {
                         makeApiCall2(hero);
                     }
+
+                    Toast.makeText(getApplicationContext(),"API Success 2", Toast.LENGTH_SHORT).show();
                     showList(heroList, heroInfoList);
+
                 }
             }
 
@@ -176,7 +177,6 @@ public class MainActivity extends AppCompatActivity { //main activity
                 }
 
                 if (heroInfoList.size() + notRetrievedHeroList.size() == heroList.size()) {
-                    Toast.makeText(getApplicationContext(),"API Success 2", Toast.LENGTH_SHORT).show();
                     new RetrieveHeroModel(heroList).execute();
                     saveList(Constants.KEY_HERO_LIST, heroList);
                     saveList(Constants.KEY_HERO_INFO_LIST, heroInfoList);

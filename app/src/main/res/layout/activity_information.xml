@@ -242,103 +242,113 @@
 
                 <ImageView
                     android:id="@+id/relation1View"
-                    android:layout_width="61dp"
-                    android:layout_height="61dp"
+                    android:layout_width="51dp"
+                    android:layout_height="51dp"
                     android:layout_marginStart="2dp"
-                    android:background="@drawable/circle"
-                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView"
+                    android:layout_marginTop="32dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintHorizontal_bias="0.1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView" />
 
                 <ImageView
                     android:id="@+id/relation2View"
                     android:layout_width="51dp"
                     android:layout_height="51dp"
                     android:layout_marginStart="2dp"
-                    android:background="@drawable/circle"
-                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView"
+                    android:layout_marginTop="64dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintHorizontal_bias="0.9"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView" />
 
                 <ImageView
                     android:id="@+id/relation3View"
                     android:layout_width="51dp"
                     android:layout_height="51dp"
                     android:layout_marginStart="2dp"
-                    android:background="@drawable/circle"
-                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView"
+                    android:layout_marginTop="96dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintHorizontal_bias="0.1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView" />
 
                 <ImageView
                     android:id="@+id/relation4View"
                     android:layout_width="51dp"
                     android:layout_height="51dp"
                     android:layout_marginStart="2dp"
-                    android:background="@drawable/circle"
-                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView"
+                    android:layout_marginTop="128dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintHorizontal_bias="0.9"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView" />
 
                 <ImageView
                     android:id="@+id/relation5View"
                     android:layout_width="51dp"
                     android:layout_height="51dp"
                     android:layout_marginStart="2dp"
-                    android:background="@drawable/circle"
-                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView"
+                    android:layout_marginTop="160dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintHorizontal_bias="0.1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView" />
 
                 <ImageView
                     android:id="@+id/relation6View"
                     android:layout_width="51dp"
                     android:layout_height="51dp"
                     android:layout_marginStart="2dp"
-                    android:background="@drawable/circle"
-                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView"
+                    android:layout_marginTop="192dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintHorizontal_bias="0.9"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView" />
 
                 <ImageView
                     android:id="@+id/relation7View"
                     android:layout_width="51dp"
                     android:layout_height="51dp"
                     android:layout_marginStart="2dp"
-                    android:background="@drawable/circle"
-                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView"
+                    android:layout_marginTop="224dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintHorizontal_bias="0.1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView" />
 
                 <ImageView
                     android:id="@+id/relation8View"
                     android:layout_width="51dp"
                     android:layout_height="51dp"
                     android:layout_marginStart="2dp"
-                    android:background="@drawable/circle"
-                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView"
+                    android:layout_marginTop="256dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintHorizontal_bias="0.9"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView" />
 
                 <ImageView
                     android:id="@+id/relation9View"
                     android:layout_width="51dp"
                     android:layout_height="51dp"
                     android:layout_marginStart="2dp"
-                    android:background="@drawable/circle"
-                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView"
+                    android:layout_marginTop="288dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintHorizontal_bias="0.1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView" />
 
                 <ImageView
                     android:id="@+id/relation10View"
                     android:layout_width="51dp"
                     android:layout_height="51dp"
                     android:layout_marginStart="2dp"
-                    android:background="@drawable/circle"
-                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView"
+                    android:layout_marginTop="320dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintHorizontal_bias="0.9"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imageFullUrlView" />
 
 
 

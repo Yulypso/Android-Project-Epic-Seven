@@ -117,6 +117,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
             }
         });
     }
+
     private void DisplayName(ViewHolder holder, Hero currentHero){
         holder.txtHeader.setText(currentHero.getName());
     }

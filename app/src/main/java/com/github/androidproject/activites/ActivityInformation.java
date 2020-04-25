@@ -149,79 +149,79 @@ public class ActivityInformation extends AppCompatActivity {
                 default:
                     break;
                 case 1:
-                    Picasso.get().load(HeroInfoRelation1.getAssets().getThumbnail()).into(relation1View);
+                    Picasso.get().load(HeroInfoRelation1.getAssets().getIcon()).into(relation1View);
                     break;
                 case 2:
-                    Picasso.get().load(HeroInfoRelation1.getAssets().getThumbnail()).into(relation1View);
-                    Picasso.get().load(HeroInfoRelation2.getAssets().getThumbnail()).into(relation2View);
+                    Picasso.get().load(HeroInfoRelation1.getAssets().getIcon()).into(relation1View);
+                    Picasso.get().load(HeroInfoRelation2.getAssets().getIcon()).into(relation2View);
                     break;
                 case 3:
-                    Picasso.get().load(HeroInfoRelation1.getAssets().getThumbnail()).into(relation1View);
-                    Picasso.get().load(HeroInfoRelation2.getAssets().getThumbnail()).into(relation2View);
-                    Picasso.get().load(HeroInfoRelation3.getAssets().getThumbnail()).into(relation3View);
+                    Picasso.get().load(HeroInfoRelation1.getAssets().getIcon()).into(relation1View);
+                    Picasso.get().load(HeroInfoRelation2.getAssets().getIcon()).into(relation2View);
+                    Picasso.get().load(HeroInfoRelation3.getAssets().getIcon()).into(relation3View);
                     break;
                 case 4:
-                    Picasso.get().load(HeroInfoRelation1.getAssets().getThumbnail()).into(relation1View);
-                    Picasso.get().load(HeroInfoRelation2.getAssets().getThumbnail()).into(relation2View);
-                    Picasso.get().load(HeroInfoRelation3.getAssets().getThumbnail()).into(relation3View);
-                    Picasso.get().load(HeroInfoRelation4.getAssets().getThumbnail()).into(relation4View);
+                    Picasso.get().load(HeroInfoRelation1.getAssets().getIcon()).into(relation1View);
+                    Picasso.get().load(HeroInfoRelation2.getAssets().getIcon()).into(relation2View);
+                    Picasso.get().load(HeroInfoRelation3.getAssets().getIcon()).into(relation3View);
+                    Picasso.get().load(HeroInfoRelation4.getAssets().getIcon()).into(relation4View);
                     break;
                 case 5:
-                    Picasso.get().load(HeroInfoRelation1.getAssets().getThumbnail()).into(relation1View);
-                    Picasso.get().load(HeroInfoRelation2.getAssets().getThumbnail()).into(relation2View);
-                    Picasso.get().load(HeroInfoRelation3.getAssets().getThumbnail()).into(relation3View);
-                    Picasso.get().load(HeroInfoRelation4.getAssets().getThumbnail()).into(relation4View);
-                    Picasso.get().load(HeroInfoRelation5.getAssets().getThumbnail()).into(relation5View);
+                    Picasso.get().load(HeroInfoRelation1.getAssets().getIcon()).into(relation1View);
+                    Picasso.get().load(HeroInfoRelation2.getAssets().getIcon()).into(relation2View);
+                    Picasso.get().load(HeroInfoRelation3.getAssets().getIcon()).into(relation3View);
+                    Picasso.get().load(HeroInfoRelation4.getAssets().getIcon()).into(relation4View);
+                    Picasso.get().load(HeroInfoRelation5.getAssets().getIcon()).into(relation5View);
                     break;
                 case 6:
-                    Picasso.get().load(HeroInfoRelation1.getAssets().getThumbnail()).into(relation1View);
-                    Picasso.get().load(HeroInfoRelation2.getAssets().getThumbnail()).into(relation2View);
-                    Picasso.get().load(HeroInfoRelation3.getAssets().getThumbnail()).into(relation3View);
-                    Picasso.get().load(HeroInfoRelation4.getAssets().getThumbnail()).into(relation4View);
-                    Picasso.get().load(HeroInfoRelation5.getAssets().getThumbnail()).into(relation5View);
-                    Picasso.get().load(HeroInfoRelation6.getAssets().getThumbnail()).into(relation6View);
+                    Picasso.get().load(HeroInfoRelation1.getAssets().getIcon()).into(relation1View);
+                    Picasso.get().load(HeroInfoRelation2.getAssets().getIcon()).into(relation2View);
+                    Picasso.get().load(HeroInfoRelation3.getAssets().getIcon()).into(relation3View);
+                    Picasso.get().load(HeroInfoRelation4.getAssets().getIcon()).into(relation4View);
+                    Picasso.get().load(HeroInfoRelation5.getAssets().getIcon()).into(relation5View);
+                    Picasso.get().load(HeroInfoRelation6.getAssets().getIcon()).into(relation6View);
                     break;
                 case 7:
-                    Picasso.get().load(HeroInfoRelation1.getAssets().getThumbnail()).into(relation1View);
-                    Picasso.get().load(HeroInfoRelation2.getAssets().getThumbnail()).into(relation2View);
-                    Picasso.get().load(HeroInfoRelation3.getAssets().getThumbnail()).into(relation3View);
-                    Picasso.get().load(HeroInfoRelation4.getAssets().getThumbnail()).into(relation4View);
-                    Picasso.get().load(HeroInfoRelation5.getAssets().getThumbnail()).into(relation5View);
-                    Picasso.get().load(HeroInfoRelation6.getAssets().getThumbnail()).into(relation6View);
-                    Picasso.get().load(HeroInfoRelation7.getAssets().getThumbnail()).into(relation7View);
+                    Picasso.get().load(HeroInfoRelation1.getAssets().getIcon()).into(relation1View);
+                    Picasso.get().load(HeroInfoRelation2.getAssets().getIcon()).into(relation2View);
+                    Picasso.get().load(HeroInfoRelation3.getAssets().getIcon()).into(relation3View);
+                    Picasso.get().load(HeroInfoRelation4.getAssets().getIcon()).into(relation4View);
+                    Picasso.get().load(HeroInfoRelation5.getAssets().getIcon()).into(relation5View);
+                    Picasso.get().load(HeroInfoRelation6.getAssets().getIcon()).into(relation6View);
+                    Picasso.get().load(HeroInfoRelation7.getAssets().getIcon()).into(relation7View);
                     break;
                 case 8:
-                    Picasso.get().load(HeroInfoRelation1.getAssets().getThumbnail()).into(relation1View);
-                    Picasso.get().load(HeroInfoRelation2.getAssets().getThumbnail()).into(relation2View);
-                    Picasso.get().load(HeroInfoRelation3.getAssets().getThumbnail()).into(relation3View);
-                    Picasso.get().load(HeroInfoRelation4.getAssets().getThumbnail()).into(relation4View);
-                    Picasso.get().load(HeroInfoRelation5.getAssets().getThumbnail()).into(relation5View);
-                    Picasso.get().load(HeroInfoRelation6.getAssets().getThumbnail()).into(relation6View);
-                    Picasso.get().load(HeroInfoRelation7.getAssets().getThumbnail()).into(relation7View);
-                    Picasso.get().load(HeroInfoRelation8.getAssets().getThumbnail()).into(relation8View);
+                    Picasso.get().load(HeroInfoRelation1.getAssets().getIcon()).into(relation1View);
+                    Picasso.get().load(HeroInfoRelation2.getAssets().getIcon()).into(relation2View);
+                    Picasso.get().load(HeroInfoRelation3.getAssets().getIcon()).into(relation3View);
+                    Picasso.get().load(HeroInfoRelation4.getAssets().getIcon()).into(relation4View);
+                    Picasso.get().load(HeroInfoRelation5.getAssets().getIcon()).into(relation5View);
+                    Picasso.get().load(HeroInfoRelation6.getAssets().getIcon()).into(relation6View);
+                    Picasso.get().load(HeroInfoRelation7.getAssets().getIcon()).into(relation7View);
+                    Picasso.get().load(HeroInfoRelation8.getAssets().getIcon()).into(relation8View);
                     break;
                 case 9:
-                    Picasso.get().load(HeroInfoRelation1.getAssets().getThumbnail()).into(relation1View);
-                    Picasso.get().load(HeroInfoRelation2.getAssets().getThumbnail()).into(relation2View);
-                    Picasso.get().load(HeroInfoRelation3.getAssets().getThumbnail()).into(relation3View);
-                    Picasso.get().load(HeroInfoRelation4.getAssets().getThumbnail()).into(relation4View);
-                    Picasso.get().load(HeroInfoRelation5.getAssets().getThumbnail()).into(relation5View);
-                    Picasso.get().load(HeroInfoRelation6.getAssets().getThumbnail()).into(relation6View);
-                    Picasso.get().load(HeroInfoRelation7.getAssets().getThumbnail()).into(relation7View);
-                    Picasso.get().load(HeroInfoRelation8.getAssets().getThumbnail()).into(relation8View);
-                    Picasso.get().load(HeroInfoRelation9.getAssets().getThumbnail()).into(relation9View);
+                    Picasso.get().load(HeroInfoRelation1.getAssets().getIcon()).into(relation1View);
+                    Picasso.get().load(HeroInfoRelation2.getAssets().getIcon()).into(relation2View);
+                    Picasso.get().load(HeroInfoRelation3.getAssets().getIcon()).into(relation3View);
+                    Picasso.get().load(HeroInfoRelation4.getAssets().getIcon()).into(relation4View);
+                    Picasso.get().load(HeroInfoRelation5.getAssets().getIcon()).into(relation5View);
+                    Picasso.get().load(HeroInfoRelation6.getAssets().getIcon()).into(relation6View);
+                    Picasso.get().load(HeroInfoRelation7.getAssets().getIcon()).into(relation7View);
+                    Picasso.get().load(HeroInfoRelation8.getAssets().getIcon()).into(relation8View);
+                    Picasso.get().load(HeroInfoRelation9.getAssets().getIcon()).into(relation9View);
                     break;
                 case 10:
-                    Picasso.get().load(HeroInfoRelation1.getAssets().getThumbnail()).into(relation1View);
-                    Picasso.get().load(HeroInfoRelation2.getAssets().getThumbnail()).into(relation2View);
-                    Picasso.get().load(HeroInfoRelation3.getAssets().getThumbnail()).into(relation3View);
-                    Picasso.get().load(HeroInfoRelation4.getAssets().getThumbnail()).into(relation4View);
-                    Picasso.get().load(HeroInfoRelation5.getAssets().getThumbnail()).into(relation5View);
-                    Picasso.get().load(HeroInfoRelation6.getAssets().getThumbnail()).into(relation6View);
-                    Picasso.get().load(HeroInfoRelation7.getAssets().getThumbnail()).into(relation7View);
-                    Picasso.get().load(HeroInfoRelation8.getAssets().getThumbnail()).into(relation8View);
-                    Picasso.get().load(HeroInfoRelation9.getAssets().getThumbnail()).into(relation9View);
-                    Picasso.get().load(HeroInfoRelation10.getAssets().getThumbnail()).into(relation10View);
+                    Picasso.get().load(HeroInfoRelation1.getAssets().getIcon()).into(relation1View);
+                    Picasso.get().load(HeroInfoRelation2.getAssets().getIcon()).into(relation2View);
+                    Picasso.get().load(HeroInfoRelation3.getAssets().getIcon()).into(relation3View);
+                    Picasso.get().load(HeroInfoRelation4.getAssets().getIcon()).into(relation4View);
+                    Picasso.get().load(HeroInfoRelation5.getAssets().getIcon()).into(relation5View);
+                    Picasso.get().load(HeroInfoRelation6.getAssets().getIcon()).into(relation6View);
+                    Picasso.get().load(HeroInfoRelation7.getAssets().getIcon()).into(relation7View);
+                    Picasso.get().load(HeroInfoRelation8.getAssets().getIcon()).into(relation8View);
+                    Picasso.get().load(HeroInfoRelation9.getAssets().getIcon()).into(relation9View);
+                    Picasso.get().load(HeroInfoRelation10.getAssets().getIcon()).into(relation10View);
                     break;
             }
         }
@@ -379,16 +379,6 @@ public class ActivityInformation extends AppCompatActivity {
         }
         textRoleView.setText(currentHero.getRole());
     }
-
-   /* private void countRelations(HeroInfo currentHeroInfo) {
-        //totalRelations = currentHeroInfo.getRelationships().get(0).getRelations().size();
-
-        for(int i =0; i<currentHeroInfo.getRelationships().get(0).getRelations().size(); i++){
-            if(currentHeroInfo.getRelationships().get(0).getRelations().get(i).getId().contains("npc") || currentHeroInfo.getRelationships().get(0).getRelations().get(i).getId().contains("m")){
-                totalRelations = totalRelations -1;
-            }
-        }
-    }*/
 
     private void getHeroInfoRelations(Intent intent){
         if(totalRelations>0) {
