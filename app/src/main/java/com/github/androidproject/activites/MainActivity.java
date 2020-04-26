@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity { //main activity
 
         sharedPreferences = getSharedPreferences(Constants.KEY_APPLICATION_NAME, Context.MODE_PRIVATE);
 
-        //deleteDataInCache(); //remove current saved list from cache => test api calls
+        deleteDataInCache(); //remove current saved list from cache => test api calls
 
         gson = new GsonBuilder() //create gson object to convert List into String (json type)
                 .setLenient()
@@ -141,8 +141,6 @@ public class MainActivity extends AppCompatActivity { //main activity
                     for(Hero hero : heroList) {
                         makeApiCall2(hero);
                     }
-
-                    Toast.makeText(getApplicationContext(),"API Success 2", Toast.LENGTH_SHORT).show();
                     showList(heroList, heroInfoList);
 
                 }
@@ -180,6 +178,7 @@ public class MainActivity extends AppCompatActivity { //main activity
                     new RetrieveHeroModel(heroList).execute();
                     saveList(Constants.KEY_HERO_LIST, heroList);
                     saveList(Constants.KEY_HERO_INFO_LIST, heroInfoList);
+                    Toast.makeText(getApplicationContext(),"API Success 2", Toast.LENGTH_SHORT).show();
                 }
             }
 
