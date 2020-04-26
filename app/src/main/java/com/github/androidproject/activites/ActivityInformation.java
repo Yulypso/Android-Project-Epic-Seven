@@ -6,6 +6,7 @@ import androidx.core.app.NavUtils;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -97,6 +98,7 @@ public class ActivityInformation extends AppCompatActivity {
         setContentView(R.layout.activity_information);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
+        Log.d("Info", "coucou je suis arrivé à l'activity 2 !");
         intent = getIntent();
         currentHero = intent.getParcelableExtra("Hero");
         currentHeroInfo = intent.getParcelableExtra("HeroInfo");

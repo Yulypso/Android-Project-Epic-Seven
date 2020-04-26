@@ -16,19 +16,27 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.github.androidproject.activites.MainActivity;
+import com.github.androidproject.Constants;
 import com.github.androidproject.activites.PopUp;
+import com.github.androidproject.controller.RestHeroInfoResponse;
 import com.github.androidproject.controller.RetrieveHeroModel;
+import com.github.androidproject.interfaces.EpicSevenApi;
 import com.github.androidproject.models.Hero;
 import com.github.androidproject.models.HeroInfo;
 import com.github.androidproject.R;
 import com.github.androidproject.activites.ActivityInformation;
-import com.github.androidproject.models.RetrieveCurrentHeroModel;
+import com.github.androidproject.controller.RetrieveCurrentHeroModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> implements Filterable {
 
@@ -41,7 +49,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
     private HeroInfo currentHeroInfo;
     private static int totalRelations = 0;
 
-    private static List<Hero> retrievedHeroModel;
+    private static List<Hero> retrievedHeroModel = new ArrayList<>();
 
     public static final String EXTRA_TEXT_IMAGE = "com.github.androidproject.EXTRA_TEXT_IMAGE";
     public static final String EXTRA_TEXT_FULL_IMAGE = "com.github.androidproject.EXTRA_TEXT_FULL_IMAGE";
@@ -121,7 +129,25 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
 
                 if (currentHeroInfo != null) {
                     Log.d("HeroInfo", "" + currentHeroInfo.get_id());
-                    new RetrieveCurrentHeroModel(currentHero).execute();
+
+                    if(retrievedHeroModel.size()==0){
+                        new RetrieveCurrentHeroModel(currentHero).execute();
+                        retrievedHeroModel.add(currentHero);
+                    }else{
+                        for(int i=0; i<retrievedHeroModel.size(); i++) {
+                            if (!retrievedHeroModel.get(i).get_id().equals(currentHero.get_id()) && i == retrievedHeroModel.size()-1) {
+                                new RetrieveCurrentHeroModel(currentHero).execute();
+                                retrievedHeroModel.add(currentHero);
+                            }
+                            else if(retrievedHeroModel.get(i).get_id().equals(currentHero.get_id())){
+                                break;
+                            }
+                        }
+                    }
+                    int k=0;
+                    while(k != 99999999){
+                        k++;
+                    }
                     openActivityInformation(v, currentHero, currentHeroInfo, heroList, heroInfoList);
                 } else {
                     Intent intent2 = new Intent(v.getContext(), PopUp.class);
@@ -130,7 +156,42 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
                 }
             }
         });
-    }
+    }/*
+    private static final String BASE_URL = "https://api.epicsevendb.com/";
+    private void ApiCall(final Hero hero){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        EpicSevenApi EpicSevenApi = retrofit.create(EpicSevenApi.class);
+
+        Call<RestHeroInfoResponse> call = EpicSevenApi.getHeroInfoResponse(hero.get_id());
+        call.enqueue(new Callback<RestHeroInfoResponse>() {
+            @Override
+            public void onResponse(Call<RestHeroInfoResponse> call, Response<RestHeroInfoResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<HeroInfo> heroInfoListTemp = response.body().getResults();
+                    HeroInfo heroInfo = heroInfoListTemp.get(0);
+
+                    heroInfoList.add(heroInfo);
+                }else{
+                    notRetrievedHeroList.add(hero); //heroes api couldn't fetch
+                }
+
+                if (heroInfoList.size() + notRetrievedHeroList.size() == heroList.size()) {
+                    saveList(Constants.KEY_HERO_LIST, heroList);
+                    saveList(Constants.KEY_HERO_INFO_LIST, heroInfoList);
+                    Toast.makeText(getApplicationContext(),"API Success 2", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RestHeroInfoResponse> call, Throwable t) {
+                showError();
+            }
+        });
+    }*/
 
     private void DisplayName(ViewHolder holder, Hero currentHero) {
         holder.txtHeader.setText(currentHero.getName());

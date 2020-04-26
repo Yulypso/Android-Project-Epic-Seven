@@ -1,6 +1,10 @@
-package com.github.androidproject.models;
+package com.github.androidproject.controller;
 
 import android.os.AsyncTask;
+import android.util.Log;
+
+import com.github.androidproject.models.Hero;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -19,7 +23,6 @@ public class RetrieveCurrentHeroModel extends AsyncTask<String, Void, String> {
 
     protected String doInBackground(String... urls) {
         URL uneURL = null;
-        int ch;
 
         try {
             String modelURL = "https://assets.epicsevendb.com/herofull/" + hero.get_id() + ".png";
@@ -27,16 +30,14 @@ public class RetrieveCurrentHeroModel extends AsyncTask<String, Void, String> {
             HttpURLConnection httpConnexion = (HttpURLConnection) uneURL.openConnection();
             httpConnexion.setRequestMethod("HEAD");
             httpConnexion.connect();
-
-            System.out.println("Search: " + modelURL);
+            Log.d("Search ",modelURL);
 
             int code = httpConnexion.getResponseCode();
             if (code == 200) {
-                System.out.println("Page Found");
+                Log.d("Info ","Page Found");
                 hero.setModelURL(modelURL);
-                System.out.print("retrieved: " + hero.getModelURL());
+                Log.d("Info ","retrieved: " + hero.getModelURL());
                 httpConnexion.disconnect();
-
             }
         } catch (MalformedURLException mue) {
             mue.printStackTrace();
