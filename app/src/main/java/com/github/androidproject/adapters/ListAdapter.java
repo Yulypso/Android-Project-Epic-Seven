@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,11 +25,14 @@ import com.github.androidproject.activites.ActivityInformation;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
+public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> implements Filterable {
 
     private List<Hero> heroList; //liste des héros
+    private List<Hero> heroListFull;
+
     private List<HeroInfo> heroInfoList; //liste des infos sur les héros.
 
     private Hero currentHero;
@@ -37,9 +42,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
     public static final String EXTRA_TEXT_IMAGE = "com.github.androidproject.EXTRA_TEXT_IMAGE";
     public static final String EXTRA_TEXT_FULL_IMAGE = "com.github.androidproject.EXTRA_TEXT_FULL_IMAGE";
 
-    public ListAdapter(List<Hero> myDataset, List<HeroInfo> heroInfoList) { //constructor
-        heroList = myDataset;
+    public ListAdapter(List<Hero> heroList, List<HeroInfo> heroInfoList) { //constructor
+        this.heroList = heroList;
         this.heroInfoList = heroInfoList;
+        this.heroListFull = new ArrayList<>(heroList);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder{
@@ -76,16 +82,25 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
     @NonNull
     @Override
     public ListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View v = inflater.inflate(R.layout.row_layout, parent, false);
-        return new ViewHolder(v);
+        ViewHolder viewHolder = new ViewHolder(v);
+        return viewHolder;
     }
 
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+        //Hero currentHeroTemp = heroListDisplay.get(position);
         currentHero = heroList.get(position);
+
+       /* DisplayName(holder, currentHeroTemp);
+        DisplayRarity(holder, currentHeroTemp);
+        DisplayElement(holder, currentHeroTemp);
+        DisplayRole(holder, currentHeroTemp);
+        DisplayDescription(holder, currentHeroTemp);
+        addIcon(currentHeroTemp, holder);*/
+
         DisplayName(holder, currentHero);
         DisplayRarity(holder, currentHero);
         DisplayElement(holder, currentHero);
@@ -419,4 +434,37 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
         return heroList.size();
     } //the adapter return the total number of items list
 
+    @Override
+    public Filter getFilter() {
+        return heroFilter;
+    }
+
+    Filter heroFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<Hero> filteredList = new ArrayList<>();
+
+            if(charSequence == null || charSequence.length() == 0 || charSequence.toString().isEmpty()){ //canEdit
+                filteredList.addAll(heroListFull);
+            } else {
+                String filterPattern = charSequence.toString().toLowerCase();
+
+                for(Hero hero: heroListFull) {
+                    if(hero.getName().toLowerCase().contains(filterPattern)) { //get id ?
+                        filteredList.add(hero);
+                    }
+                }
+            }
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filteredList;
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults filterResults) {
+            heroList.clear();
+            heroList.addAll((Collection<? extends Hero>) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 }

@@ -1,6 +1,8 @@
 package com.github.androidproject.activites;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,6 +10,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.github.androidproject.Constants;
@@ -33,15 +38,14 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity { //main activity
+public class MainActivity extends AppCompatActivity {
 
     private static final String BASE_URL = "https://api.epicsevendb.com/";
 
-    //defining variables
-    private RecyclerView recyclerView; //To display a collection of data
+    private RecyclerView recyclerView;
     private ListAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    private SharedPreferences sharedPreferences; //to save data
+    private SharedPreferences sharedPreferences;
     private Gson gson;
     static List<Hero> heroList;
     List<Hero> notRetrievedHeroList = new ArrayList<>();
@@ -56,11 +60,11 @@ public class MainActivity extends AppCompatActivity { //main activity
 
         //deleteDataInCache(); //remove current saved list from cache => test api calls
 
-        gson = new GsonBuilder() //create gson object to convert List into String (json type)
+        gson = new GsonBuilder()
                 .setLenient()
                 .create();
 
-        List heroList = null; //get data from cache
+        List heroList = null;
 
         try{
             heroList = getDataFromCache(Constants.KEY_HERO_LIST);
@@ -73,7 +77,7 @@ public class MainActivity extends AppCompatActivity { //main activity
             Log.d("Exception", "Impossible de récuperer les données depuis le cache");
         }
 
-        if(heroList != null && heroInfoList != null){ //if data from cache is not null, we have data, we shows it
+        if(heroList != null && heroInfoList != null){
             new RetrieveHeroModel(heroList).execute();
             showList(heroList, heroInfoList);
             Toast.makeText(getApplicationContext(),"Load from Cache", Toast.LENGTH_SHORT).show();
@@ -112,15 +116,16 @@ public class MainActivity extends AppCompatActivity { //main activity
     }
 
     private void showList(List<Hero> heroList, List<HeroInfo> heroInfoList) {
-        recyclerView = findViewById(R.id.recycler_view); //search for recycler_view in activity main by id
+        recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
-        // use a linear layout manager
-        layoutManager = new LinearLayoutManager(this); //horizontal / vertical
+
+        layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        // define an adapter and give input into ListAdapter
-        mAdapter = new ListAdapter(heroList, heroInfoList); //Manages the data model and adapts it to the individual entries in the widget
-        recyclerView.setAdapter(mAdapter); //Assigning it to the recycler
+        mAdapter = new ListAdapter(heroList, heroInfoList);
+        recyclerView.setAdapter(mAdapter);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(dividerItemDecoration);
     }
 
     private void makeApiCall(){
@@ -142,10 +147,8 @@ public class MainActivity extends AppCompatActivity { //main activity
                         makeApiCall2(hero);
                     }
                     showList(heroList, heroInfoList);
-
                 }
             }
-
             @Override
             public void onFailure(Call<RestEpicSevenResponse> call, Throwable t) {
                 showError();
@@ -161,13 +164,13 @@ public class MainActivity extends AppCompatActivity { //main activity
 
         EpicSevenApi EpicSevenApi = retrofit.create(EpicSevenApi.class);
 
-        Call<RestHeroInfoResponse> call = EpicSevenApi.getHeroInfoResponse(hero.get_id()); //on récupere les infos du héro id
+        Call<RestHeroInfoResponse> call = EpicSevenApi.getHeroInfoResponse(hero.get_id());
         call.enqueue(new Callback<RestHeroInfoResponse>() {
             @Override
             public void onResponse(Call<RestHeroInfoResponse> call, Response<RestHeroInfoResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     List<HeroInfo> heroInfoListTemp = response.body().getResults();
-                    HeroInfo heroInfo = heroInfoListTemp.get(0); //convertir liste en objet heroInfo
+                    HeroInfo heroInfo = heroInfoListTemp.get(0);
 
                     heroInfoList.add(heroInfo);
                 }else{
@@ -184,14 +187,13 @@ public class MainActivity extends AppCompatActivity { //main activity
 
             @Override
             public void onFailure(Call<RestHeroInfoResponse> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "API Error 2", Toast.LENGTH_SHORT).show();
-                //showError();
+                showError();
             }
         });
     }
 
     private void saveList(String storageKey, List list) {
-        String jsonString = gson.toJson(list); //convert hero list into json format which is a String type
+        String jsonString = gson.toJson(list); 
 
         sharedPreferences
                 .edit()
@@ -205,5 +207,26 @@ public class MainActivity extends AppCompatActivity { //main activity
 
     private void showError(){
         Toast.makeText(getApplicationContext(),"API Error", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.hero_menu, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
     }
 }
