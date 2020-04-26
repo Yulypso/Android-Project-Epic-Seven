@@ -16,6 +16,7 @@
         android:background="@color/colorWhite"
         android:orientation="horizontal"
         android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints,UseCompoundDrawables"
         tools:layout_editor_absoluteX="10dp">
@@ -53,66 +54,65 @@
                 android:id="@+id/elementViewImage"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
-                android:layout_marginStart="322dp"
                 android:layout_marginBottom="4dp"
+                android:layout_marginEnd="28dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <ImageView
                 android:id="@+id/roleViewImage"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
-                android:layout_marginStart="302dp"
                 android:layout_marginBottom="4dp"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
+                app:layout_constraintEnd_toEndOf="parent" />
 
 
             <ImageView
                 android:id="@+id/starViewImage5"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
-                android:layout_marginStart="325dp"
                 android:layout_marginBottom="30dp"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <ImageView
                 android:id="@+id/starViewImage4"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
-                android:layout_marginStart="315dp"
+                android:layout_marginEnd="18dp"
                 android:layout_marginBottom="30dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent" />"/>
 
             <ImageView
                 android:id="@+id/starViewImage3"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
-                android:layout_marginStart="305dp"
+                android:layout_marginEnd="28dp"
                 android:layout_marginBottom="30dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <ImageView
                 android:id="@+id/starViewImage2"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
-                android:layout_marginStart="295dp"
+                android:layout_marginEnd="36dp"
                 android:layout_marginBottom="30dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <ImageView
                 android:id="@+id/starViewImage1"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
-                android:layout_marginStart="285dp"
+                android:layout_marginEnd="46dp"
                 android:layout_marginBottom="30dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
 
 

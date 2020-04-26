@@ -36,16 +36,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
 
     public static final String EXTRA_TEXT_IMAGE = "com.github.androidproject.EXTRA_TEXT_IMAGE";
     public static final String EXTRA_TEXT_FULL_IMAGE = "com.github.androidproject.EXTRA_TEXT_FULL_IMAGE";
-    public static final String EXTRA_TEXT_RELATIONSHIP_IMAGE1 = "com.github.androidproject.EXTRA_TEXT_RELATIONSHIP_IMAGE1";
-    public static final String EXTRA_TEXT_RELATIONSHIP_IMAGE2 = "com.github.androidproject.EXTRA_TEXT_RELATIONSHIP_IMAGE2";
-    public static final String EXTRA_TEXT_RELATIONSHIP_IMAGE3 = "com.github.androidproject.EXTRA_TEXT_RELATIONSHIP_IMAGE3";
-    public static final String EXTRA_TEXT_RELATIONSHIP_IMAGE4 = "com.github.androidproject.EXTRA_TEXT_RELATIONSHIP_IMAGE4";
-    public static final String EXTRA_TEXT_RELATIONSHIP_IMAGE5 = "com.github.androidproject.EXTRA_TEXT_RELATIONSHIP_IMAGE5";
-    public static final String EXTRA_TEXT_RELATIONSHIP_IMAGE6 = "com.github.androidproject.EXTRA_TEXT_RELATIONSHIP_IMAGE6";
-    public static final String EXTRA_TEXT_RELATIONSHIP_IMAGE7 = "com.github.androidproject.EXTRA_TEXT_RELATIONSHIP_IMAGE7";
-    public static final String EXTRA_TEXT_RELATIONSHIP_IMAGE8 = "com.github.androidproject.EXTRA_TEXT_RELATIONSHIP_IMAGE8";
-    public static final String EXTRA_TEXT_RELATIONSHIP_IMAGE9 = "com.github.androidproject.EXTRA_TEXT_RELATIONSHIP_IMAGE9";
-    public static final String EXTRA_TEXT_RELATIONSHIP_IMAGE10 = "com.github.androidproject.EXTRA_TEXT_RELATIONSHIP_IMAGE10";
 
     public ListAdapter(List<Hero> myDataset, List<HeroInfo> heroInfoList) { //constructor
         heroList = myDataset;
