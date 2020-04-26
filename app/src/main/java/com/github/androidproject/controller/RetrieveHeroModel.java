@@ -1,6 +1,7 @@
 package com.github.androidproject.controller;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.github.androidproject.models.Hero;
 
@@ -10,6 +11,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class RetrieveHeroModel extends AsyncTask<String, Void, String> {
 

@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(heroList != null && heroInfoList != null){
-            new RetrieveHeroModel(heroList).execute();
+            //new RetrieveHeroModel(heroList).execute();
             showList(heroList, heroInfoList);
             Toast.makeText(getApplicationContext(),"Load from Cache", Toast.LENGTH_SHORT).show();
         } else {
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (heroInfoList.size() + notRetrievedHeroList.size() == heroList.size()) {
-                    new RetrieveHeroModel(heroList).execute();
+                    //new RetrieveHeroModel(heroList).execute();
                     saveList(Constants.KEY_HERO_LIST, heroList);
                     saveList(Constants.KEY_HERO_INFO_LIST, heroInfoList);
                     Toast.makeText(getApplicationContext(),"API Success 2", Toast.LENGTH_SHORT).show();

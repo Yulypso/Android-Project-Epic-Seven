@@ -18,10 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.androidproject.activites.MainActivity;
 import com.github.androidproject.activites.PopUp;
+import com.github.androidproject.controller.RetrieveHeroModel;
 import com.github.androidproject.models.Hero;
 import com.github.androidproject.models.HeroInfo;
 import com.github.androidproject.R;
 import com.github.androidproject.activites.ActivityInformation;
+import com.github.androidproject.models.RetrieveCurrentHeroModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -119,6 +121,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
                     Log.d("HeroInfo", ""+ currentHeroInfo.get_id());
                     openActivityInformation(v, currentHero, currentHeroInfo, heroList, heroInfoList);
                 }else{
+                    Log.d("Hero not found ! ", ""+ currentHeroInfo.get_id());
                     Intent intent2 = new Intent(v.getContext(), PopUp.class);
                     intent2.putExtra("currentHeroMissing", currentHero);
                     v.getContext().startActivity(intent2);
@@ -250,6 +253,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
         Intent intent = new Intent(view.getContext(), ActivityInformation.class);
         intent.putExtra("Hero", hero);
         intent.putExtra("HeroInfo", heroInfo);
+
+
+        new RetrieveCurrentHeroModel(currentHero).execute();
 
         //On doit definir exceptionnellement ces String ici pour pouvoir les charger au préalable
         //dans toute la liste avant d'entrer dans la prochaine activity (images provenant de l'api rest)
