@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity { //main activity
 
         sharedPreferences = getSharedPreferences(Constants.KEY_APPLICATION_NAME, Context.MODE_PRIVATE);
 
-        deleteDataInCache(); //remove current saved list from cache => test api calls
+        //deleteDataInCache(); //remove current saved list from cache => test api calls
 
         gson = new GsonBuilder() //create gson object to convert List into String (json type)
                 .setLenient()
