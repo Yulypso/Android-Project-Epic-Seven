@@ -44,7 +44,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
     private HeroInfo currentHeroInfo;
     private static int totalRelations = 0;
 
-    private static List<Hero> retrievedHeroModel = new ArrayList<>();
+    private static List<Hero> retrievedHeroModelList = new ArrayList<>();
 
     public static final String EXTRA_TEXT_IMAGE = "com.github.androidproject.EXTRA_TEXT_IMAGE";
     public static final String EXTRA_TEXT_FULL_IMAGE = "com.github.androidproject.EXTRA_TEXT_FULL_IMAGE";
@@ -98,16 +98,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-        //Hero currentHeroTemp = heroListDisplay.get(position);
         currentHero = heroList.get(position);
-
-       /* DisplayName(holder, currentHeroTemp);
-        DisplayRarity(holder, currentHeroTemp);
-        DisplayElement(holder, currentHeroTemp);
-        DisplayRole(holder, currentHeroTemp);
-        DisplayDescription(holder, currentHeroTemp);
-        addIcon(currentHeroTemp, holder);*/
-
         DisplayName(holder, currentHero);
         DisplayRarity(holder, currentHero);
         DisplayElement(holder, currentHero);
@@ -122,19 +113,35 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
                 currentHero = heroList.get(position);
                 currentHeroInfo = searchHeroInfoById(currentHero);
 
+
                 if (currentHeroInfo != null) {
                     Log.d("HeroInfo", "" + currentHeroInfo.get_id());
 
-                    if (retrievedHeroModel.size() == 0) {
+                    if (retrievedHeroModelList.size() == 0) {
                         modelHttpRequest(currentHero, v);
-                        retrievedHeroModel.add(currentHero);
+                        retrievedHeroModelList.add(currentHero);
                     } else {
-                        for (int i = 0; i < retrievedHeroModel.size(); i++) {
-                            if (!retrievedHeroModel.get(i).get_id().equals(currentHero.get_id()) && i == retrievedHeroModel.size() - 1) {
+                        for (int i = 0; i < retrievedHeroModelList.size(); i++) {
+                            Log.d("DEDAAAAAAAAAAAAAAAAANS", ""+retrievedHeroModelList.get(0).get_id()+" "+currentHero.get_id());
+                            if ((retrievedHeroModelList.get(i).get_id()).equals(currentHero.get_id())) {
+                                Log.d("DEDAAAANS", "1er if");
+
+                                // TODO 2eme lancement ici
+                                    openActivityInformation(v, currentHero, currentHeroInfo, heroList, heroInfoList);
+
+                            } else if (!(currentHero.get_id()).equals(retrievedHeroModelList.get(i).get_id()) && (i == retrievedHeroModelList.size()-1)) {
+                                Log.d("info", "récupéré");
                                 modelHttpRequest(currentHero, v);
-                                retrievedHeroModel.add(currentHero);
-                            } else if (retrievedHeroModel.get(i).get_id().equals(currentHero.get_id())) {
-                                openActivityInformation(v, currentHero, currentHeroInfo, heroList, heroInfoList);
+                                retrievedHeroModelList.add(currentHero);
+
+                                // TODO Si le héro n'est pas dans la retrivedHeroModelList, il va chercher le model et va ensuite l'ajouter dans la liste avant de lancer
+                                //  le problème est qu'il retourne au dessus pour lancer à nouveau.
+                                //  RetrivedHeroModelList permet de savoir si on a déjà récupéré ou non le héro
+                                //  .Solution hypothèse 1 : faire un flag qui au début est mis à false, false : autorisation à "faire le 2eme lancement ici", sinon
+                                //  si on fait un appel http, on passe le flag en true pour eviter le retour (pb le flag est toujours sur false au début.. ne fonctionnera pas...
+
+                                //  TODO Solution hypothèse : faire un tableau double dimensionnel pour pouvoir mettre un flag sur le héro correspondant "oui" / "non"
+
                             }
                         }
                     }
