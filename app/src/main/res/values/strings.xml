@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">AndroidProject</string>
+    <string name="app_name">Epic Seven</string>
+    <string name="relationship">Relationship</string>
 </resources>

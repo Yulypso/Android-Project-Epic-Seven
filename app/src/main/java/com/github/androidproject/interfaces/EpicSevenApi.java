@@ -1,11 +1,11 @@
-package com.github.androidproject;
+package com.github.androidproject.interfaces;
 
-import java.util.List;
+import com.github.androidproject.controller.RestEpicSevenResponse;
+import com.github.androidproject.controller.RestHeroInfoResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public interface EpicSevenApi {
     @GET("/hero")
