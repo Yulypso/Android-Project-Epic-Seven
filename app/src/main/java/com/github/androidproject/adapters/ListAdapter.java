@@ -44,8 +44,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
     private HeroInfo currentHeroInfo;
     private static int totalRelations = 0;
 
-    private static List<Hero> retrievedHeroModelList = new ArrayList<>();
-
     public static final String EXTRA_TEXT_IMAGE = "com.github.androidproject.EXTRA_TEXT_IMAGE";
     public static final String EXTRA_TEXT_FULL_IMAGE = "com.github.androidproject.EXTRA_TEXT_FULL_IMAGE";
 
@@ -113,70 +111,14 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
                 currentHero = heroList.get(position);
                 currentHeroInfo = searchHeroInfoById(currentHero);
 
-
                 if (currentHeroInfo != null) {
                     Log.d("HeroInfo", "" + currentHeroInfo.get_id());
-
-                    if (retrievedHeroModelList.size() == 0) {
-                        modelHttpRequest(currentHero, v);
-                        retrievedHeroModelList.add(currentHero);
-                    } else {
-                        for (int i = 0; i < retrievedHeroModelList.size(); i++) {
-                            Log.d("DEDAAAAAAAAAAAAAAAAANS", ""+retrievedHeroModelList.get(0).get_id()+" "+currentHero.get_id());
-                            if ((retrievedHeroModelList.get(i).get_id()).equals(currentHero.get_id())) {
-                                Log.d("DEDAAAANS", "1er if");
-
-                                // TODO 2eme lancement ici
-                                    openActivityInformation(v, currentHero, currentHeroInfo, heroList, heroInfoList);
-
-                            } else if (!(currentHero.get_id()).equals(retrievedHeroModelList.get(i).get_id()) && (i == retrievedHeroModelList.size()-1)) {
-                                Log.d("info", "récupéré");
-                                modelHttpRequest(currentHero, v);
-                                retrievedHeroModelList.add(currentHero);
-
-                                // TODO Si le héro n'est pas dans la retrivedHeroModelList, il va chercher le model et va ensuite l'ajouter dans la liste avant de lancer
-                                //  le problème est qu'il retourne au dessus pour lancer à nouveau.
-                                //  RetrivedHeroModelList permet de savoir si on a déjà récupéré ou non le héro
-                                //  .Solution hypothèse 1 : faire un flag qui au début est mis à false, false : autorisation à "faire le 2eme lancement ici", sinon
-                                //  si on fait un appel http, on passe le flag en true pour eviter le retour (pb le flag est toujours sur false au début.. ne fonctionnera pas...
-
-                                //  TODO Solution hypothèse : faire un tableau double dimensionnel pour pouvoir mettre un flag sur le héro correspondant "oui" / "non"
-
-                            }
-                        }
-                    }
-                } else {
+                    openActivityInformation(v, currentHero, currentHeroInfo, heroList, heroInfoList);
+                }
+                else {
                     Intent intent2 = new Intent(v.getContext(), PopUp.class);
                     intent2.putExtra("currentHeroMissing", currentHero);
                     v.getContext().startActivity(intent2);
-                }
-            }
-        });
-    }
-
-    private void modelHttpRequest(final Hero hero, final View view) {
-        OkHttpClient client = new OkHttpClient();
-        final String modelURL = "https://assets.epicsevendb.com/herofull/" + hero.get_id() + ".png";
-
-        Request request = new Request.Builder()
-                .url(modelURL)
-                .build();
-
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-                Log.w("Error ", "Page Not Found");
-                openActivityInformation(view, currentHero, currentHeroInfo, heroList, heroInfoList);
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    hero.setModelURL(modelURL);
-                    Log.d("Info ", "Page Found");
-                    Log.d("Info ", "retrieved: " + hero.getModelURL());
-                    openActivityInformation(view, currentHero, currentHeroInfo, heroList, heroInfoList);
                 }
             }
         });
@@ -301,12 +243,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
     }
 
     private void openActivityInformation(View view, Hero hero, HeroInfo heroInfo, List<Hero> heroList, List<HeroInfo> heroInfoList) {
+
         Intent intent = new Intent(view.getContext(), ActivityInformation.class);
         intent.putExtra("Hero", hero);
         intent.putExtra("HeroInfo", heroInfo);
 
-        //On doit definir exceptionnellement ces String ici pour pouvoir les charger au préalable
-        //dans toute la liste avant d'entrer dans la prochaine activity (images provenant de l'api rest)
         String imageUrl = heroInfo.getAssets().getImage();
         intent.putExtra(EXTRA_TEXT_IMAGE, imageUrl);
 
@@ -503,7 +444,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
                 String filterPattern = charSequence.toString().toLowerCase();
 
                 for (Hero hero : heroListFull) {
-                    if (hero.getName().toLowerCase().contains(filterPattern)) { //get id ?
+                    if (hero.getName().toLowerCase().contains(filterPattern)) {
                         filteredList.add(hero);
                     }
                 }

@@ -27,7 +27,8 @@ public class ActivityInformation extends AppCompatActivity {
 
     public static String wallpaper = "https://assets.epicsevendb.com/website/summon/gacha_get_bg0_e7db.jpg";
     public static String layout = "https://assets.epicsevendb.com/website/summon/gacha_get_bg1.png";
-
+    public static String URLBODY = "https://assets.epicsevendb.com/herofull/";
+    
     Intent intent;
 
     private static int totalRelations;
@@ -430,7 +431,7 @@ public class ActivityInformation extends AppCompatActivity {
     }
 
     private void DisplayImageFullUrl() {
-        Picasso.get().load(imageFullUrl).into(imageFullUrlView);
+        Picasso.get().load(URLBODY+currentHero.get_id()+".png").into(imageFullUrlView);
     }
 
     private void DisplayWallpaper() {
