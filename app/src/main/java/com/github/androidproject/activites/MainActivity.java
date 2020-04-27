@@ -85,6 +85,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /*@Override
+    public void onBackPressed(){
+
+    }*/
+
     private void deleteDataInCache(){
         try{
             SharedPreferences.Editor editor = sharedPreferences.edit();

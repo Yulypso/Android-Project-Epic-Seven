@@ -51,6 +51,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
         this.heroList = heroList;
         this.heroInfoList = heroInfoList;
         this.heroListFull = new ArrayList<>(heroList);
+
+        for(Hero hero: heroList){
+            Log.d("Hero", hero.getName());
+        }
+
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

@@ -167,6 +167,11 @@ public class ActivityInformation extends AppCompatActivity {
         DisplayRelationshipInformation(currentHeroInfo);
     }
 
+    @Override
+    public void onBackPressed(){
+        finish();
+    }
+
     @SuppressLint("SetTextI18n")
     private void DisplayRelationshipInformation(HeroInfo currentHeroInfo) {
         if (totalRelations > 0) {
