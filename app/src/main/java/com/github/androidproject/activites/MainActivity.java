@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(Constants.KEY_APPLICATION_NAME, Context.MODE_PRIVATE);
 
         //deleteDataInCache(); //remove current saved list from cache => test api calls.
+        //test gitflow
 
         gson = new GsonBuilder()
                 .setLenient()
