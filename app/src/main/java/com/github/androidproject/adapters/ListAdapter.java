@@ -6,15 +6,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.github.androidproject.activites.MainActivity;
 import com.github.androidproject.activites.PopUp;
 import com.github.androidproject.models.Hero;
 import com.github.androidproject.models.HeroInfo;
@@ -22,27 +22,43 @@ import com.github.androidproject.R;
 import com.github.androidproject.activites.ActivityInformation;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> implements Filterable {
 
     private List<Hero> heroList; //liste des héros
+    private List<Hero> heroListFull;
+
     private List<HeroInfo> heroInfoList; //liste des infos sur les héros.
 
     private Hero currentHero;
     private HeroInfo currentHeroInfo;
-    private static int totalRelations =0;
+    private static int totalRelations = 0;
 
     public static final String EXTRA_TEXT_IMAGE = "com.github.androidproject.EXTRA_TEXT_IMAGE";
     public static final String EXTRA_TEXT_FULL_IMAGE = "com.github.androidproject.EXTRA_TEXT_FULL_IMAGE";
 
-    public ListAdapter(List<Hero> myDataset, List<HeroInfo> heroInfoList) { //constructor
-        heroList = myDataset;
+    public ListAdapter(List<Hero> heroList, List<HeroInfo> heroInfoList) { //constructor
+        this.heroList = heroList;
         this.heroInfoList = heroInfoList;
+        this.heroListFull = new ArrayList<>(heroList);
+
+        for(Hero hero: heroList){
+            Log.d("Hero", hero.getName());
+        }
+
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder{
+    static class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtHeader;
         TextView descriptionView;
         View layout;
@@ -76,10 +92,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
     @NonNull
     @Override
     public ListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View v = inflater.inflate(R.layout.row_layout, parent, false);
-        return new ViewHolder(v);
+        ViewHolder viewHolder = new ViewHolder(v);
+        return viewHolder;
     }
 
     @SuppressLint("SetTextI18n")
@@ -96,14 +112,15 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("position", ""+ position);
+                Log.d("position", "" + position);
                 currentHero = heroList.get(position);
                 currentHeroInfo = searchHeroInfoById(currentHero);
 
                 if (currentHeroInfo != null) {
-                    Log.d("HeroInfo", ""+ currentHeroInfo.get_id());
+                    Log.d("HeroInfo", "" + currentHeroInfo.get_id());
                     openActivityInformation(v, currentHero, currentHeroInfo, heroList, heroInfoList);
-                }else{
+                }
+                else {
                     Intent intent2 = new Intent(v.getContext(), PopUp.class);
                     intent2.putExtra("currentHeroMissing", currentHero);
                     v.getContext().startActivity(intent2);
@@ -112,36 +129,36 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
         });
     }
 
-    private void DisplayName(ViewHolder holder, Hero currentHero){
+    private void DisplayName(ViewHolder holder, Hero currentHero) {
         holder.txtHeader.setText(currentHero.getName());
     }
 
-    private void DisplayRarity(ViewHolder holder, Hero currentHero){
-        if(currentHero.getRarity() == 1) {
+    private void DisplayRarity(ViewHolder holder, Hero currentHero) {
+        if (currentHero.getRarity() == 1) {
             holder.starViewImage5.setImageResource(R.drawable.cm_icon_star);
             holder.starViewImage4.setImageResource(0);
             holder.starViewImage3.setImageResource(0);
             holder.starViewImage2.setImageResource(0);
             holder.starViewImage1.setImageResource(0);
-        } else if (currentHero.getRarity() == 2){
+        } else if (currentHero.getRarity() == 2) {
             holder.starViewImage5.setImageResource(R.drawable.cm_icon_star);
             holder.starViewImage4.setImageResource(R.drawable.cm_icon_star);
             holder.starViewImage3.setImageResource(0);
             holder.starViewImage2.setImageResource(0);
             holder.starViewImage1.setImageResource(0);
-        }else if (currentHero.getRarity() == 3){
+        } else if (currentHero.getRarity() == 3) {
             holder.starViewImage5.setImageResource(R.drawable.cm_icon_star);
             holder.starViewImage4.setImageResource(R.drawable.cm_icon_star);
             holder.starViewImage3.setImageResource(R.drawable.cm_icon_star);
             holder.starViewImage2.setImageResource(0);
             holder.starViewImage1.setImageResource(0);
-        }else if (currentHero.getRarity() == 4){
+        } else if (currentHero.getRarity() == 4) {
             holder.starViewImage5.setImageResource(R.drawable.cm_icon_star);
             holder.starViewImage4.setImageResource(R.drawable.cm_icon_star);
             holder.starViewImage3.setImageResource(R.drawable.cm_icon_star);
             holder.starViewImage2.setImageResource(R.drawable.cm_icon_star);
             holder.starViewImage1.setImageResource(0);
-        }else if (currentHero.getRarity() == 5){
+        } else if (currentHero.getRarity() == 5) {
             holder.starViewImage5.setImageResource(R.drawable.cm_icon_star);
             holder.starViewImage4.setImageResource(R.drawable.cm_icon_star);
             holder.starViewImage3.setImageResource(R.drawable.cm_icon_star);
@@ -150,7 +167,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
         }
     }
 
-    private void DisplayElement(ViewHolder holder, Hero currentHero){
+    private void DisplayElement(ViewHolder holder, Hero currentHero) {
         switch (currentHero.getAttribute()) {
             case "fire":
                 holder.elementViewImage.setImageResource(R.drawable.cm_icon_profire);
@@ -170,7 +187,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
         }
     }
 
-    private void DisplayRole(ViewHolder holder, Hero currentHero){
+    private void DisplayRole(ViewHolder holder, Hero currentHero) {
         switch (currentHero.getRole()) {
             case "knight":
                 holder.roleViewImage.setImageResource(R.drawable.cm_icon_role_knight);
@@ -196,33 +213,33 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
         }
     }
 
-    private void DisplayDescription(ViewHolder holder, Hero currentHero){
-        for(HeroInfo heroInfo : heroInfoList) {
-            if(heroInfo.get_id().equals(currentHero.get_id())){
+    private void DisplayDescription(ViewHolder holder, Hero currentHero) {
+        for (HeroInfo heroInfo : heroInfoList) {
+            if (heroInfo.get_id().equals(currentHero.get_id())) {
                 holder.descriptionView.setText(heroInfo.getDescription());
             }
         }
     }
 
-    private HeroInfo searchHeroInfoById(Hero hero){
-        for(HeroInfo hi : heroInfoList) {
-            if(hi.get_id().equals(hero.get_id())){
+    private HeroInfo searchHeroInfoById(Hero hero) {
+        for (HeroInfo hi : heroInfoList) {
+            if (hi.get_id().equals(hero.get_id())) {
                 return hi;
             }
         }
         return null;
     }
 
-    private void addIcon(Hero currentHero, ViewHolder holder){
+    private void addIcon(Hero currentHero, ViewHolder holder) {
         boolean imageFound = false;
-        if(heroInfoList != null){
-            for(int i = 0; i< heroInfoList.size(); i++){
-                if(currentHero.get_id().equals(heroInfoList.get(i).get_id())){
+        if (heroInfoList != null) {
+            for (int i = 0; i < heroInfoList.size(); i++) {
+                if (currentHero.get_id().equals(heroInfoList.get(i).get_id())) {
                     Picasso.get().load(heroInfoList.get(i).getAssets().getIcon()).into(holder.imageView);
                     imageFound = true;
                 }
 
-                if(!currentHero.get_id().equals(heroInfoList.get(i).get_id()) && i == heroInfoList.size()-1 && !imageFound){
+                if (!currentHero.get_id().equals(heroInfoList.get(i).get_id()) && i == heroInfoList.size() - 1 && !imageFound) {
                     holder.imageView.setImageResource(R.drawable.iconmissing);
                     imageFound = false;
                 }
@@ -230,14 +247,12 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
         }
     }
 
+    private void openActivityInformation(View view, Hero hero, HeroInfo heroInfo, List<Hero> heroList, List<HeroInfo> heroInfoList) {
 
-    private void openActivityInformation(View view, Hero hero, HeroInfo heroInfo, List<Hero> heroList, List<HeroInfo> heroInfoList){
         Intent intent = new Intent(view.getContext(), ActivityInformation.class);
         intent.putExtra("Hero", hero);
         intent.putExtra("HeroInfo", heroInfo);
 
-        //On doit definir exceptionnellement ces String ici pour pouvoir les charger au préalable
-        //dans toute la liste avant d'entrer dans la prochaine activity (images provenant de l'api rest)
         String imageUrl = heroInfo.getAssets().getImage();
         intent.putExtra(EXTRA_TEXT_IMAGE, imageUrl);
 
@@ -251,18 +266,17 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
         view.getContext().startActivity(intent);
     }
 
-    private List<HeroInfo> getRelations(List<HeroInfo> heroInfoList, HeroInfo currentHeroInfo){
+    private List<HeroInfo> getRelations(List<HeroInfo> heroInfoList, HeroInfo currentHeroInfo) {
         List<HeroInfo> heroRelations = new ArrayList<>();
         totalRelations = currentHeroInfo.getRelationships().get(0).getRelations().size();
 
-        if(totalRelations>0) {
+        if (totalRelations > 0) {
             for (HeroInfo HI : heroInfoList) {
                 for (int i = 0; i < totalRelations; i++) {
-                    for(Hero H : heroList) {
+                    for (Hero H : heroListFull) {
                         if ((H.get_id().equals(HI.get_id())) && (HI.getId().equals(currentHeroInfo.getRelationships().get(0).getRelations().get(i).getId())) && (!currentHeroInfo.getRelationships().get(0).getRelations().get(i).getId().contains("npc")) && (!currentHeroInfo.getRelationships().get(0).getRelations().get(i).getId().contains("m"))) {
                             heroRelations.add(HI);
                             System.out.println("ADDED ! " + HI.getId() + " " + HI.getName());
-
                         }
                     }
                 }
@@ -273,144 +287,144 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
     }
 
     private void sendRelations(Intent intent, List<HeroInfo> heroRelations) {
-        System.out.println("TOTAL RELATION after counter : "+totalRelations);
-        if(totalRelations>0) {
+        System.out.println("TOTAL RELATION after counter : " + totalRelations);
+        if (totalRelations > 0) {
             switch (totalRelations) {
                 default:
                     break;
                 case 1:
-                    if(heroRelations.get(0) != null)
+                    if (heroRelations.get(0) != null)
                         intent.putExtra("HeroInfo1", heroRelations.get(0));
                     break;
                 case 2:
-                    if(heroRelations.get(0) != null)
+                    if (heroRelations.get(0) != null)
                         intent.putExtra("HeroInfo1", heroRelations.get(0));
-                    if(heroRelations.get(1) != null)
+                    if (heroRelations.get(1) != null)
                         intent.putExtra("HeroInfo2", heroRelations.get(1));
                     break;
                 case 3:
-                    if(heroRelations.get(0) != null)
+                    if (heroRelations.get(0) != null)
                         intent.putExtra("HeroInfo1", heroRelations.get(0));
-                    if(heroRelations.get(1) != null)
+                    if (heroRelations.get(1) != null)
                         intent.putExtra("HeroInfo2", heroRelations.get(1));
-                    if(heroRelations.get(2) != null)
+                    if (heroRelations.get(2) != null)
                         intent.putExtra("HeroInfo3", heroRelations.get(2));
                     break;
                 case 4:
-                    if(heroRelations.get(0) != null)
+                    if (heroRelations.get(0) != null)
                         intent.putExtra("HeroInfo1", heroRelations.get(0));
-                    if(heroRelations.get(1) != null)
+                    if (heroRelations.get(1) != null)
                         intent.putExtra("HeroInfo2", heroRelations.get(1));
-                    if(heroRelations.get(2) != null)
+                    if (heroRelations.get(2) != null)
                         intent.putExtra("HeroInfo3", heroRelations.get(2));
-                    if(heroRelations.get(3) != null)
+                    if (heroRelations.get(3) != null)
                         intent.putExtra("HeroInfo4", heroRelations.get(3));
                     break;
                 case 5:
-                    if(heroRelations.get(0) != null)
+                    if (heroRelations.get(0) != null)
                         intent.putExtra("HeroInfo1", heroRelations.get(0));
-                    if(heroRelations.get(1) != null)
+                    if (heroRelations.get(1) != null)
                         intent.putExtra("HeroInfo2", heroRelations.get(1));
-                    if(heroRelations.get(2) != null)
+                    if (heroRelations.get(2) != null)
                         intent.putExtra("HeroInfo3", heroRelations.get(2));
-                    if(heroRelations.get(3) != null)
+                    if (heroRelations.get(3) != null)
                         intent.putExtra("HeroInfo4", heroRelations.get(3));
-                    if(heroRelations.get(4) != null)
+                    if (heroRelations.get(4) != null)
                         intent.putExtra("HeroInfo5", heroRelations.get(4));
                     break;
                 case 6:
-                    if(heroRelations.get(0) != null)
+                    if (heroRelations.get(0) != null)
                         intent.putExtra("HeroInfo1", heroRelations.get(0));
-                    if(heroRelations.get(1) != null)
+                    if (heroRelations.get(1) != null)
                         intent.putExtra("HeroInfo2", heroRelations.get(1));
-                    if(heroRelations.get(2) != null)
+                    if (heroRelations.get(2) != null)
                         intent.putExtra("HeroInfo3", heroRelations.get(2));
-                    if(heroRelations.get(3) != null)
+                    if (heroRelations.get(3) != null)
                         intent.putExtra("HeroInfo4", heroRelations.get(3));
-                    if(heroRelations.get(4) != null)
+                    if (heroRelations.get(4) != null)
                         intent.putExtra("HeroInfo5", heroRelations.get(4));
-                    if(heroRelations.get(5) != null)
+                    if (heroRelations.get(5) != null)
                         intent.putExtra("HeroInfo6", heroRelations.get(5));
                     break;
                 case 7:
-                    if(heroRelations.get(0) != null)
+                    if (heroRelations.get(0) != null)
                         intent.putExtra("HeroInfo1", heroRelations.get(0));
-                    if(heroRelations.get(1) != null)
+                    if (heroRelations.get(1) != null)
                         intent.putExtra("HeroInfo2", heroRelations.get(1));
-                    if(heroRelations.get(2) != null)
+                    if (heroRelations.get(2) != null)
                         intent.putExtra("HeroInfo3", heroRelations.get(2));
-                    if(heroRelations.get(3) != null)
+                    if (heroRelations.get(3) != null)
                         intent.putExtra("HeroInfo4", heroRelations.get(3));
-                    if(heroRelations.get(4) != null)
+                    if (heroRelations.get(4) != null)
                         intent.putExtra("HeroInfo5", heroRelations.get(4));
-                    if(heroRelations.get(5) != null)
+                    if (heroRelations.get(5) != null)
                         intent.putExtra("HeroInfo6", heroRelations.get(5));
-                    if(heroRelations.get(6) != null)
+                    if (heroRelations.get(6) != null)
                         intent.putExtra("HeroInfo7", heroRelations.get(6));
                     break;
                 case 8:
-                    if(heroRelations.get(0) != null)
+                    if (heroRelations.get(0) != null)
                         intent.putExtra("HeroInfo1", heroRelations.get(0));
-                    if(heroRelations.get(1) != null)
+                    if (heroRelations.get(1) != null)
                         intent.putExtra("HeroInfo2", heroRelations.get(1));
-                    if(heroRelations.get(2) != null)
+                    if (heroRelations.get(2) != null)
                         intent.putExtra("HeroInfo3", heroRelations.get(2));
-                    if(heroRelations.get(3) != null)
+                    if (heroRelations.get(3) != null)
                         intent.putExtra("HeroInfo4", heroRelations.get(3));
-                    if(heroRelations.get(4) != null)
+                    if (heroRelations.get(4) != null)
                         intent.putExtra("HeroInfo5", heroRelations.get(4));
-                    if(heroRelations.get(5) != null)
+                    if (heroRelations.get(5) != null)
                         intent.putExtra("HeroInfo6", heroRelations.get(5));
-                    if(heroRelations.get(6) != null)
+                    if (heroRelations.get(6) != null)
                         intent.putExtra("HeroInfo7", heroRelations.get(6));
-                    if(heroRelations.get(7) != null)
+                    if (heroRelations.get(7) != null)
                         intent.putExtra("HeroInfo8", heroRelations.get(7));
                     break;
                 case 9:
-                    if(heroRelations.get(0) != null)
+                    if (heroRelations.get(0) != null)
                         intent.putExtra("HeroInfo1", heroRelations.get(0));
-                    if(heroRelations.get(1) != null)
+                    if (heroRelations.get(1) != null)
                         intent.putExtra("HeroInfo2", heroRelations.get(1));
-                    if(heroRelations.get(2) != null)
+                    if (heroRelations.get(2) != null)
                         intent.putExtra("HeroInfo3", heroRelations.get(2));
-                    if(heroRelations.get(3) != null)
+                    if (heroRelations.get(3) != null)
                         intent.putExtra("HeroInfo4", heroRelations.get(3));
-                    if(heroRelations.get(4) != null)
+                    if (heroRelations.get(4) != null)
                         intent.putExtra("HeroInfo5", heroRelations.get(4));
-                    if(heroRelations.get(5) != null)
+                    if (heroRelations.get(5) != null)
                         intent.putExtra("HeroInfo6", heroRelations.get(5));
-                    if(heroRelations.get(6) != null)
+                    if (heroRelations.get(6) != null)
                         intent.putExtra("HeroInfo7", heroRelations.get(6));
-                    if(heroRelations.get(7) != null)
+                    if (heroRelations.get(7) != null)
                         intent.putExtra("HeroInfo8", heroRelations.get(7));
-                    if(heroRelations.get(8) != null)
+                    if (heroRelations.get(8) != null)
                         intent.putExtra("HeroInfo9", heroRelations.get(8));
                     break;
                 case 10:
-                    if(heroRelations.get(0) != null)
+                    if (heroRelations.get(0) != null)
                         intent.putExtra("HeroInfo1", heroRelations.get(0));
-                    if(heroRelations.get(1) != null)
+                    if (heroRelations.get(1) != null)
                         intent.putExtra("HeroInfo2", heroRelations.get(1));
-                    if(heroRelations.get(2) != null)
+                    if (heroRelations.get(2) != null)
                         intent.putExtra("HeroInfo3", heroRelations.get(2));
-                    if(heroRelations.get(3) != null)
+                    if (heroRelations.get(3) != null)
                         intent.putExtra("HeroInfo4", heroRelations.get(3));
-                    if(heroRelations.get(4) != null)
+                    if (heroRelations.get(4) != null)
                         intent.putExtra("HeroInfo5", heroRelations.get(4));
-                    if(heroRelations.get(5) != null)
+                    if (heroRelations.get(5) != null)
                         intent.putExtra("HeroInfo6", heroRelations.get(5));
-                    if(heroRelations.get(6) != null)
+                    if (heroRelations.get(6) != null)
                         intent.putExtra("HeroInfo7", heroRelations.get(6));
-                    if(heroRelations.get(7) != null)
+                    if (heroRelations.get(7) != null)
                         intent.putExtra("HeroInfo8", heroRelations.get(7));
-                    if(heroRelations.get(8) != null)
+                    if (heroRelations.get(8) != null)
                         intent.putExtra("HeroInfo9", heroRelations.get(8));
-                    if(heroRelations.get(9) != null)
+                    if (heroRelations.get(9) != null)
                         intent.putExtra("HeroInfo10", heroRelations.get(9));
                     break;
             }
         }
-   }
+    }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
@@ -419,4 +433,37 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
         return heroList.size();
     } //the adapter return the total number of items list
 
+    @Override
+    public Filter getFilter() {
+        return heroFilter;
+    }
+
+    Filter heroFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<Hero> filteredList = new ArrayList<>();
+
+            if (charSequence == null || charSequence.length() == 0 || charSequence.toString().isEmpty()) { //canEdit
+                filteredList.addAll(heroListFull);
+            } else {
+                String filterPattern = charSequence.toString().toLowerCase();
+
+                for (Hero hero : heroListFull) {
+                    if (hero.getName().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(hero);
+                    }
+                }
+            }
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filteredList;
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults filterResults) {
+            heroList.clear();
+            heroList.addAll((Collection<? extends Hero>) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 }

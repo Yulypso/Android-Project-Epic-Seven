@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Hero implements Parcelable {
+
     private String _id;
     private String name;
     private Integer rarity;
@@ -16,7 +17,7 @@ public class Hero implements Parcelable {
     private String modelURL;
 
 
-    protected Hero(Parcel in) {
+    public Hero(Parcel in) {
         _id = in.readString();
         name = in.readString();
         if (in.readByte() == 0) {
@@ -75,6 +76,11 @@ public class Hero implements Parcelable {
     public String get_id() {
         return _id;
     }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
     public String getName() {
         return name;
     }

@@ -14,12 +14,12 @@
         android:fullBackupContent="@xml/backup_descriptor">
 
         <activity android:name=".activites.ActivityInformation"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".activites.MainActivity">
+            android:parentActivityName=".activites.MainActivity"
+            android:configChanges="orientation|screenSize">
         </activity>
 
         <activity android:name=".activites.MainActivity"
-            android:screenOrientation="portrait">
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -27,7 +27,8 @@
         </activity>
 
         <activity android:name=".activites.PopUp"
-            android:theme="@style/AppTheme.CustomTheme">
+            android:theme="@style/AppTheme.CustomTheme"
+            android:configChanges="orientation|screenSize">
         </activity>
 
         <meta-data

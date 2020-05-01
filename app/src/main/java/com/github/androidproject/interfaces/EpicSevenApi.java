@@ -1,7 +1,7 @@
 package com.github.androidproject.interfaces;
 
-import com.github.androidproject.controller.RestEpicSevenResponse;
-import com.github.androidproject.controller.RestHeroInfoResponse;
+import com.github.androidproject.models.RestEpicSevenResponse;
+import com.github.androidproject.models.RestHeroInfoResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
