@@ -39,7 +39,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String BASE_URL = "https://api.epicsevendb.com/";
+    private static final String BASE_URL = "https://api.epicsevendb.com/";//
 
     private RecyclerView recyclerView;
     private ListAdapter mAdapter;
