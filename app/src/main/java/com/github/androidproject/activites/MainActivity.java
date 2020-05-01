@@ -39,7 +39,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String BASE_URL = "https://api.epicsevendb.com/";//
+    private static final String BASE_URL = "https://api.epicsevendb.com/";
 
     private RecyclerView recyclerView;
     private ListAdapter mAdapter;
@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(Constants.KEY_APPLICATION_NAME, Context.MODE_PRIVATE);
 
         //deleteDataInCache(); //remove current saved list from cache => test api calls.
+        //test gitflow feature 2
 
         gson = new GsonBuilder()
                 .setLenient()
