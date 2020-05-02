@@ -621,10 +621,7 @@
                                 app:showVideoCurrentTime="true"
                                 app:showVideoDuration="true"
                                 app:showSeekBar="true"/>
-
                         </LinearLayout>
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
