@@ -16,7 +16,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.github.androidproject.Constants;
-import com.github.androidproject.interfaces.EpicSevenApi;
+import com.github.androidproject.EpicSevenApi;
 import com.github.androidproject.models.Hero;
 import com.github.androidproject.models.HeroInfo;
 import com.github.androidproject.adapters.ListAdapter;
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences(Constants.KEY_APPLICATION_NAME, Context.MODE_PRIVATE);
 
-        deleteDataInCache(); //remove current saved list from cache => test api calls.
+        //deleteDataInCache(); //remove current saved list from cache => test api calls.
 
         gson = new GsonBuilder()
                 .setLenient()

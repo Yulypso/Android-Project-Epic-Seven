@@ -1,5 +1,6 @@
 package com.github.androidproject.activites;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 
@@ -18,6 +19,10 @@ import com.github.androidproject.R;
 import com.github.androidproject.models.Hero;
 import com.github.androidproject.models.HeroInfo;
 import com.google.gson.Gson;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerUtils;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
@@ -28,7 +33,7 @@ public class ActivityInformation extends AppCompatActivity {
     public static String wallpaper = "https://assets.epicsevendb.com/website/summon/gacha_get_bg0_e7db.jpg";
     public static String layout = "https://assets.epicsevendb.com/website/summon/gacha_get_bg1.png";
     public static String URLBODY = "https://assets.epicsevendb.com/herofull/";
-    
+
     Intent intent;
 
     private static int totalRelations;
@@ -93,6 +98,8 @@ public class ActivityInformation extends AppCompatActivity {
     TextView relation9TextView;
     TextView relation10TextView;
 
+    YouTubePlayerView youTubePlayerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -152,6 +159,9 @@ public class ActivityInformation extends AppCompatActivity {
         relation9View = (ImageView) findViewById(R.id.relation9View);
         relation10View = (ImageView) findViewById(R.id.relation10View);
 
+        youTubePlayerView = findViewById(R.id.youtube_player_view);
+        getLifecycle().addObserver(youTubePlayerView);
+
         DisplayWallpaper();
         DisplayLayoutView();
         DisplayHeroName(currentHero);
@@ -165,11 +175,272 @@ public class ActivityInformation extends AppCompatActivity {
         DisplayGetLineView(currentHeroInfo);
         DisplayRelationship();
         DisplayRelationshipInformation(currentHeroInfo);
+
+        DisplayYouTubePlayer(currentHeroInfo);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        youTubePlayerView.release();
+    }
+
+    private void DisplayYouTubePlayer(final HeroInfo currentHeroInfo) {
+
+        youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+            @Override
+            public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                String videoId = "JdX4UnD5S90";
+                if (currentHeroInfo.get_id().equals("alencia")) {
+                    videoId = "A2s6VR6fR34";
+                } else if (currentHeroInfo.get_id().equals("ambitious-tywin")) {
+                    videoId = "iTzut6mDXUE";
+                } else if (currentHeroInfo.get_id().equals("apocalypse-ravi")) {
+                    videoId = "J1nawz5rWPs";
+                } else if (currentHeroInfo.get_id().equals("aramintha")) {
+                    videoId = "jLvOY5cJDLA";
+                } else if (currentHeroInfo.get_id().equals("arbitrer-vildred")) {
+                    videoId = "7wjcaKSs_fI";
+                } else if (currentHeroInfo.get_id().equals("baal-sezan")) {
+                    videoId = "ACrmxTI-T_c";
+                } else if (currentHeroInfo.get_id().equals("baiken")) {
+                    videoId = "PxLK6z1lJe8";
+                } else if (currentHeroInfo.get_id().equals("basar")) {
+                    videoId = "BldmBF_HhNc";
+                } else if (currentHeroInfo.get_id().equals("bellona")) {
+                    videoId = "LdfmX12M164";
+                } else if (currentHeroInfo.get_id().equals("cecilia")) {
+                    videoId = "-EOc50n_dq8";
+                } else if (currentHeroInfo.get_id().equals("cerise")) {
+                    videoId = "0x5DMRY115A";
+                } else if (currentHeroInfo.get_id().equals("cermia")) {
+                    videoId = "IXmKHFUwUz4";
+                } else if (currentHeroInfo.get_id().equals("charles")) {
+                    videoId = "RFkGGScmP7o";
+                } else if (currentHeroInfo.get_id().equals("charlotte")) {
+                    videoId = "R1c6dzrVNCw";
+                } else if (currentHeroInfo.get_id().equals("chloe")) {
+                    videoId = "G48b7NaOVhA";
+                } else if (currentHeroInfo.get_id().equals("dark-corvus")) {
+                    videoId = "SRn76P8a2bY";
+                } else if (currentHeroInfo.get_id().equals("desert-jewel-basar")) {
+                    videoId = "OkRqlWNZS5Q";
+                } else if (currentHeroInfo.get_id().equals("destina")) {
+                    videoId = "E2afroEI_6s";
+                } else if (currentHeroInfo.get_id().equals("diene")) {
+                    videoId = "D4vgqPjsfDI";
+                } else if (currentHeroInfo.get_id().equals("dizzy")) {
+                    videoId = "afqt9M9nhrU";
+                } else if (currentHeroInfo.get_id().equals("elena")) {
+                    videoId = "WVrA1xcrH0w";
+                } else if (currentHeroInfo.get_id().equals("faithless-lidica")) {
+                    videoId = "-s18wLETZM8";
+                } else if (currentHeroInfo.get_id().equals("fallen-cecilia")) {
+                    videoId = "VNjL_XYhw5Y";
+                } else if (currentHeroInfo.get_id().equals("haste")) {
+                    videoId = "anjBFB_SDew";
+                } else if (currentHeroInfo.get_id().equals("iseria")) {
+                    videoId = "DxfI7Sh0aVc";
+                } else if (currentHeroInfo.get_id().equals("judge-kise")) {
+                    videoId = "XSUaxmYz9Tk";
+                } else if (currentHeroInfo.get_id().equals("kawerik")) {
+                    videoId = "08_1fIwCh4U&t";
+                } else if (currentHeroInfo.get_id().equals("kayron")) {
+                    videoId = "r-oTB-iAa_A";
+                } else if (currentHeroInfo.get_id().equals("ken")) {
+                    videoId = "dq6c6SIuTfk";
+                } else if (currentHeroInfo.get_id().equals("kise")) {
+                    videoId = "mnvBgHgRh2I";
+                } else if (currentHeroInfo.get_id().equals("krau")) {
+                    videoId = "uz9cVGbTd9Q";
+                } else if (currentHeroInfo.get_id().equals("lidica")) {
+                    videoId = "ymzQYTNm1YQ";
+                } else if (currentHeroInfo.get_id().equals("lilias")) {
+                    videoId = "ZtAKqb8_Cl8";
+                } else if (currentHeroInfo.get_id().equals("lilibet")) {
+                    videoId = "A_O5J382dbc";
+                } else if (currentHeroInfo.get_id().equals("little-queen-charlotte")) {
+                    videoId = "BmS9U4nBl0g";
+                } else if (currentHeroInfo.get_id().equals("ludwig")) {
+                    videoId = "kUwDMmGegn0";
+                } else if (currentHeroInfo.get_id().equals("luluca")) {
+                    videoId = "vDcEKBwW8fc";
+                } else if (currentHeroInfo.get_id().equals("luna")) {
+                    videoId = "4p8uu3-J9A8";
+                } else if (currentHeroInfo.get_id().equals("maid chloe")) {
+                    videoId = "_0X5RLnMv98";
+                } else if (currentHeroInfo.get_id().equals("martial artist ken")) {
+                    videoId = "dEUwpfifhmY";
+                } else if (currentHeroInfo.get_id().equals("melissa")) {
+                    videoId = "mauJisK85yU";
+                } else if (currentHeroInfo.get_id().equals("pavel")) {
+                    videoId = "frd5y7dWfdA";
+                } else if (currentHeroInfo.get_id().equals("ravi")) {
+                    videoId = "R4fRQjzPPg8";
+                } else if (currentHeroInfo.get_id().equals("roana")) {
+                    videoId = "EO4jm4FDn9k";
+                } else if (currentHeroInfo.get_id().equals("ruele-of-light")) {
+                    videoId = "k9UfpFg67pk";
+                } else if (currentHeroInfo.get_id().equals("sage-baal-sezan")) {
+                    videoId = "AQeB82s2gSQ";
+                } else if (currentHeroInfo.get_id().equals("seaside bellona")) {
+                    videoId = "n1CSms9yyPU";
+                } else if (currentHeroInfo.get_id().equals("sez")) {
+                    videoId = "BWI4SN1Mu_s";
+                } else if (currentHeroInfo.get_id().equals("sigret")) {
+                    videoId = "a5zWo4Id1N4";
+                } else if (currentHeroInfo.get_id().equals("silver-blade-aramintha")) {
+                    videoId = "WfIeHxPHt8I";
+                } else if (currentHeroInfo.get_id().equals("sol")) {
+                    videoId = "iDWtCbtvmL8";
+                } else if (currentHeroInfo.get_id().equals("specimen-sez")) {
+                    videoId = "GXLkJ-9zXb0";
+                } else if (currentHeroInfo.get_id().equals("specter-tenebria")) {
+                    videoId = "4HbshuTBHVA";
+                } else if (currentHeroInfo.get_id().equals("tamarinne")) {
+                    videoId = "VApUESn48Q4";
+                } else if (currentHeroInfo.get_id().equals("straze")) {
+                    videoId = "l3dYXfOxBsI";
+                } else if (currentHeroInfo.get_id().equals("tenebria")) {
+                    videoId = "1tHEuBBxIjU";
+                } else if (currentHeroInfo.get_id().equals("tywin")) {
+                    videoId = "d0lykFPwhnQ";
+                } else if (currentHeroInfo.get_id().equals("vildred")) {
+                    videoId = "n_5hX2afHa8";
+                } else if (currentHeroInfo.get_id().equals("violet")) {
+                    videoId = "sSUCgMCWcAc";
+                } else if (currentHeroInfo.get_id().equals("vivian")) {
+                    videoId = "ApZYTba3Tk0";
+                } else if (currentHeroInfo.get_id().equals("yufine")) {
+                    videoId = "vNOil4HNwiw";
+                } else if (currentHeroInfo.get_id().equals("yuna")) {
+                    videoId = "_YMprWCsJuM";
+                } else if (currentHeroInfo.get_id().equals("zeno")) {
+                    videoId = "esOAP-OuPPQ";
+                } else if (currentHeroInfo.get_id().equals("achates")) {
+                    videoId = "wJw_xjUJeTk";
+                } else if (currentHeroInfo.get_id().equals("angelica")) {
+                    videoId = "eX1yFMBGmDU";
+                } else if (currentHeroInfo.get_id().equals("armin")) {
+                    videoId = "4Xcfey2zYtY";
+                } else if (currentHeroInfo.get_id().equals("assassin-cartuja")) {
+                    videoId = "jdVWnYd-E2o";
+                } else if (currentHeroInfo.get_id().equals("assassin-cidd")) {
+                    videoId = " rt5JE-UKvbM";
+                } else if (currentHeroInfo.get_id().equals("assassin-coli")) {
+                    videoId = "OBNV1gQc5jU";
+                } else if (currentHeroInfo.get_id().equals("auxiliary-lots")) {
+                    videoId = "ufPFp7Klv-I";
+                } else if (currentHeroInfo.get_id().equals("benevolent-romann")) {
+                    videoId = "HC-H7_rjONs";
+                } else if (currentHeroInfo.get_id().equals("blaze-dingo")) {
+                    videoId = "x0-ioB_Nb4c";
+                } else if (currentHeroInfo.get_id().equals("blood-blade-karin")) {
+                    videoId = "XHEsCEPYW9E";
+                } else if (currentHeroInfo.get_id().equals("cartuja")) {
+                    videoId = "5cCeXVwma_g";
+                } else if (currentHeroInfo.get_id().equals("celestial-mercedes")) {
+                    videoId = "NXmTMPy2blI";
+                } else if (currentHeroInfo.get_id().equals("challenger-dominiel")) {
+                    videoId = "jPF6SvQtCV8";
+                } else if (currentHeroInfo.get_id().equals("champion-zerato")) {
+                    videoId = "oGxpNuAYP30";
+                } else if (currentHeroInfo.get_id().equals("cidd")) {
+                    videoId = "9eoIRPuNCf4";
+                } else if (currentHeroInfo.get_id().equals("clarissa")) {
+                    videoId = "HdixV8JJB4w";
+                } else if (currentHeroInfo.get_id().equals("coli")) {
+                    videoId = "RJnHec5j1R8";
+                } else if (currentHeroInfo.get_id().equals("corvus")) {
+                    videoId = "RgtSbSl-yyk";
+                } else if (currentHeroInfo.get_id().equals("crescent-moon-rin")) {
+                    videoId = "gqXOyQggXyg";
+                } else if (currentHeroInfo.get_id().equals("crimson-armin")) {
+                    videoId = "QQUiNFvdHeA";
+                } else if (currentHeroInfo.get_id().equals("crozet")) {
+                    videoId = "LWmiHuKaQHI";
+                } else if (currentHeroInfo.get_id().equals("dingo")) {
+                    videoId = "v5j2fugoAL0";
+                } else if (currentHeroInfo.get_id().equals("dominiel")) {
+                    videoId = "TxqVJZG1zGs";
+                } else if (currentHeroInfo.get_id().equals("fighter-maya")) {
+                    videoId = "hUZ6X3nQqM4";
+                } else if (currentHeroInfo.get_id().equals("furious")) {
+                    videoId = "q8katNCRbYY";
+                } else if (currentHeroInfo.get_id().equals("general-purrgis")) {
+                    videoId = "aujv_R6JFCY";
+                } else if (currentHeroInfo.get_id().equals("guider-aither")) {
+                    videoId = "YwhBh_tguHs";
+                } else if (currentHeroInfo.get_id().equals("karin")) {
+                    videoId = "-aLHdJq3RFw";
+                } else if (currentHeroInfo.get_id().equals("khawana")) {
+                    videoId = "v=o_cGt2rvvMs";
+                } else if (currentHeroInfo.get_id().equals("khawazu")) {
+                    videoId = "g_QSfH1Qt7c";
+                } else if (currentHeroInfo.get_id().equals("kitty-clarissa")) {
+                    videoId = "rs0KAYE7zj4";
+                } else if (currentHeroInfo.get_id().equals("leo")) {
+                    videoId = "0kFQx6UTzkM";
+                } else if (currentHeroInfo.get_id().equals("lots")) {
+                    videoId = "M-JI1Nx8zLU";
+                } else if (currentHeroInfo.get_id().equals("maya")) {
+                    videoId = "x4-qlHR5bhQ";
+                } else if (currentHeroInfo.get_id().equals("mercedes")) {
+                    videoId = "4xRC5IfdrUg";
+                } else if (currentHeroInfo.get_id().equals("purrgis")) {
+                    videoId = "gFn0OZyhPAc";
+                } else if (currentHeroInfo.get_id().equals("rin")) {
+                    videoId = "NPlEQ2qrlz0";
+                } else if (currentHeroInfo.get_id().equals("roaming-warrior-leo")) {
+                    videoId = "6Mf4V2u1fPc";
+                } else if (currentHeroInfo.get_id().equals("romann")) {
+                    videoId = "IArcsa2RQpc";
+                } else if (currentHeroInfo.get_id().equals("rose")) {
+                    videoId = "0dbu_7fQrFs";
+                } else if (currentHeroInfo.get_id().equals("schuri")) {
+                    videoId = "RYfbsiu9cPA";
+                } else if (currentHeroInfo.get_id().equals("serila")) {
+                    videoId = "YFwtaeSoEl4";
+                } else if (currentHeroInfo.get_id().equals("shadow-rose")) {
+                    videoId = "9_TUtSyN1k8";
+                } else if (currentHeroInfo.get_id().equals("shooting-star-achates")) {
+                    videoId = "dYnORiTycvA";
+                } else if (currentHeroInfo.get_id().equals("silk")) {
+                    videoId = "pjojzu1nFnc";
+                } else if (currentHeroInfo.get_id().equals("sinful-angelica")) {
+                    videoId = "lfN9sEemE_c";
+                } else if (currentHeroInfo.get_id().equals("surin")) {
+                    videoId = "a2qHjuCBmtI";
+                } else if (currentHeroInfo.get_id().equals("tempest-surin")) {
+                    videoId = "QGrY5a6mj5o";
+                } else if (currentHeroInfo.get_id().equals("troublemaker-crozet")) {
+                    videoId = "WcCpRJl-5p0";
+                } else if (currentHeroInfo.get_id().equals("wanderer-silk")) {
+                    videoId = "8199U7ID9CI";
+                } else if (currentHeroInfo.get_id().equals("watcher-schuri")) {
+                    videoId = "kZHTZX2jUeQ";
+                } else if (currentHeroInfo.get_id().equals("zerato")) {
+                    videoId = "HWxHzUIJJGw";
+                } else if (currentHeroInfo.get_id().equals("aither")) {
+                    videoId = "kA3kXpa-aVM";
+                } else if (currentHeroInfo.get_id().equals("kikirat-v2")) {
+                    videoId = "bgJBgrnqrsk";
+                } else if (currentHeroInfo.get_id().equals("lorina")) {
+                    videoId = "ikgODBB3bjs";
+                } else if (currentHeroInfo.get_id().equals("ras")) {
+                    videoId = "lroYbOiAB0o";
+                }
+                youTubePlayer.loadVideo(videoId, 0);
+            }
+        });
+
     }
 
     @Override
-    public void onBackPressed(){
-        finish();
+    protected void onDestroy() {
+        super.onDestroy();
+        youTubePlayerView.release();
     }
 
     @SuppressLint("SetTextI18n")
@@ -179,79 +450,79 @@ public class ActivityInformation extends AppCompatActivity {
                 default:
                     break;
                 case 1:
-                    relation1TextView.setText("[" + HeroInfoRelation1.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
+                    relation1TextView.setText("["+ HeroInfoRelation1.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
                     break;
                 case 2:
-                    relation1TextView.setText("[" + HeroInfoRelation1.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
-                    relation2TextView.setText("[" + HeroInfoRelation2.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
+                    relation1TextView.setText("["+ HeroInfoRelation1.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
+                    relation2TextView.setText("["+ HeroInfoRelation2.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
                     break;
                 case 3:
-                    relation1TextView.setText("[" + HeroInfoRelation1.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
-                    relation2TextView.setText("[" + HeroInfoRelation2.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
-                    relation3TextView.setText("[" + HeroInfoRelation3.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(2).getDescription());
+                    relation1TextView.setText("["+ HeroInfoRelation1.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
+                    relation2TextView.setText("["+ HeroInfoRelation2.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
+                    relation3TextView.setText("["+ HeroInfoRelation3.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(2).getDescription());
                     break;
                 case 4:
-                    relation1TextView.setText("[" + HeroInfoRelation1.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
-                    relation2TextView.setText("[" + HeroInfoRelation2.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
-                    relation3TextView.setText("[" + HeroInfoRelation3.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(2).getDescription());
-                    relation4TextView.setText("[" + HeroInfoRelation4.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(3).getDescription());
+                    relation1TextView.setText("["+ HeroInfoRelation1.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
+                    relation2TextView.setText("["+ HeroInfoRelation2.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
+                    relation3TextView.setText("["+ HeroInfoRelation3.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(2).getDescription());
+                    relation4TextView.setText("["+ HeroInfoRelation4.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(3).getDescription());
                     break;
                 case 5:
-                    relation1TextView.setText("[" + HeroInfoRelation1.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
-                    relation2TextView.setText("[" + HeroInfoRelation2.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
-                    relation3TextView.setText("[" + HeroInfoRelation3.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(2).getDescription());
-                    relation4TextView.setText("[" + HeroInfoRelation4.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(3).getDescription());
-                    relation5TextView.setText("[" + HeroInfoRelation5.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(4).getDescription());
+                    relation1TextView.setText("["+ HeroInfoRelation1.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
+                    relation2TextView.setText("["+ HeroInfoRelation2.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
+                    relation3TextView.setText("["+ HeroInfoRelation3.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(2).getDescription());
+                    relation4TextView.setText("["+ HeroInfoRelation4.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(3).getDescription());
+                    relation5TextView.setText("["+ HeroInfoRelation5.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(4).getDescription());
                     break;
                 case 6:
-                    relation1TextView.setText("[" + HeroInfoRelation1.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
-                    relation2TextView.setText("[" + HeroInfoRelation2.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
-                    relation3TextView.setText("[" + HeroInfoRelation3.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(2).getDescription());
-                    relation4TextView.setText("[" + HeroInfoRelation4.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(3).getDescription());
-                    relation5TextView.setText("[" + HeroInfoRelation5.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(4).getDescription());
-                    relation6TextView.setText("[" + HeroInfoRelation6.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(5).getDescription());
+                    relation1TextView.setText("["+ HeroInfoRelation1.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
+                    relation2TextView.setText("["+ HeroInfoRelation2.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
+                    relation3TextView.setText("["+ HeroInfoRelation3.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(2).getDescription());
+                    relation4TextView.setText("["+ HeroInfoRelation4.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(3).getDescription());
+                    relation5TextView.setText("["+ HeroInfoRelation5.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(4).getDescription());
+                    relation6TextView.setText("["+ HeroInfoRelation6.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(5).getDescription());
                     break;
                 case 7:
-                    relation1TextView.setText("[" + HeroInfoRelation1.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
-                    relation2TextView.setText("[" + HeroInfoRelation2.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
-                    relation3TextView.setText("[" + HeroInfoRelation3.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(2).getDescription());
-                    relation4TextView.setText("[" + HeroInfoRelation4.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(3).getDescription());
-                    relation5TextView.setText("[" + HeroInfoRelation5.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(4).getDescription());
-                    relation6TextView.setText("[" + HeroInfoRelation6.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(5).getDescription());
-                    relation7TextView.setText("[" + HeroInfoRelation7.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(6).getDescription());
+                    relation1TextView.setText("["+ HeroInfoRelation1.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
+                    relation2TextView.setText("["+ HeroInfoRelation2.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
+                    relation3TextView.setText("["+ HeroInfoRelation3.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(2).getDescription());
+                    relation4TextView.setText("["+ HeroInfoRelation4.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(3).getDescription());
+                    relation5TextView.setText("["+ HeroInfoRelation5.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(4).getDescription());
+                    relation6TextView.setText("["+ HeroInfoRelation6.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(5).getDescription());
+                    relation7TextView.setText("["+ HeroInfoRelation7.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(6).getDescription());
                     break;
                 case 8:
-                    relation1TextView.setText("[" + HeroInfoRelation1.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
-                    relation2TextView.setText("[" + HeroInfoRelation2.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
-                    relation3TextView.setText("[" + HeroInfoRelation3.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(2).getDescription());
-                    relation4TextView.setText("[" + HeroInfoRelation4.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(3).getDescription());
-                    relation5TextView.setText("[" + HeroInfoRelation5.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(4).getDescription());
-                    relation6TextView.setText("[" + HeroInfoRelation6.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(5).getDescription());
-                    relation7TextView.setText("[" + HeroInfoRelation7.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(6).getDescription());
-                    relation8TextView.setText("[" + HeroInfoRelation8.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(7).getDescription());
+                    relation1TextView.setText("["+ HeroInfoRelation1.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
+                    relation2TextView.setText("["+ HeroInfoRelation2.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
+                    relation3TextView.setText("["+ HeroInfoRelation3.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(2).getDescription());
+                    relation4TextView.setText("["+ HeroInfoRelation4.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(3).getDescription());
+                    relation5TextView.setText("["+ HeroInfoRelation5.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(4).getDescription());
+                    relation6TextView.setText("["+ HeroInfoRelation6.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(5).getDescription());
+                    relation7TextView.setText("["+ HeroInfoRelation7.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(6).getDescription());
+                    relation8TextView.setText("["+ HeroInfoRelation8.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(7).getDescription());
                     break;
                 case 9:
-                    relation1TextView.setText("[" + HeroInfoRelation1.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
-                    relation2TextView.setText("[" + HeroInfoRelation2.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
-                    relation3TextView.setText("[" + HeroInfoRelation3.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(2).getDescription());
-                    relation4TextView.setText("[" + HeroInfoRelation4.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(3).getDescription());
-                    relation5TextView.setText("[" + HeroInfoRelation5.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(4).getDescription());
-                    relation6TextView.setText("[" + HeroInfoRelation6.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(5).getDescription());
-                    relation7TextView.setText("[" + HeroInfoRelation7.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(6).getDescription());
-                    relation8TextView.setText("[" + HeroInfoRelation8.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(7).getDescription());
-                    relation9TextView.setText("[" + HeroInfoRelation9.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(8).getDescription());
+                    relation1TextView.setText("["+ HeroInfoRelation1.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
+                    relation2TextView.setText("["+ HeroInfoRelation2.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
+                    relation3TextView.setText("["+ HeroInfoRelation3.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(2).getDescription());
+                    relation4TextView.setText("["+ HeroInfoRelation4.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(3).getDescription());
+                    relation5TextView.setText("["+ HeroInfoRelation5.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(4).getDescription());
+                    relation6TextView.setText("["+ HeroInfoRelation6.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(5).getDescription());
+                    relation7TextView.setText("["+ HeroInfoRelation7.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(6).getDescription());
+                    relation8TextView.setText("["+ HeroInfoRelation8.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(7).getDescription());
+                    relation9TextView.setText("["+ HeroInfoRelation9.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(8).getDescription());
                     break;
                 case 10:
-                    relation1TextView.setText("[" + HeroInfoRelation1.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
-                    relation2TextView.setText("[" + HeroInfoRelation2.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
-                    relation3TextView.setText("[" + HeroInfoRelation3.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(2).getDescription());
-                    relation4TextView.setText("[" + HeroInfoRelation4.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(3).getDescription());
-                    relation5TextView.setText("[" + HeroInfoRelation5.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(4).getDescription());
-                    relation6TextView.setText("[" + HeroInfoRelation6.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(5).getDescription());
-                    relation7TextView.setText("[" + HeroInfoRelation7.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(6).getDescription());
-                    relation8TextView.setText("[" + HeroInfoRelation8.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(7).getDescription());
-                    relation9TextView.setText("[" + HeroInfoRelation9.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(8).getDescription());
-                    relation10TextView.setText("[" + HeroInfoRelation10.getName() + "]" + "\n" + currentHeroInfo.getRelationships().get(0).getRelations().get(9).getDescription());
+                    relation1TextView.setText("["+ HeroInfoRelation1.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(0).getDescription());
+                    relation2TextView.setText("["+ HeroInfoRelation2.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(1).getDescription());
+                    relation3TextView.setText("["+ HeroInfoRelation3.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(2).getDescription());
+                    relation4TextView.setText("["+ HeroInfoRelation4.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(3).getDescription());
+                    relation5TextView.setText("["+ HeroInfoRelation5.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(4).getDescription());
+                    relation6TextView.setText("["+ HeroInfoRelation6.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(5).getDescription());
+                    relation7TextView.setText("["+ HeroInfoRelation7.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(6).getDescription());
+                    relation8TextView.setText("["+ HeroInfoRelation8.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(7).getDescription());
+                    relation9TextView.setText("["+ HeroInfoRelation9.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(8).getDescription());
+                    relation10TextView.setText("["+ HeroInfoRelation10.getName() + "]"+ ""+ currentHeroInfo.getRelationships().get(0).getRelations().get(9).getDescription());
                     break;
             }
         }
@@ -436,7 +707,7 @@ public class ActivityInformation extends AppCompatActivity {
     }
 
     private void DisplayImageFullUrl() {
-        Picasso.get().load(URLBODY+currentHero.get_id()+".png").into(imageFullUrlView);
+        Picasso.get().load(URLBODY + currentHero.get_id() + ".png").into(imageFullUrlView);
     }
 
     private void DisplayWallpaper() {
@@ -449,7 +720,7 @@ public class ActivityInformation extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void DisplayStory(HeroInfo currentHeroInfo) {
-        storyView.setText("\"" + currentHeroInfo.getStory() + "\"");
+        storyView.setText("\""+ currentHeroInfo.getStory() + "\"");
     }
 
     private void DisplayGetLineView(HeroInfo currentHeroInfo) {
