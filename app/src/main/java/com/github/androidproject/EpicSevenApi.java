@@ -1,4 +1,4 @@
-package com.github.androidproject.interfaces;
+package com.github.androidproject;
 
 import com.github.androidproject.models.RestEpicSevenResponse;
 import com.github.androidproject.models.RestHeroInfoResponse;
