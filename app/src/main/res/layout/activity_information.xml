@@ -618,9 +618,6 @@
                                 app:showYouTubeButton="true"
                                 app:videoId="EO4jm4FDn9k"
                                 app:showFullScreenButton="true"
-                                app:enableAutomaticInitialization="true"
-                                app:handleNetworkEvents="true"
-                                app:useWebUi="false"
                                 app:showVideoCurrentTime="true"
                                 app:showVideoDuration="true"
                                 app:showSeekBar="true"/>
