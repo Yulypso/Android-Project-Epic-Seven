@@ -21,6 +21,7 @@ import com.github.androidproject.models.HeroInfo;
 import com.google.gson.Gson;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerFullScreenListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerUtils;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 import com.squareup.picasso.Picasso;
@@ -104,7 +105,8 @@ public class ActivityInformation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setTitle("Hero Information");
 
         Log.d("Info", "coucou je suis arrivé à l'activity 2 !");
         intent = getIntent();
@@ -186,6 +188,8 @@ public class ActivityInformation extends AppCompatActivity {
         youTubePlayerView.release();
     }
 
+
+
     private void DisplayYouTubePlayer(final HeroInfo currentHeroInfo) {
 
         youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
@@ -245,7 +249,7 @@ public class ActivityInformation extends AppCompatActivity {
                 } else if (currentHeroInfo.get_id().equals("judge-kise")) {
                     videoId = "XSUaxmYz9Tk";
                 } else if (currentHeroInfo.get_id().equals("kawerik")) {
-                    videoId = "08_1fIwCh4U&t";
+                    videoId = "08_1fIwCh4U";
                 } else if (currentHeroInfo.get_id().equals("kayron")) {
                     videoId = "r-oTB-iAa_A";
                 } else if (currentHeroInfo.get_id().equals("ken")) {
