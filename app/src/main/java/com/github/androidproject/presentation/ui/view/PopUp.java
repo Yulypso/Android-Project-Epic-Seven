@@ -36,6 +36,11 @@ public class PopUp extends Activity {
         DisplayMessage(currentHero);
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
+
     @SuppressLint("SetTextI18n")
     public void DisplayMessage(Hero currentHero){
         popUpView.setText("We are Sorry !\n"+currentHero.getName()+"'s\ninformation is not available !");
