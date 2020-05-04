@@ -1,4 +1,4 @@
-package com.github.androidproject.models;
+package com.github.androidproject.presentation.ui.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -11,7 +11,7 @@ public class Relations implements Parcelable {
     private String relation;
     private String relation_id;
 
-    protected Relations(Parcel in) {
+    private Relations(Parcel in) {
         id = in.readString();
         if (in.readByte() == 0) {
             slot = null;

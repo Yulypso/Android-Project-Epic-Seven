@@ -1,4 +1,4 @@
-package com.github.androidproject.adapters;
+package com.github.androidproject.presentation.ui.view;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -15,23 +15,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.github.androidproject.activites.PopUp;
-import com.github.androidproject.models.Hero;
-import com.github.androidproject.models.HeroInfo;
+import com.github.androidproject.Constants;
 import com.github.androidproject.R;
-import com.github.androidproject.activites.ActivityInformation;
+import com.github.androidproject.presentation.ui.models.Hero;
+import com.github.androidproject.presentation.ui.models.HeroInfo;
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> implements Filterable {
 
@@ -44,8 +36,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
     private HeroInfo currentHeroInfo;
     private static int totalRelations = 0;
 
-    public static final String EXTRA_TEXT_IMAGE = "com.github.androidproject.EXTRA_TEXT_IMAGE";
-    public static final String EXTRA_TEXT_FULL_IMAGE = "com.github.androidproject.EXTRA_TEXT_FULL_IMAGE";
 
     public ListAdapter(List<Hero> heroList, List<HeroInfo> heroInfoList) { //constructor
         this.heroList = heroList;
@@ -254,10 +244,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
         intent.putExtra("HeroInfo", heroInfo);
 
         String imageUrl = heroInfo.getAssets().getImage();
-        intent.putExtra(EXTRA_TEXT_IMAGE, imageUrl);
+        intent.putExtra(Constants.EXTRA_TEXT_IMAGE, imageUrl);
 
         String imageFullUrl = (hero.getModelURL());
-        intent.putExtra(EXTRA_TEXT_FULL_IMAGE, imageFullUrl);
+        intent.putExtra(Constants.EXTRA_TEXT_FULL_IMAGE, imageFullUrl);
 
         List<HeroInfo> heroRelations = getRelations(heroInfoList, currentHeroInfo);
         sendRelations(intent, heroRelations);

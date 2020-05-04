@@ -1,4 +1,4 @@
-package com.github.androidproject.models;
+package com.github.androidproject.presentation.ui.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -10,7 +10,7 @@ public class Relationships implements Parcelable {
     private List<Relations> relations;
 
 
-    protected Relationships(Parcel in) {
+    private Relationships(Parcel in) {
         relations = in.createTypedArrayList(Relations.CREATOR);
     }
 

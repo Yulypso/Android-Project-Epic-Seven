@@ -1,4 +1,4 @@
-package com.github.androidproject.activites;
+package com.github.androidproject.presentation.ui.view;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 
 import com.github.androidproject.R;
-import com.github.androidproject.models.Hero;
+import com.github.androidproject.presentation.ui.models.Hero;
 
 public class PopUp extends Activity {
 

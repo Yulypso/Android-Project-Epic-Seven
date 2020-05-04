@@ -1,9 +1,7 @@
-package com.github.androidproject.models;
+package com.github.androidproject.presentation.ui.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import com.github.androidproject.models.Assets;
 
 import java.util.List;
 
@@ -18,7 +16,7 @@ public class HeroInfo implements Parcelable {
     private String get_line;
     private List<Relationships> relationships;
 
-    protected HeroInfo(Parcel in) {
+    private HeroInfo(Parcel in) {
         _id = in.readString();
         id = in.readString();
         assets = in.readParcelable(Assets.class.getClassLoader());

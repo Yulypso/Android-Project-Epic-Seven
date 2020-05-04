@@ -18,12 +18,12 @@
         tools:ignore="LockedOrientationActivity"
         android:fullBackupContent="@xml/backup_descriptor">
 
-        <activity android:name=".activites.ActivityInformation"
-            android:parentActivityName=".activites.MainActivity"
+        <activity android:name=".presentation.ui.view.ActivityInformation"
+            android:parentActivityName=".presentation.ui.view.MainActivity"
             android:configChanges="orientation|screenSize">
         </activity>
 
-        <activity android:name=".activites.MainActivity"
+        <activity android:name=".presentation.ui.view.MainActivity"
             android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activites.PopUp"
+        <activity android:name=".presentation.ui.view.PopUp"
             android:theme="@style/AppTheme.CustomTheme"
             android:configChanges="orientation|screenSize">
         </activity>

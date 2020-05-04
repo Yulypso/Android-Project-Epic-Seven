@@ -1,4 +1,4 @@
-package com.github.androidproject.models;
+package com.github.androidproject.presentation.ui.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -8,7 +8,7 @@ public class Assets implements Parcelable {
     private String image;
     private String thumbnail;
 
-    protected Assets(Parcel in) {
+    private Assets(Parcel in) {
         icon = in.readString();
         image = in.readString();
         thumbnail = in.readString();

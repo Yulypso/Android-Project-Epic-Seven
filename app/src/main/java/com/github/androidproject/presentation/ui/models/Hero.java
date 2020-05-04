@@ -1,10 +1,7 @@
-package com.github.androidproject.models;
+package com.github.androidproject.presentation.ui.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import java.io.Serializable;
-import java.util.List;
 
 public class Hero implements Parcelable {
 
@@ -17,7 +14,7 @@ public class Hero implements Parcelable {
     private String modelURL;
 
 
-    public Hero(Parcel in) {
+    private Hero(Parcel in) {
         _id = in.readString();
         name = in.readString();
         if (in.readByte() == 0) {

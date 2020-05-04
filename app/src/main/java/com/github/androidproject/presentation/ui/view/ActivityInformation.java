@@ -1,4 +1,4 @@
-package com.github.androidproject.activites;
+package com.github.androidproject.presentation.ui.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,22 +11,17 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.github.androidproject.adapters.ListAdapter;
+import com.github.androidproject.Constants;
 import com.github.androidproject.R;
-import com.github.androidproject.models.Hero;
-import com.github.androidproject.models.HeroInfo;
-import com.google.gson.Gson;
+import com.github.androidproject.presentation.ui.models.Hero;
+import com.github.androidproject.presentation.ui.models.HeroInfo;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerFullScreenListener;
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerUtils;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 import com.squareup.picasso.Picasso;
 
-import java.io.Serializable;
 import java.util.Objects;
 
 public class ActivityInformation extends AppCompatActivity {
@@ -116,8 +111,8 @@ public class ActivityInformation extends AppCompatActivity {
 
         getHeroInfoRelations(intent);
 
-        imageUrl = intent.getStringExtra(ListAdapter.EXTRA_TEXT_IMAGE);
-        imageFullUrl = intent.getStringExtra(ListAdapter.EXTRA_TEXT_FULL_IMAGE);
+        imageUrl = intent.getStringExtra(Constants.EXTRA_TEXT_IMAGE);
+        imageFullUrl = intent.getStringExtra(Constants.EXTRA_TEXT_FULL_IMAGE);
 
         imageViewImage = (ImageView) findViewById(R.id.imageViewImage);
         imageFullUrlView = (ImageView) findViewById(R.id.imageFullUrlView);

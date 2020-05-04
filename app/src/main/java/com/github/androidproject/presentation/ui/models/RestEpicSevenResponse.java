@@ -1,6 +1,4 @@
-package com.github.androidproject.models;
-
-import com.github.androidproject.models.Hero;
+package com.github.androidproject.presentation.ui.models;
 
 import java.util.List;
 

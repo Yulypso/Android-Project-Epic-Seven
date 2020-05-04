@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/skybackgroundimage4"
     android:orientation="vertical"
-    tools:context=".activites.ActivityInformation">
+    tools:context=".presentation.ui.view.ActivityInformation">
 
     <ScrollView
         android:layout_width="match_parent"
