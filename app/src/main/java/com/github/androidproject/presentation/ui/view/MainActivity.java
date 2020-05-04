@@ -6,24 +6,18 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.github.androidproject.Constants;
 import com.github.androidproject.Singletons;
 import com.github.androidproject.presentation.ui.controller.MainController;
 import com.github.androidproject.presentation.ui.models.Hero;
 import com.github.androidproject.presentation.ui.models.HeroInfo;
 import com.github.androidproject.R;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -53,7 +47,15 @@ public class MainActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        mAdapter = new ListAdapter(heroList, heroInfoList);
+        mAdapter = new ListAdapter(heroList, heroInfoList, new ListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Hero item) {
+                mainController.onItemClick(item);
+            }
+        });
+
+
+
         recyclerView.setAdapter(mAdapter);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
