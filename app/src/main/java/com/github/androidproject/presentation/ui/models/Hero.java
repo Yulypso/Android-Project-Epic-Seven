@@ -13,6 +13,15 @@ public class Hero implements Parcelable {
     private String zodiac;
     private String modelURL;
 
+    public Hero(String _id, String name, Integer rarity, String role, String attribute, String zodiac, String modelURL) {
+        this._id = _id;
+        this.name = name;
+        this.rarity = rarity;
+        this.role = role;
+        this.attribute = attribute;
+        this.zodiac = zodiac;
+        this.modelURL = modelURL;
+    }
 
     private Hero(Parcel in) {
         _id = in.readString();
@@ -61,6 +70,25 @@ public class Hero implements Parcelable {
         dest.writeString(modelURL);
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRarity(Integer rarity) {
+        this.rarity = rarity;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public void setAttribute(String attribute) {
+        this.attribute = attribute;
+    }
+
+    public void setZodiac(String zodiac) {
+        this.zodiac = zodiac;
+    }
 
     public void setModelURL(String modelURL) {
         this.modelURL = modelURL;
