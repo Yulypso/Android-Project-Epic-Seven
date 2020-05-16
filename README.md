@@ -67,20 +67,17 @@ several features have been implemented within this application.
 
 <img align="center" width="400" height="900" src="./pictures/liste_app.png"/>
 
-
 > Sometimes a hero appears in the database, but his information has not yet been revealed to the public, so you can only know some information about him.
 > A default icon is assigned to them and a pop up appears when we try to click on it.
 
 <img align="left" width="400" height="900" src="./pictures/liste_pb_app.png"/>
 <img align="center" width="400" height="900" src="./pictures/liste_pb_b_app.png"/>
 
-
 > the search bar implementation allows you to easily search and find your heroes.
 > It is done by following letter detection.
 
 <img align="left" width="400" height="900" src="./pictures/search_app.png"/>
 <img align="center" width="400" height="900" src="./pictures/search2_app.png"/>
-
 
 > If the hero has no information, the pop up still works.
 
