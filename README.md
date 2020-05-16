@@ -6,7 +6,7 @@ Android Project - Epic Seven is a mobile application based on the mobile game Ep
 The purpose of this mobile application is to display a list of heroes and their characteristics such as their history, rarity, type, zodiac, relationships, etc.
 This application can be used as a database where the most curious players can discover the history of their favorite characters.
 
-<img align="center" width="200" height="400" src="./pictures/logo_app.png"/>
+<img align="center" width="300" height="300" src="./pictures/logo_app.png"/>
 
 <br> Designed using the Rest API EpicSevenDB. Here you will find links to the project and documentation.
 - [GitHub](https://github.com/EpicSevenDB/api)
@@ -46,7 +46,7 @@ several features have been implemented within this application.
 - Application Icon
 - MVC Architecture
 - Singleton
-- Gitflow
+- Gitflow (permanent: master|develop) (temporary: features|releases)
 - Design
 - Unit Test
 - SOLID Principles
@@ -62,7 +62,7 @@ several features have been implemented within this application.
 > You can then slide down to discover the different heroes.
 > we thus find the name, a small summary, the rarity, the element and the zodiac sign associated with the current hero.
 
-<img align="center" width="400" height="400" src="./pictures/liste_app.png"/>
+<img align="center" width="400" height="900" src="./pictures/liste_app.png"/>
 <br>
 
 > Sometimes a hero appears in the database, but his information has not yet been revealed to the public, so you can only know some information about him.
@@ -74,13 +74,15 @@ several features have been implemented within this application.
 
 > the search bar implementation allows you to easily search and find your heroes.
 > It is done by following letter detection.
-> If the hero has no information, the pop up still works.
 
 <img align="left" width="400" height="900" src="./pictures/search_app.png"/>
 <img align="center" width="400" height="900" src="./pictures/search2_app.png"/>
 <br>
-<img align="left" width="400" height="900" src="./pictures/search3_app.png"/>
-<img align="center" width="400" height="900" src="./pictures/search4_pb_app.png"/>
+
+> If the hero has no information, the pop up still works.
+
+<img align="center" width="400" height="900" src="./pictures/search3_app.png"/>
+<img align="left" width="400" height="900" src="./pictures/search4_pb_app.png"/>
 <br>
 
 ### Second Activity: Hero Information  
