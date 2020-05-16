@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/skybackgroundimage4"
     android:orientation="vertical"
-    tools:context=".activites.ActivityInformation">
+    tools:context=".presentation.ui.view.ActivityInformation">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -612,12 +612,12 @@
 
                             <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
                                 android:id="@+id/youtube_player_view"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="10dp"
                                 app:autoPlay="false"
                                 app:showYouTubeButton="true"
-                                app:showFullScreenButton="true"
+                                app:showFullScreenButton="false"
                                 app:showVideoCurrentTime="true"
                                 app:showVideoDuration="true"
                                 app:showSeekBar="true"/>
