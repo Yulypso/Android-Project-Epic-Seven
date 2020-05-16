@@ -16,6 +16,17 @@ public class HeroInfo implements Parcelable {
     private String get_line;
     private List<Relationships> relationships;
 
+    public HeroInfo(String _id, String id, Assets assets, String name, String description, String story, String get_line, List<Relationships> relationships) {
+        this._id = _id;
+        this.id = id;
+        this.assets = assets;
+        this.name = name;
+        this.description = description;
+        this.story = story;
+        this.get_line = get_line;
+        this.relationships = relationships;
+    }
+
     private HeroInfo(Parcel in) {
         _id = in.readString();
         id = in.readString();

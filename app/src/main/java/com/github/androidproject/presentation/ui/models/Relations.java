@@ -11,6 +11,14 @@ public class Relations implements Parcelable {
     private String relation;
     private String relation_id;
 
+    public Relations(String id, Integer slot, String description, String relation, String relation_id) {
+        this.id = id;
+        this.slot = slot;
+        this.description = description;
+        this.relation = relation;
+        this.relation_id = relation_id;
+    }
+
     private Relations(Parcel in) {
         id = in.readString();
         if (in.readByte() == 0) {
