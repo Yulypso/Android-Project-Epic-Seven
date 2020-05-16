@@ -28,14 +28,10 @@ import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> implements Filterable {
 
-    private List<Hero> heroList; //liste des héros
+    private List<Hero> heroList;
     private List<Hero> heroListFull;
-
-    private List<HeroInfo> heroInfoList; //liste des infos sur les héros.
-
+    private List<HeroInfo> heroInfoList;
     private Hero currentHero;
-
-
     private final OnItemClickListener listener;
 
     public interface OnItemClickListener {
@@ -223,13 +219,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
         }
     }
 
-
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         // System.out.println("number of item : "+ values.size()); //to Test LogCat display
         return heroList.size();
-    } //the adapter return the total number of items list
+    }
 
     @Override
     public Filter getFilter() {

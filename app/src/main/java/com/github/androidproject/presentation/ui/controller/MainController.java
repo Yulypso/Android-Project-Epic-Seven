@@ -49,7 +49,7 @@ public class MainController {
 
     public void onStart() {
 
-        //deleteDataInCache(); //remove current saved list from cache => test api calls.
+        //deleteDataInCache();
 
         try {
             heroList = getDataFromCache(Constants.KEY_HERO_LIST);
@@ -177,7 +177,7 @@ public class MainController {
         currentHeroInfo = searchHeroInfoById(currentHero);
         if (currentHeroInfo != null) {
             Log.d("HeroInfo", "" + currentHeroInfo.get_id());
-            openActivityInformation(view, currentHero, currentHeroInfo, heroList, heroInfoList);
+            openActivityInformation(view, currentHero, currentHeroInfo, heroInfoList);
         } else {
             Intent intent2 = new Intent(view, PopUp.class);
             intent2.putExtra("currentHeroMissing", currentHero);
@@ -194,11 +194,11 @@ public class MainController {
         return null;
     }
 
-    private void openActivityInformation(MainActivity view, Hero hero, HeroInfo heroInfo, List<Hero> heroList, List<HeroInfo> heroInfoList) {
+    private void openActivityInformation(MainActivity view, Hero hero, HeroInfo heroInfo, List<HeroInfo> heroInfoList) {
 
         Intent intent = new Intent(view, ActivityInformation.class);
-        intent.putExtra("Hero", hero);
-        intent.putExtra("HeroInfo", heroInfo);
+        intent.putExtra(Constants.KEY_HERO, hero);
+        intent.putExtra(Constants.KEY_HEROINFO, heroInfo);
 
         String imageUrl = heroInfo.getAssets().getImage();
         intent.putExtra(Constants.EXTRA_TEXT_IMAGE, imageUrl);
@@ -208,7 +208,7 @@ public class MainController {
 
         List<HeroInfo> heroRelations = getRelations(heroInfoList, currentHeroInfo);
         sendRelations(intent, heroRelations);
-        intent.putExtra("totalRelations", totalRelations);
+        intent.putExtra(Constants.KEY_TOTALRELATIONS, totalRelations);
 
         view.startActivity(intent);
     }
@@ -241,133 +241,133 @@ public class MainController {
                     break;
                 case 1:
                     if (heroRelations.get(0) != null)
-                        intent.putExtra("HeroInfo1", heroRelations.get(0));
+                        intent.putExtra(Constants.HERO_INFO_1, heroRelations.get(0));
                     break;
                 case 2:
                     if (heroRelations.get(0) != null)
-                        intent.putExtra("HeroInfo1", heroRelations.get(0));
+                        intent.putExtra(Constants.HERO_INFO_1, heroRelations.get(0));
                     if (heroRelations.get(1) != null)
-                        intent.putExtra("HeroInfo2", heroRelations.get(1));
+                        intent.putExtra(Constants.HERO_INFO_2, heroRelations.get(1));
                     break;
                 case 3:
                     if (heroRelations.get(0) != null)
-                        intent.putExtra("HeroInfo1", heroRelations.get(0));
+                        intent.putExtra(Constants.HERO_INFO_1, heroRelations.get(0));
                     if (heroRelations.get(1) != null)
-                        intent.putExtra("HeroInfo2", heroRelations.get(1));
+                        intent.putExtra(Constants.HERO_INFO_2, heroRelations.get(1));
                     if (heroRelations.get(2) != null)
-                        intent.putExtra("HeroInfo3", heroRelations.get(2));
+                        intent.putExtra(Constants.HERO_INFO_3, heroRelations.get(2));
                     break;
                 case 4:
                     if (heroRelations.get(0) != null)
-                        intent.putExtra("HeroInfo1", heroRelations.get(0));
+                        intent.putExtra(Constants.HERO_INFO_1, heroRelations.get(0));
                     if (heroRelations.get(1) != null)
-                        intent.putExtra("HeroInfo2", heroRelations.get(1));
+                        intent.putExtra(Constants.HERO_INFO_2, heroRelations.get(1));
                     if (heroRelations.get(2) != null)
-                        intent.putExtra("HeroInfo3", heroRelations.get(2));
+                        intent.putExtra(Constants.HERO_INFO_3, heroRelations.get(2));
                     if (heroRelations.get(3) != null)
-                        intent.putExtra("HeroInfo4", heroRelations.get(3));
+                        intent.putExtra(Constants.HERO_INFO_4, heroRelations.get(3));
                     break;
                 case 5:
                     if (heroRelations.get(0) != null)
-                        intent.putExtra("HeroInfo1", heroRelations.get(0));
+                        intent.putExtra(Constants.HERO_INFO_1, heroRelations.get(0));
                     if (heroRelations.get(1) != null)
-                        intent.putExtra("HeroInfo2", heroRelations.get(1));
+                        intent.putExtra(Constants.HERO_INFO_2, heroRelations.get(1));
                     if (heroRelations.get(2) != null)
-                        intent.putExtra("HeroInfo3", heroRelations.get(2));
+                        intent.putExtra(Constants.HERO_INFO_3, heroRelations.get(2));
                     if (heroRelations.get(3) != null)
-                        intent.putExtra("HeroInfo4", heroRelations.get(3));
+                        intent.putExtra(Constants.HERO_INFO_4, heroRelations.get(3));
                     if (heroRelations.get(4) != null)
-                        intent.putExtra("HeroInfo5", heroRelations.get(4));
+                        intent.putExtra(Constants.HERO_INFO_5, heroRelations.get(4));
                     break;
                 case 6:
                     if (heroRelations.get(0) != null)
-                        intent.putExtra("HeroInfo1", heroRelations.get(0));
+                        intent.putExtra(Constants.HERO_INFO_1, heroRelations.get(0));
                     if (heroRelations.get(1) != null)
-                        intent.putExtra("HeroInfo2", heroRelations.get(1));
+                        intent.putExtra(Constants.HERO_INFO_2, heroRelations.get(1));
                     if (heroRelations.get(2) != null)
-                        intent.putExtra("HeroInfo3", heroRelations.get(2));
+                        intent.putExtra(Constants.HERO_INFO_3, heroRelations.get(2));
                     if (heroRelations.get(3) != null)
-                        intent.putExtra("HeroInfo4", heroRelations.get(3));
+                        intent.putExtra(Constants.HERO_INFO_4, heroRelations.get(3));
                     if (heroRelations.get(4) != null)
-                        intent.putExtra("HeroInfo5", heroRelations.get(4));
+                        intent.putExtra(Constants.HERO_INFO_5, heroRelations.get(4));
                     if (heroRelations.get(5) != null)
-                        intent.putExtra("HeroInfo6", heroRelations.get(5));
+                        intent.putExtra(Constants.HERO_INFO_6, heroRelations.get(5));
                     break;
                 case 7:
                     if (heroRelations.get(0) != null)
-                        intent.putExtra("HeroInfo1", heroRelations.get(0));
+                        intent.putExtra(Constants.HERO_INFO_1, heroRelations.get(0));
                     if (heroRelations.get(1) != null)
-                        intent.putExtra("HeroInfo2", heroRelations.get(1));
+                        intent.putExtra(Constants.HERO_INFO_2, heroRelations.get(1));
                     if (heroRelations.get(2) != null)
-                        intent.putExtra("HeroInfo3", heroRelations.get(2));
+                        intent.putExtra(Constants.HERO_INFO_3, heroRelations.get(2));
                     if (heroRelations.get(3) != null)
-                        intent.putExtra("HeroInfo4", heroRelations.get(3));
+                        intent.putExtra(Constants.HERO_INFO_4, heroRelations.get(3));
                     if (heroRelations.get(4) != null)
-                        intent.putExtra("HeroInfo5", heroRelations.get(4));
+                        intent.putExtra(Constants.HERO_INFO_5, heroRelations.get(4));
                     if (heroRelations.get(5) != null)
-                        intent.putExtra("HeroInfo6", heroRelations.get(5));
+                        intent.putExtra(Constants.HERO_INFO_6, heroRelations.get(5));
                     if (heroRelations.get(6) != null)
-                        intent.putExtra("HeroInfo7", heroRelations.get(6));
+                        intent.putExtra(Constants.HERO_INFO_7, heroRelations.get(6));
                     break;
                 case 8:
                     if (heroRelations.get(0) != null)
-                        intent.putExtra("HeroInfo1", heroRelations.get(0));
+                        intent.putExtra(Constants.HERO_INFO_1, heroRelations.get(0));
                     if (heroRelations.get(1) != null)
-                        intent.putExtra("HeroInfo2", heroRelations.get(1));
+                        intent.putExtra(Constants.HERO_INFO_2, heroRelations.get(1));
                     if (heroRelations.get(2) != null)
-                        intent.putExtra("HeroInfo3", heroRelations.get(2));
+                        intent.putExtra(Constants.HERO_INFO_3, heroRelations.get(2));
                     if (heroRelations.get(3) != null)
-                        intent.putExtra("HeroInfo4", heroRelations.get(3));
+                        intent.putExtra(Constants.HERO_INFO_4, heroRelations.get(3));
                     if (heroRelations.get(4) != null)
-                        intent.putExtra("HeroInfo5", heroRelations.get(4));
+                        intent.putExtra(Constants.HERO_INFO_5, heroRelations.get(4));
                     if (heroRelations.get(5) != null)
-                        intent.putExtra("HeroInfo6", heroRelations.get(5));
+                        intent.putExtra(Constants.HERO_INFO_6, heroRelations.get(5));
                     if (heroRelations.get(6) != null)
-                        intent.putExtra("HeroInfo7", heroRelations.get(6));
+                        intent.putExtra(Constants.HERO_INFO_7, heroRelations.get(6));
                     if (heroRelations.get(7) != null)
-                        intent.putExtra("HeroInfo8", heroRelations.get(7));
+                        intent.putExtra(Constants.HERO_INFO_8, heroRelations.get(7));
                     break;
                 case 9:
                     if (heroRelations.get(0) != null)
-                        intent.putExtra("HeroInfo1", heroRelations.get(0));
+                        intent.putExtra(Constants.HERO_INFO_1, heroRelations.get(0));
                     if (heroRelations.get(1) != null)
-                        intent.putExtra("HeroInfo2", heroRelations.get(1));
+                        intent.putExtra(Constants.HERO_INFO_2, heroRelations.get(1));
                     if (heroRelations.get(2) != null)
-                        intent.putExtra("HeroInfo3", heroRelations.get(2));
+                        intent.putExtra(Constants.HERO_INFO_3, heroRelations.get(2));
                     if (heroRelations.get(3) != null)
-                        intent.putExtra("HeroInfo4", heroRelations.get(3));
+                        intent.putExtra(Constants.HERO_INFO_4, heroRelations.get(3));
                     if (heroRelations.get(4) != null)
-                        intent.putExtra("HeroInfo5", heroRelations.get(4));
+                        intent.putExtra(Constants.HERO_INFO_5, heroRelations.get(4));
                     if (heroRelations.get(5) != null)
-                        intent.putExtra("HeroInfo6", heroRelations.get(5));
+                        intent.putExtra(Constants.HERO_INFO_6, heroRelations.get(5));
                     if (heroRelations.get(6) != null)
-                        intent.putExtra("HeroInfo7", heroRelations.get(6));
+                        intent.putExtra(Constants.HERO_INFO_7, heroRelations.get(6));
                     if (heroRelations.get(7) != null)
-                        intent.putExtra("HeroInfo8", heroRelations.get(7));
+                        intent.putExtra(Constants.HERO_INFO_8, heroRelations.get(7));
                     if (heroRelations.get(8) != null)
-                        intent.putExtra("HeroInfo9", heroRelations.get(8));
+                        intent.putExtra(Constants.HERO_INFO_9, heroRelations.get(8));
                     break;
                 case 10:
                     if (heroRelations.get(0) != null)
-                        intent.putExtra("HeroInfo1", heroRelations.get(0));
+                        intent.putExtra(Constants.HERO_INFO_1, heroRelations.get(0));
                     if (heroRelations.get(1) != null)
-                        intent.putExtra("HeroInfo2", heroRelations.get(1));
+                        intent.putExtra(Constants.HERO_INFO_2, heroRelations.get(1));
                     if (heroRelations.get(2) != null)
-                        intent.putExtra("HeroInfo3", heroRelations.get(2));
+                        intent.putExtra(Constants.HERO_INFO_3, heroRelations.get(2));
                     if (heroRelations.get(3) != null)
-                        intent.putExtra("HeroInfo4", heroRelations.get(3));
+                        intent.putExtra(Constants.HERO_INFO_4, heroRelations.get(3));
                     if (heroRelations.get(4) != null)
-                        intent.putExtra("HeroInfo5", heroRelations.get(4));
+                        intent.putExtra(Constants.HERO_INFO_5, heroRelations.get(4));
                     if (heroRelations.get(5) != null)
-                        intent.putExtra("HeroInfo6", heroRelations.get(5));
+                        intent.putExtra(Constants.HERO_INFO_6, heroRelations.get(5));
                     if (heroRelations.get(6) != null)
-                        intent.putExtra("HeroInfo7", heroRelations.get(6));
+                        intent.putExtra(Constants.HERO_INFO_7, heroRelations.get(6));
                     if (heroRelations.get(7) != null)
-                        intent.putExtra("HeroInfo8", heroRelations.get(7));
+                        intent.putExtra(Constants.HERO_INFO_8, heroRelations.get(7));
                     if (heroRelations.get(8) != null)
-                        intent.putExtra("HeroInfo9", heroRelations.get(8));
+                        intent.putExtra(Constants.HERO_INFO_9, heroRelations.get(8));
                     if (heroRelations.get(9) != null)
-                        intent.putExtra("HeroInfo10", heroRelations.get(9));
+                        intent.putExtra(Constants.HERO_INFO_10, heroRelations.get(9));
                     break;
             }
         }

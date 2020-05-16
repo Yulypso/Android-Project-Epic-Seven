@@ -32,7 +32,7 @@ public class PopUp extends Activity {
 
         intent = getIntent();
         currentHero = intent.getParcelableExtra("currentHeroMissing");
-        popUpView = (TextView) findViewById(R.id.popUpView);
+        popUpView = findViewById(R.id.popUpView);
         DisplayMessage(currentHero);
     }
 

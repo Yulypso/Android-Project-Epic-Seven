@@ -26,17 +26,12 @@ import java.util.Objects;
 
 public class ActivityInformation extends AppCompatActivity {
 
-    public static String wallpaper = "https://assets.epicsevendb.com/website/summon/gacha_get_bg0_e7db.jpg";
-    public static String layout = "https://assets.epicsevendb.com/website/summon/gacha_get_bg1.png";
-    public static String URLBODY = "https://assets.epicsevendb.com/herofull/";
-
     Intent intent;
 
     private static int totalRelations;
 
     Hero currentHero;
     HeroInfo currentHeroInfo;
-
     HeroInfo HeroInfoRelation1;
     HeroInfo HeroInfoRelation2;
     HeroInfo HeroInfoRelation3;
@@ -48,41 +43,15 @@ public class ActivityInformation extends AppCompatActivity {
     HeroInfo HeroInfoRelation9;
     HeroInfo HeroInfoRelation10;
 
-
     String imageUrl;
     String imageFullUrl;
 
-    ImageView wallpaperView;
-    ImageView layoutView;
     TextView textViewInf;
     TextView textRoleView;
     TextView textElementView;
     TextView textZodiacView;
     TextView get_lineView;
     TextView storyView;
-
-    ImageView imageViewImage;
-    ImageView imageFullUrlView;
-    ImageView starViewImage1;
-    ImageView starViewImage2;
-    ImageView starViewImage3;
-    ImageView starViewImage4;
-    ImageView starViewImage5;
-    ImageView roleViewImage;
-    ImageView elementViewImage;
-    ImageView zodiacViewImage;
-
-    ImageView relation1View;
-    ImageView relation2View;
-    ImageView relation3View;
-    ImageView relation4View;
-    ImageView relation5View;
-    ImageView relation6View;
-    ImageView relation7View;
-    ImageView relation8View;
-    ImageView relation9View;
-    ImageView relation10View;
-
     TextView relation1TextView;
     TextView relation2TextView;
     TextView relation3TextView;
@@ -93,6 +62,29 @@ public class ActivityInformation extends AppCompatActivity {
     TextView relation8TextView;
     TextView relation9TextView;
     TextView relation10TextView;
+
+    ImageView wallpaperView;
+    ImageView layoutView;
+    ImageView imageViewImage;
+    ImageView imageFullUrlView;
+    ImageView starViewImage1;
+    ImageView starViewImage2;
+    ImageView starViewImage3;
+    ImageView starViewImage4;
+    ImageView starViewImage5;
+    ImageView roleViewImage;
+    ImageView elementViewImage;
+    ImageView zodiacViewImage;
+    ImageView relation1View;
+    ImageView relation2View;
+    ImageView relation3View;
+    ImageView relation4View;
+    ImageView relation5View;
+    ImageView relation6View;
+    ImageView relation7View;
+    ImageView relation8View;
+    ImageView relation9View;
+    ImageView relation10View;
 
     YouTubePlayerView youTubePlayerView;
 
@@ -176,14 +168,11 @@ public class ActivityInformation extends AppCompatActivity {
         DisplayYouTubePlayer(currentHeroInfo);
     }
 
-
     @Override
     public void onBackPressed() {
         finish();
         youTubePlayerView.release();
     }
-
-
 
     private void DisplayYouTubePlayer(final HeroInfo currentHeroInfo) {
 
@@ -706,15 +695,15 @@ public class ActivityInformation extends AppCompatActivity {
     }
 
     private void DisplayImageFullUrl() {
-        Picasso.get().load(URLBODY + currentHero.get_id() + ".png").into(imageFullUrlView);
+        Picasso.get().load(Constants.URLBODY + currentHero.get_id() + ".png").into(imageFullUrlView);
     }
 
     private void DisplayWallpaper() {
-        Picasso.get().load(wallpaper).into(wallpaperView);
+        Picasso.get().load(Constants.WALLPAPER).into(wallpaperView);
     }
 
     private void DisplayLayoutView() {
-        Picasso.get().load(layout).into(layoutView);
+        Picasso.get().load(Constants.lAYOUT).into(layoutView);
     }
 
     @SuppressLint("SetTextI18n")
@@ -860,79 +849,79 @@ public class ActivityInformation extends AppCompatActivity {
                 default:
                     break;
                 case 1:
-                    this.HeroInfoRelation1 = intent.getParcelableExtra("HeroInfo1");
+                    this.HeroInfoRelation1 = intent.getParcelableExtra(Constants.HERO_INFO_1);
                     break;
                 case 2:
-                    this.HeroInfoRelation1 = intent.getParcelableExtra("HeroInfo1");
-                    this.HeroInfoRelation2 = intent.getParcelableExtra("HeroInfo2");
+                    this.HeroInfoRelation1 = intent.getParcelableExtra(Constants.HERO_INFO_1);
+                    this.HeroInfoRelation2 = intent.getParcelableExtra(Constants.HERO_INFO_2);
                     break;
                 case 3:
-                    this.HeroInfoRelation1 = intent.getParcelableExtra("HeroInfo1");
-                    this.HeroInfoRelation2 = intent.getParcelableExtra("HeroInfo2");
-                    this.HeroInfoRelation3 = intent.getParcelableExtra("HeroInfo3");
+                    this.HeroInfoRelation1 = intent.getParcelableExtra(Constants.HERO_INFO_1);
+                    this.HeroInfoRelation2 = intent.getParcelableExtra(Constants.HERO_INFO_2);
+                    this.HeroInfoRelation3 = intent.getParcelableExtra(Constants.HERO_INFO_3);
                     break;
                 case 4:
-                    this.HeroInfoRelation1 = intent.getParcelableExtra("HeroInfo1");
-                    this.HeroInfoRelation2 = intent.getParcelableExtra("HeroInfo2");
-                    this.HeroInfoRelation3 = intent.getParcelableExtra("HeroInfo3");
-                    this.HeroInfoRelation4 = intent.getParcelableExtra("HeroInfo4");
+                    this.HeroInfoRelation1 = intent.getParcelableExtra(Constants.HERO_INFO_1);
+                    this.HeroInfoRelation2 = intent.getParcelableExtra(Constants.HERO_INFO_2);
+                    this.HeroInfoRelation3 = intent.getParcelableExtra(Constants.HERO_INFO_3);
+                    this.HeroInfoRelation4 = intent.getParcelableExtra(Constants.HERO_INFO_4);
                     break;
                 case 5:
-                    this.HeroInfoRelation1 = intent.getParcelableExtra("HeroInfo1");
-                    this.HeroInfoRelation2 = intent.getParcelableExtra("HeroInfo2");
-                    this.HeroInfoRelation3 = intent.getParcelableExtra("HeroInfo3");
-                    this.HeroInfoRelation4 = intent.getParcelableExtra("HeroInfo4");
-                    this.HeroInfoRelation5 = intent.getParcelableExtra("HeroInfo5");
+                    this.HeroInfoRelation1 = intent.getParcelableExtra(Constants.HERO_INFO_1);
+                    this.HeroInfoRelation2 = intent.getParcelableExtra(Constants.HERO_INFO_2);
+                    this.HeroInfoRelation3 = intent.getParcelableExtra(Constants.HERO_INFO_3);
+                    this.HeroInfoRelation4 = intent.getParcelableExtra(Constants.HERO_INFO_4);
+                    this.HeroInfoRelation5 = intent.getParcelableExtra(Constants.HERO_INFO_5);
                     break;
                 case 6:
-                    this.HeroInfoRelation1 = intent.getParcelableExtra("HeroInfo1");
-                    this.HeroInfoRelation2 = intent.getParcelableExtra("HeroInfo2");
-                    this.HeroInfoRelation3 = intent.getParcelableExtra("HeroInfo3");
-                    this.HeroInfoRelation4 = intent.getParcelableExtra("HeroInfo4");
-                    this.HeroInfoRelation5 = intent.getParcelableExtra("HeroInfo5");
-                    this.HeroInfoRelation6 = intent.getParcelableExtra("HeroInfo6");
+                    this.HeroInfoRelation1 = intent.getParcelableExtra(Constants.HERO_INFO_1);
+                    this.HeroInfoRelation2 = intent.getParcelableExtra(Constants.HERO_INFO_2);
+                    this.HeroInfoRelation3 = intent.getParcelableExtra(Constants.HERO_INFO_3);
+                    this.HeroInfoRelation4 = intent.getParcelableExtra(Constants.HERO_INFO_4);
+                    this.HeroInfoRelation5 = intent.getParcelableExtra(Constants.HERO_INFO_5);
+                    this.HeroInfoRelation6 = intent.getParcelableExtra(Constants.HERO_INFO_6);
                     break;
                 case 7:
-                    this.HeroInfoRelation1 = intent.getParcelableExtra("HeroInfo1");
-                    this.HeroInfoRelation2 = intent.getParcelableExtra("HeroInfo2");
-                    this.HeroInfoRelation3 = intent.getParcelableExtra("HeroInfo3");
-                    this.HeroInfoRelation4 = intent.getParcelableExtra("HeroInfo4");
-                    this.HeroInfoRelation5 = intent.getParcelableExtra("HeroInfo5");
-                    this.HeroInfoRelation6 = intent.getParcelableExtra("HeroInfo6");
-                    this.HeroInfoRelation7 = intent.getParcelableExtra("HeroInfo7");
+                    this.HeroInfoRelation1 = intent.getParcelableExtra(Constants.HERO_INFO_1);
+                    this.HeroInfoRelation2 = intent.getParcelableExtra(Constants.HERO_INFO_2);
+                    this.HeroInfoRelation3 = intent.getParcelableExtra(Constants.HERO_INFO_3);
+                    this.HeroInfoRelation4 = intent.getParcelableExtra(Constants.HERO_INFO_4);
+                    this.HeroInfoRelation5 = intent.getParcelableExtra(Constants.HERO_INFO_5);
+                    this.HeroInfoRelation6 = intent.getParcelableExtra(Constants.HERO_INFO_6);
+                    this.HeroInfoRelation7 = intent.getParcelableExtra(Constants.HERO_INFO_7);
                     break;
                 case 8:
-                    this.HeroInfoRelation1 = intent.getParcelableExtra("HeroInfo1");
-                    this.HeroInfoRelation2 = intent.getParcelableExtra("HeroInfo2");
-                    this.HeroInfoRelation3 = intent.getParcelableExtra("HeroInfo3");
-                    this.HeroInfoRelation4 = intent.getParcelableExtra("HeroInfo4");
-                    this.HeroInfoRelation5 = intent.getParcelableExtra("HeroInfo5");
-                    this.HeroInfoRelation6 = intent.getParcelableExtra("HeroInfo6");
-                    this.HeroInfoRelation7 = intent.getParcelableExtra("HeroInfo7");
-                    this.HeroInfoRelation8 = intent.getParcelableExtra("HeroInfo8");
+                    this.HeroInfoRelation1 = intent.getParcelableExtra(Constants.HERO_INFO_1);
+                    this.HeroInfoRelation2 = intent.getParcelableExtra(Constants.HERO_INFO_2);
+                    this.HeroInfoRelation3 = intent.getParcelableExtra(Constants.HERO_INFO_3);
+                    this.HeroInfoRelation4 = intent.getParcelableExtra(Constants.HERO_INFO_4);
+                    this.HeroInfoRelation5 = intent.getParcelableExtra(Constants.HERO_INFO_5);
+                    this.HeroInfoRelation6 = intent.getParcelableExtra(Constants.HERO_INFO_6);
+                    this.HeroInfoRelation7 = intent.getParcelableExtra(Constants.HERO_INFO_7);
+                    this.HeroInfoRelation8 = intent.getParcelableExtra(Constants.HERO_INFO_8);
                     break;
                 case 9:
-                    this.HeroInfoRelation1 = intent.getParcelableExtra("HeroInfo1");
-                    this.HeroInfoRelation2 = intent.getParcelableExtra("HeroInfo2");
-                    this.HeroInfoRelation3 = intent.getParcelableExtra("HeroInfo3");
-                    this.HeroInfoRelation4 = intent.getParcelableExtra("HeroInfo4");
-                    this.HeroInfoRelation5 = intent.getParcelableExtra("HeroInfo5");
-                    this.HeroInfoRelation6 = intent.getParcelableExtra("HeroInfo6");
-                    this.HeroInfoRelation7 = intent.getParcelableExtra("HeroInfo7");
-                    this.HeroInfoRelation8 = intent.getParcelableExtra("HeroInfo8");
-                    this.HeroInfoRelation9 = intent.getParcelableExtra("HeroInfo9");
+                    this.HeroInfoRelation1 = intent.getParcelableExtra(Constants.HERO_INFO_1);
+                    this.HeroInfoRelation2 = intent.getParcelableExtra(Constants.HERO_INFO_2);
+                    this.HeroInfoRelation3 = intent.getParcelableExtra(Constants.HERO_INFO_3);
+                    this.HeroInfoRelation4 = intent.getParcelableExtra(Constants.HERO_INFO_4);
+                    this.HeroInfoRelation5 = intent.getParcelableExtra(Constants.HERO_INFO_5);
+                    this.HeroInfoRelation6 = intent.getParcelableExtra(Constants.HERO_INFO_6);
+                    this.HeroInfoRelation7 = intent.getParcelableExtra(Constants.HERO_INFO_7);
+                    this.HeroInfoRelation8 = intent.getParcelableExtra(Constants.HERO_INFO_8);
+                    this.HeroInfoRelation9 = intent.getParcelableExtra(Constants.HERO_INFO_9);
                     break;
                 case 10:
-                    this.HeroInfoRelation1 = intent.getParcelableExtra("HeroInfo1");
-                    this.HeroInfoRelation2 = intent.getParcelableExtra("HeroInfo2");
-                    this.HeroInfoRelation3 = intent.getParcelableExtra("HeroInfo3");
-                    this.HeroInfoRelation4 = intent.getParcelableExtra("HeroInfo4");
-                    this.HeroInfoRelation5 = intent.getParcelableExtra("HeroInfo5");
-                    this.HeroInfoRelation6 = intent.getParcelableExtra("HeroInfo6");
-                    this.HeroInfoRelation7 = intent.getParcelableExtra("HeroInfo7");
-                    this.HeroInfoRelation8 = intent.getParcelableExtra("HeroInfo8");
-                    this.HeroInfoRelation9 = intent.getParcelableExtra("HeroInfo9");
-                    this.HeroInfoRelation10 = intent.getParcelableExtra("HeroInfo10");
+                    this.HeroInfoRelation1 = intent.getParcelableExtra(Constants.HERO_INFO_1);
+                    this.HeroInfoRelation2 = intent.getParcelableExtra(Constants.HERO_INFO_2);
+                    this.HeroInfoRelation3 = intent.getParcelableExtra(Constants.HERO_INFO_3);
+                    this.HeroInfoRelation4 = intent.getParcelableExtra(Constants.HERO_INFO_4);
+                    this.HeroInfoRelation5 = intent.getParcelableExtra(Constants.HERO_INFO_5);
+                    this.HeroInfoRelation6 = intent.getParcelableExtra(Constants.HERO_INFO_6);
+                    this.HeroInfoRelation7 = intent.getParcelableExtra(Constants.HERO_INFO_7);
+                    this.HeroInfoRelation8 = intent.getParcelableExtra(Constants.HERO_INFO_8);
+                    this.HeroInfoRelation9 = intent.getParcelableExtra(Constants.HERO_INFO_9);
+                    this.HeroInfoRelation10 = intent.getParcelableExtra(Constants.HERO_INFO_10);
                     break;
             }
         }
