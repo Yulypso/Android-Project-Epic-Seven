@@ -1,5 +1,9 @@
 # Android Project - Epic Seven (Java)
 
+## Author
+Thierry Khamphousone 
+[LinkedIn](www.linkedin.com/in/tkhamphousone)
+
 ## Introduction
 
 Android Project - Epic Seven is a mobile application based on the mobile game Epic Seven. 
@@ -97,6 +101,17 @@ several features have been implemented within this application.
 <img align="left" width="400" height="900" src="./pictures/info2_app.png"/>
 <img align="center" width="400" height="900" src="./pictures/info2_b_app.png"/>
 
+
+---
+
+### Improvements
+
+In order to improve the mobile application we can integrate:
+ - Database with [Room](https://developer.android.com/training/data-storage/room)
+ - Main menu before displaying the list of Heroes
+ - Fights between heroes selected
+ - artifacts and equipment for heroes
+ - push notification to alert something new
 
 ---
 
