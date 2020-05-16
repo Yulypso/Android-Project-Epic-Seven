@@ -8,6 +8,24 @@ public class Assets implements Parcelable {
     private String image;
     private String thumbnail;
 
+    public Assets(String icon, String image, String thumbnail) {
+        this.icon = icon;
+        this.image = image;
+        this.thumbnail = thumbnail;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
     private Assets(Parcel in) {
         icon = in.readString();
         image = in.readString();

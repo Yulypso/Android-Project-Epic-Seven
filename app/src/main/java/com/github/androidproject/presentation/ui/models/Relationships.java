@@ -9,6 +9,9 @@ public class Relationships implements Parcelable {
 
     private List<Relations> relations;
 
+    public Relationships(List<Relations> relations) {
+        this.relations = relations;
+    }
 
     private Relationships(Parcel in) {
         relations = in.createTypedArrayList(Relations.CREATOR);
