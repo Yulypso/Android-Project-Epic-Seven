@@ -1,7 +1,7 @@
 # Android Project - Epic Seven (Java)
 
 ## Author
-[Thierry Khamphousone](www.linkedin.com/in/tkhamphousone)
+[Thierry Khamphousone](https://www.linkedin.com/in/tkhamphousone/)
 
 ## Introduction
 
