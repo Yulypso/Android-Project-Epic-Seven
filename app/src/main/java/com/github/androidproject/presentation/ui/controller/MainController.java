@@ -3,9 +3,7 @@ package com.github.androidproject.presentation.ui.controller;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
-
 import com.github.androidproject.Constants;
 import com.github.androidproject.Singletons;
 import com.github.androidproject.data.EpicSevenApi;
@@ -18,11 +16,9 @@ import com.github.androidproject.presentation.ui.view.MainActivity;
 import com.github.androidproject.presentation.ui.view.PopUp;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -56,8 +52,6 @@ public class MainController {
             heroInfoList = getDataFromCache(Constants.KEY_HERO_INFO_LIST);
 
             assert heroList != null;
-            Log.d("Test", "Taille liste" + heroList.size());
-            Log.d("Test", "Taille liste" + heroInfoList.size());
         } catch (Exception e) {
             Log.d("Exception", "Impossible de récuperer les données depuis le cache");
         }
@@ -67,7 +61,7 @@ public class MainController {
             view.showList(heroList, heroInfoList);
             Toast.makeText(view.getApplicationContext(), "Load from Cache", Toast.LENGTH_SHORT).show();
         } else {
-            makeApiCall(); //if no data from cache, we make an ApiCall to get Data from API
+            makeApiCall();
         }
     }
 
@@ -119,7 +113,7 @@ public class MainController {
                     saveList(Constants.KEY_HERO_LIST, heroList);
                     saveList(Constants.KEY_HERO_INFO_LIST, heroInfoList);
                     MainController.heroListFull = new ArrayList<>(heroList);
-                    Toast.makeText(view.getApplicationContext(), "API Success 2", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(view.getApplicationContext(), "API Success 2", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -135,11 +129,11 @@ public class MainController {
 
         sharedPreferences
                 .edit()
-                .putString(storageKey, jsonString)  //clé, String
+                .putString(storageKey, jsonString)
                 .apply();
 
         if (storageKey.equals(Constants.KEY_HERO_INFO_LIST)) {
-            Toast.makeText(view.getApplicationContext(), "List saved", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(view.getApplicationContext(), "List saved", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -164,7 +158,7 @@ public class MainController {
             Type listType;
             if (storageKey.equals(Constants.KEY_HERO_LIST)) {
                 listType = new TypeToken<List<Hero>>() {
-                }.getType();//deserialize list
+                }.getType();
             } else {
                 listType = new TypeToken<List<HeroInfo>>() {
                 }.getType();
@@ -176,7 +170,6 @@ public class MainController {
     public void onItemClick(Hero currentHero) {
         currentHeroInfo = searchHeroInfoById(currentHero);
         if (currentHeroInfo != null) {
-            Log.d("HeroInfo", "" + currentHeroInfo.get_id());
             openActivityInformation(view, currentHero, currentHeroInfo, heroInfoList);
         } else {
             Intent intent2 = new Intent(view, PopUp.class);
@@ -223,7 +216,6 @@ public class MainController {
                     for (Hero H : heroListFull) {
                         if ((H.get_id().equals(HI.get_id())) && (HI.getId().equals(currentHeroInfo.getRelationships().get(0).getRelations().get(i).getId())) && (!currentHeroInfo.getRelationships().get(0).getRelations().get(i).getId().contains("npc")) && (!currentHeroInfo.getRelationships().get(0).getRelations().get(i).getId().contains("m"))) {
                             heroRelations.add(HI);
-                            System.out.println("ADDED ! " + HI.getId() + " " + HI.getName());
                         }
                     }
                 }
@@ -234,7 +226,6 @@ public class MainController {
     }
 
     private void sendRelations(Intent intent, List<HeroInfo> heroRelations) {
-        System.out.println("TOTAL RELATION after counter : " + totalRelations);
         if (totalRelations > 0) {
             switch (totalRelations) {
                 default:

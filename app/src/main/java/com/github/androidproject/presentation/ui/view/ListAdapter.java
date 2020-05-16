@@ -1,27 +1,20 @@
 package com.github.androidproject.presentation.ui.view;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.github.androidproject.Constants;
 import com.github.androidproject.R;
 import com.github.androidproject.presentation.ui.models.Hero;
 import com.github.androidproject.presentation.ui.models.HeroInfo;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -38,16 +31,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
         void onItemClick(Hero item);
     }
 
-    public ListAdapter(List<Hero> heroList, List<HeroInfo> heroInfoList, OnItemClickListener listener) { //constructor
+    public ListAdapter(List<Hero> heroList, List<HeroInfo> heroInfoList, OnItemClickListener listener) {
         this.heroList = heroList;
         this.heroInfoList = heroInfoList;
         this.heroListFull = new ArrayList<>(heroList);
         this.listener = listener;
-
-        for(Hero hero: heroList){
-            Log.d("Hero", hero.getName());
-        }
-
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -221,7 +209,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
 
     @Override
     public int getItemCount() {
-        // System.out.println("number of item : "+ values.size()); //to Test LogCat display
         return heroList.size();
     }
 
@@ -235,7 +222,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
         protected FilterResults performFiltering(CharSequence charSequence) {
             List<Hero> filteredList = new ArrayList<>();
 
-            if (charSequence == null || charSequence.length() == 0 || charSequence.toString().isEmpty()) { //canEdit
+            if (charSequence == null || charSequence.length() == 0 || charSequence.toString().isEmpty()) {
                 filteredList.addAll(heroListFull);
             } else {
                 String filterPattern = charSequence.toString().toLowerCase();

@@ -1,12 +1,7 @@
 package com.github.androidproject.presentation.ui.models;
 
 import android.os.Parcel;
-import android.util.Log;
-
 import org.junit.Test;
-
-import java.lang.reflect.Field;
-
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 

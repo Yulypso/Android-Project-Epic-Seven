@@ -6,9 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.widget.TextView;
-
 import androidx.annotation.Nullable;
-
 import com.github.androidproject.R;
 import com.github.androidproject.presentation.ui.models.Hero;
 
@@ -16,7 +14,6 @@ public class PopUp extends Activity {
 
     Intent intent;
     Hero currentHero;
-
     TextView popUpView;
 
     @Override

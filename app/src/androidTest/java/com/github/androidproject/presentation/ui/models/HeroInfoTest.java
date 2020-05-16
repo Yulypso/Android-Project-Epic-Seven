@@ -1,12 +1,9 @@
 package com.github.androidproject.presentation.ui.models;
 
 import android.os.Parcel;
-
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 

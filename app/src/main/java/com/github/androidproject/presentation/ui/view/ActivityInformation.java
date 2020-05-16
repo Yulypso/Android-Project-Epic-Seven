@@ -3,16 +3,13 @@ package com.github.androidproject.presentation.ui.view;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.github.androidproject.Constants;
 import com.github.androidproject.R;
 import com.github.androidproject.presentation.ui.models.Hero;
@@ -21,7 +18,6 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 import com.squareup.picasso.Picasso;
-
 import java.util.Objects;
 
 public class ActivityInformation extends AppCompatActivity {
@@ -95,7 +91,6 @@ public class ActivityInformation extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setTitle("Hero Information");
 
-        Log.d("Info", "coucou je suis arrivé à l'activity 2 !");
         intent = getIntent();
         currentHero = intent.getParcelableExtra("Hero");
         currentHeroInfo = intent.getParcelableExtra("HeroInfo");

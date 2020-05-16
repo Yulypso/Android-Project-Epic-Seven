@@ -1,11 +1,7 @@
 package com.github.androidproject.presentation.ui.models;
 
 import android.os.Parcel;
-
-import com.google.gson.internal.$Gson$Preconditions;
-
 import org.junit.Test;
-
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 

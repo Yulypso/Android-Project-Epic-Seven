@@ -5,13 +5,11 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
-
 import com.github.androidproject.Singletons;
 import com.github.androidproject.presentation.ui.controller.MainController;
 import com.github.androidproject.presentation.ui.models.Hero;
