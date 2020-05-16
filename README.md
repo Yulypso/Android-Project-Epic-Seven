@@ -1,8 +1,7 @@
 # Android Project - Epic Seven (Java)
 
 ## Author
-Thierry Khamphousone 
-[LinkedIn](www.linkedin.com/in/tkhamphousone)
+[Thierry Khamphousone](www.linkedin.com/in/tkhamphousone)
 
 ## Introduction
 
@@ -111,7 +110,7 @@ In order to improve the mobile application we can integrate:
  - Main menu before displaying the list of Heroes
  - Fights between heroes selected
  - artifacts and equipment for heroes
- - push notification to alert something new
+ - notification push in order to alert something new
 
 ---
 
