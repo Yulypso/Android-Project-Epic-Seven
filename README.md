@@ -49,7 +49,7 @@ several features have been implemented within this application.
 - Application Icon
 - MVC Architecture
 - Singleton
-- Gitflow (permanent: master|develop) (temporary: features|releases)
+- Gitflow (permanent: master/develop) (temporary: features/releases)
 - Design
 - Unit Test
 - SOLID Principles
